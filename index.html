@@ -309,6 +309,7 @@ footer .cols div{max-width:300px}
 </div>
 <div>© 2026 Justin Addam Higgins · Signature University · <a href="sitemap.xml">sitemap</a> · <a href="api.json">machine-readable index</a></div>
 </footer>
+<script src="js/jah-talk-fallback.js"></script>
 <script>
 "use strict";
 /* Signature University app */
@@ -481,7 +482,7 @@ function courseQuick(c){
   else if(/describe|what is|about|summary|overview/.test(ql))a=c.desc;
   else if(/degree|diploma|earn/.test(ql))a="Mark this course complete with the button above; progress is saved on your device and counts toward degrees.";
   else a="This course record doesn't cover that.";
-  box.innerHTML='<div class="msg ai"><span class="who">COURSE RECORD · QUICK ANSWERS</span>'+esc(a)+'</div>';
+  box.innerHTML='<div class="msg ai"><span class="who">COURSE RECORD · QUICK ANSWERS</span>'+esc(juhGuard(a,juhTeacherProfile()))+'</div>';
   box.scrollTop=box.scrollHeight;
 }
 function renderSheet(tab){
@@ -549,6 +550,38 @@ function renderSheet(tab){
 </script>
 <script>
 "use strict";
+/* ---------- JAHtalk shared talk module: human voice + duties, stat-dump guard ----
+   Every teacher and the campus guide speak through JAHtalk: social intents
+   (hello, "what are your duties?", who are you) get warm human replies, and
+   EVERY final AI reply is guarded against terse machine dumps. Site helpers
+   only — none of them claims a canon JAH-AI ID. */
+function juhTeacherProfile(){
+  var t=(typeof CUR!=="undefined"&&CUR&&CUR.teacher)?CUR.teacher:{};
+  var col=(typeof CUR!=="undefined"&&CUR&&CUR.college)?CUR.college:"";
+  var ct=(typeof CUR!=="undefined"&&CUR&&CUR.title)?CUR.title:"this course";
+  return {name:((t.title||"")+" "+(t.name||"")).trim()||"AI Teacher",id:"",
+    description:t.persona||("AI teaching assistant for "+ct+" — a study guide, not a licensed professional."),
+    abilities:["Explain any lesson in plain language","Show the syllabus","Quiz you until it sticks","Help plan your study and degree path"],
+    domain:col,kind:"domain"};
+}
+function juhGuideProfile(){
+  return {name:"University Guide",id:"",
+    description:"Friendly campus guide for Signature University — maps your goals to real courses and degree paths.",
+    abilities:["Match your goals to courses","Chart a degree path","Track your progress"],
+    domain:"Signature University",kind:"domain"};
+}
+function juhGuard(text,prof){
+  return (typeof JAHtalk==="undefined")?text:JAHtalk.guard(text,prof);
+}
+/* social intents -> let JAHtalk answer like a human; other questions keep the site's own logic */
+function juhSocial(q,prof){
+  if(typeof JAHtalk==="undefined")return null;
+  var t=" "+String(q||"").toLowerCase()+" ";
+  if(/^(hi|hii+|hey|hello|yo|howdy|good\s?(morning|afternoon|evening|day)|greetings|sup|hiya)\b/.test(String(q||"").toLowerCase())||
+     /\b(what are your duties|what is your duty|what do you do|what can you do|your duties|your job|your role|your abilities|explain your duties|who are you|your name|introduce yourself|what are you for|how are you|thank|bye|goodbye)\b/.test(t))
+    return JAHtalk.reply(prof,q);
+  return null;
+}
 /* ---------- AI teacher chat ---------- */
 var FRAMES=[["Principles of ",""],[""," : Core Concepts"],["Guided Practice: ",""],[""," in the Real World"],["Common Mistakes in ",""],[""," : Worked Examples"],["Review and Checkup: ",""],["Where "," Goes Next"]];
 function stripTopic(lesson){
@@ -557,6 +590,7 @@ function stripTopic(lesson){
   return lesson;
 }
 function tMsg(log,who,text,html){
+  if(who==="ai")text=juhGuard(text,juhTeacherProfile());
   var d=document.createElement("div");d.className="msg "+(who==="you"?"you":"ai");
   d.innerHTML='<span class="who">'+esc(who==="you"?"YOU":CUR.teacher.title+" "+CUR.teacher.name+" · AI TEACHING ASSISTANT")+'</span>'+(html?text:esc(text));
   log.appendChild(d);log.scrollTop=log.scrollHeight;return d;
@@ -573,6 +607,8 @@ function initTeacherChat(){
   $("tIn").addEventListener("keydown",function(e){if(e.key==="Enter")send();});
 }
 function teacherReply(log,q){
+  var soc=juhSocial(q,juhTeacherProfile());
+  if(soc!==null){tMsg(log,"ai",soc);return;}
   var ql=q.toLowerCase(),c=CUR;
   if(/syllabus|modules|outline/.test(ql)){
     tMsg(log,"ai","Here is our journey through <b>"+esc(c.title)+"</b> — 6 modules, 24 lessons:<br><br>"+
@@ -781,6 +817,7 @@ $("saveName").addEventListener("click",function(){PROG.name=$("learnerName").val
 /* ---------- guide chat ---------- */
 var STOP={the:1,and:1,for:1,what:1,with:1,about:1,how:1,does:1,why:1,want:1,learn:1,study:1,become:1,courses:1,course:1,like:1,get:1,into:1,some:1,more:1,that:1,this:1,from:1,are:1,you:1,your:1,can:1,should:1,will:1,have:1,has:1,our:1,its:1,than:1,then:1,them:1,they:1,teach:1,teaching:1,degree:1,degrees:1,school:1,university:1,class:1,classes:1,tell:1,please:1,help:1};
 function gMsg(who,html){
+  if(who==="ai")html=juhGuard(html,juhGuideProfile());
   var log=$("guideLog"),d=document.createElement("div");d.className="msg "+(who==="you"?"you":"ai");
   d.innerHTML='<span class="who">'+(who==="you"?"YOU":"🎓 UNIVERSITY GUIDE · AI ASSISTANT")+'</span>'+html;
   log.appendChild(d);log.scrollTop=log.scrollHeight;return d;
@@ -801,6 +838,8 @@ function scoreCourses(toks){
   return scored.slice(0,3);
 }
 function guideReply(q){
+  var soc=juhSocial(q,juhGuideProfile());
+  if(soc!==null){gMsg("ai",esc(soc));return;}
   var ql=q.toLowerCase();
   if(/^(hi|hello|hey|yo)\b/.test(ql)){gMsg("ai","Hello! What would you like to learn? Name a subject, a trade, or a dream — I will find your courses.");return;}
   if(/thank/.test(ql)){gMsg("ai","You are very welcome. Keep learning — the campus is open day and night, and it is all free.");return;}
