@@ -96,6 +96,16 @@ footer .cols{display:flex;flex-wrap:wrap;gap:18px;justify-content:center;text-al
 footer .cols div{max-width:300px}
 .kv{display:grid;grid-template-columns:150px 1fr;gap:6px 12px;font-size:.9em;margin:10px 0}
 .kv b{color:var(--gold2)}
+#aubar{position:fixed;left:50%;transform:translateX(-50%);bottom:14px;z-index:9999;background:#141021;border:1px solid var(--gold);border-radius:10px;padding:10px 14px;display:flex;gap:10px;align-items:center;box-shadow:0 0 18px rgba(217,164,65,.45);color:#f0e2b8;font-size:14px;max-width:94vw;flex-wrap:wrap}
+#aubar button{background:#241c08;color:var(--gold2);border:1px solid var(--gold);border-radius:6px;padding:6px 12px;cursor:pointer;font-family:inherit;font-size:14px}
+#aubar button:hover{background:#33270c}
+#aubar select{background:#141021;color:var(--gold2);border:1px solid var(--gold);border-radius:6px;padding:5px;font-family:inherit}
+#aubar label{display:flex;gap:6px;align-items:center}
+#aulabel{max-width:46vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rd{background:var(--card);border:1px solid var(--line);border-radius:6px;cursor:pointer;font-size:.8em;padding:1px 7px;margin-left:6px;vertical-align:middle}
+.rd:hover{border-color:var(--gold)}
+#auFloat{position:fixed;right:16px;bottom:16px;z-index:9998;width:52px;height:52px;border-radius:50%;background:var(--gold);border:2px solid var(--gold2);font-size:22px;cursor:pointer;box-shadow:0 0 16px rgba(217,164,65,.5)}
+#auFloat:hover{transform:scale(1.06)}
 @media print{
  body>*{display:none!important}
  #diplomaSheet{display:block!important;position:static}
@@ -248,6 +258,21 @@ footer .cols div{max-width:300px}
 </section>
 </div><!-- /wrap -->
 
+<!-- ============ READ-ALOUD BAR ============ -->
+<button id="auFloat" title="Read this page aloud" aria-label="Read this page aloud">🔊</button>
+<div id="aubar" style="display:none">
+  <span id="aulabel">Reading…</span>
+  <button id="aupause" type="button">&#10074;&#10074; Pause</button>
+  <button id="austop" type="button">&#9632; Stop</button>
+  <label>Speed <select id="aurate">
+    <option value="0.8">0.8&times;</option>
+    <option value="1" selected>1&times;</option>
+    <option value="1.25">1.25&times;</option>
+    <option value="1.5">1.5&times;</option>
+    <option value="2">2&times;</option>
+  </select></label>
+</div>
+
 <!-- ============ COURSE MODAL ============ -->
 <div id="modal" role="dialog" aria-modal="true"><div class="sheet" id="sheet"></div></div>
 
@@ -397,11 +422,12 @@ function renderSheet(tab){
       '<p>'+esc(c.desc)+'</p>'+
       '<h3>Your AI teacher</h3><p><b style="color:var(--gold2)">'+esc(c.teacher.title+" "+c.teacher.name)+'</b> — personal AI teaching assistant for this course. Open the Teacher tab to start a study session.</p>'+
       '<p><button class="btn" id="doneBtn">'+(done?"✓ Completed — mark not done":"Mark course complete")+'</button> '+
+      '<button class="btn ghost" id="readBtn">🔊 Read course aloud</button> '+
       '<button class="btn ghost" id="shareBtn">Copy course link</button></p>';
   }else if(tab==="syllabus"){
     body=c.modules.map(function(m,mi){
       return '<details class="mod"'+(mi<1?" open":"")+'><summary>Module '+(mi+1)+': '+esc(m.m)+'</summary><ul>'+
-        m.lessons.map(function(l){return "<li>"+esc(l)+"</li>";}).join("")+"</ul></details>";
+        m.lessons.map(function(l,li){return '<li>'+esc(l)+' <button class="rd" data-mi="'+mi+'" data-li="'+li+'" title="Read this lesson aloud" aria-label="Read lesson aloud">🔊</button></li>';}).join("")+"</ul></details>";
     }).join("");
   }else if(tab==="readings"){
     body='<p class="dim">Cross-linked across the JAH Network — dictionary, wiki, live specs, live patents, books.</p>'+
@@ -435,6 +461,7 @@ function renderSheet(tab){
       (navigator.clipboard?navigator.clipboard.writeText(u):Promise.reject()).then(function(){$("shareBtn").textContent="Link copied!";},function(){prompt("Copy this course link:",u);});
     });
     var pl=$("preLink");if(pl)pl.addEventListener("click",function(e){e.preventDefault();openCourse(c.prereq);});
+    var rb=$("readBtn");if(rb)rb.addEventListener("click",function(){auReadCourse();});
   }
   if(tab==="teacher")initTeacherChat();
 }
@@ -745,6 +772,170 @@ $("guideSend").addEventListener("click",function(){
 $("guideIn").addEventListener("keydown",function(e){if(e.key==="Enter")$("guideSend").click();});
 
 boot();
+</script>
+<script>
+"use strict";
+/* ===== Tiered read-aloud (same chain as the other JAH Network sites):
+   speechSynthesis first; if the browser has no voice (in-app WebViews etc.),
+   online tiers: ResponsiveVoice en-US female -> Google translate hosts.
+   Google TTS sends no CORS headers -> direct audio-element playback. ===== */
+var AU = { q: [], i: 0, active: false, paused: false, rate: 1, label: "" };
+function auVoice() {
+  try {
+    var vs = window.speechSynthesis.getVoices().filter(function (v) {
+      return v.lang && v.lang.toLowerCase().indexOf("en") === 0;
+    });
+    if (!vs.length) return null;
+    var fem = /samantha|zira|joanna|amy|emma|kate|serena|moira|tessa|veena|fiona|karen|female|google us english/i;
+    for (var i = 0; i < vs.length; i++) if (fem.test(vs[i].name)) return vs[i];
+    var g = vs.filter(function (v) { return v.name.toLowerCase().indexOf("google") >= 0; })[0];
+    return g || vs[0] || null;
+  } catch (e) { return null; }
+}
+function auChunks(text) {
+  var out = [], cur = "";
+  var parts = text.split(/([.!?]["']?(?:\s+|$))/);
+  for (var i = 0; i < parts.length; i += 2) {
+    var sent = ((parts[i] || "") + (parts[i + 1] || "")).replace(/\s+/g, " ").trim();
+    if (!sent) continue;
+    if (cur && (cur + " " + sent).length > 220) { out.push(cur.trim()); cur = sent; }
+    else cur = cur ? cur + " " + sent : sent;
+  }
+  if (cur.trim()) out.push(cur.trim());
+  return out;
+}
+/* extract readable text from an element, skipping code/raw markup */
+function auTextOf(el) {
+  if (!el) return "";
+  var clone = el.cloneNode(true);
+  var kill = clone.querySelectorAll("pre, code, script, style, button, input, textarea, select, svg, img, canvas");
+  for (var k = kill.length - 1; k >= 0; k--) kill[k].parentNode.removeChild(kill[k]);
+  return (clone.textContent || "").replace(/[ \t\u00a0]+/g, " ").replace(/\n\s*\n\s*\n+/g, "\n\n").trim();
+}
+function auShowBar(show) {
+  var bar = document.getElementById("aubar");
+  if (bar) bar.style.display = show ? "flex" : "none";
+}
+function auPaintBtn() {
+  var p = document.getElementById("aupause");
+  if (p) p.innerHTML = AU.paused ? "&#9654; Resume" : "&#10074;&#10074; Pause";
+  var l = document.getElementById("aulabel");
+  if (l) l.textContent = "Reading: " + AU.label;
+}
+function auSpeakNext() {
+  if (AU.i >= AU.q.length || !AU.active) { auStop(); return; }
+  auShowBar(true); auPaintBtn();
+  var u = new SpeechSynthesisUtterance(AU.q[AU.i]);
+  u.rate = AU.rate; u.lang = "en-US";
+  var v = auVoice(); if (v) u.voice = v;
+  u.onend = function () { if (!AU.active) return; AU.i++; auSpeakNext(); };
+  u.onerror = function () { if (!AU.active) return; AU.i++; auSpeakNext(); };
+  window.speechSynthesis.speak(u);
+}
+function hasSpeech(){try{return ("speechSynthesis" in window)&&!!window.speechSynthesis&&typeof window.speechSynthesis.speak==="function"}catch(e){return false}}
+try{if(hasSpeech()){window.speechSynthesis.getVoices();window.speechSynthesis.onvoiceschanged=function(){try{window.speechSynthesis.getVoices()}catch(e){}}}}catch(e){}
+function fxMsg(m){alert(m);}
+var FX={audio:null,active:false,errs:0};
+var TTS_TIERS=[
+ function(t){return "https://code.responsivevoice.org/getvoice.php?t="+encodeURIComponent(t)+"&tl=en-US"},
+ function(t){return "https://translate.google.com/translate_tts?ie=UTF-8&tl=en&client=tw-ob&q="+encodeURIComponent(t)},
+ function(t){return "https://translate.googleapis.com/translate_tts?ie=UTF-8&tl=en&client=tw-ob&q="+encodeURIComponent(t)}];
+function fxChunks(text){var out=[],cur="",parts=String(text).split(/([.!?]["']?(?:\s+|$))/);
+  function pushWords(s){var w=s.split(" "),c="";for(var k=0;k<w.length;k++){var t=(c+" "+w[k]).trim();if(t.length>180){if(c)out.push(c);c=w[k]}else c=t}if(c)out.push(c)}
+  for(var i=0;i<parts.length;i+=2){var s=((parts[i]||"")+(parts[i+1]||"")).replace(/\s+/g," ").trim();if(!s)continue;
+    if(s.length>180){if(cur){out.push(cur);cur=""}pushWords(s);continue}
+    if(cur&&(cur+" "+s).length>180){out.push(cur);cur=s}else cur=cur?cur+" "+s:s}
+  if(cur)out.push(cur);return out}
+function fxPlay(list,i,tier,retry,proven){
+  if(!FX.active||!AU.active)return;
+  if(i>=list.length){auStop();return}
+  var a;try{a=new Audio(TTS_TIERS[tier](list[i]))}catch(e){auStop();return}
+  try{a.playbackRate=AU.rate||1}catch(e){}
+  FX.audio=a;
+  a.onended=function(){if(AU.active&&FX.active){FX.errs=0;fxPlay(list,i+1,tier,0,true)}};
+  a.onerror=function(){if(!AU.active||!FX.active)return;
+    if(!proven){
+      if(retry<1){fxPlay(list,i,tier,retry+1,false);return}
+      if(tier+1<TTS_TIERS.length){fxPlay(list,i,tier+1,0,false);return}
+      auStop();fxMsg("I couldn't reach a voice service — check your connection, or open this page in Chrome for built-in voices.");return}
+    if(retry<1){fxPlay(list,i,tier,retry+1,true);return}
+    FX.errs=(FX.errs||0)+1;
+    if(FX.errs>4){auStop();fxMsg("The voice service dropped — check your connection, or open this page in Chrome.");return}
+    fxPlay(list,i+1,tier,0,true)};
+  try{var pr=a.play();if(pr&&pr.catch)pr.catch(function(){if(!proven&&i===0)fxMsg("The browser blocked audio — tap the pause button, then play, to start it.")})}catch(e){}
+}
+function fxStart(text){FX.active=true;FX.errs=0;fxPlay(fxChunks(text),0,0,0,false)}
+function fxStop(){FX.active=false;if(FX.audio){try{FX.audio.pause()}catch(e){}FX.audio=null}}
+function auBegin(label, text) {
+  if (!text) { alert("Nothing to read here yet."); return; }
+  auStop();
+  AU.label = label; AU.i = 0; AU.active = true; AU.paused = false;
+  if (hasSpeech()) { try { window.speechSynthesis.cancel(); } catch (e) {} AU.q = auChunks(label + ". " + text); auSpeakNext(); }
+  else { auShowBar(true); auPaintBtn(); fxStart(label + ". " + text); fxMsg("This browser has no built-in voice — reading with the online voice instead."); }
+}
+function auPauseToggle() {
+  if (!AU.active) return;
+  if (FX.active) {
+    var fa = FX.audio;
+    try { if (AU.paused) { if (fa) fa.play(); } else { if (fa) fa.pause(); } } catch (e) {}
+    AU.paused = !AU.paused; auPaintBtn(); return;
+  }
+  try {
+    if (AU.paused) window.speechSynthesis.resume(); else window.speechSynthesis.pause();
+  } catch (e) {}
+  AU.paused = !AU.paused; auPaintBtn();
+}
+function auStop() {
+  AU.active = false; AU.paused = false; AU.q = []; AU.i = 0; fxStop();
+  try { if (window.speechSynthesis) window.speechSynthesis.cancel(); } catch (e) {}
+  auShowBar(false);
+}
+/* per-course: overview + full syllabus listing */
+function auReadCourse() {
+  if (typeof CUR === "undefined" || !CUR) return;
+  var c = CUR, t = c.title + ". " + c.desc + " The syllabus has six modules. ";
+  c.modules.forEach(function (m, i) { t += "Module " + (i + 1) + ": " + m.m + ". Lessons: " + m.lessons.join("; ") + ". "; });
+  auBegin(c.title, t);
+}
+/* per-lesson */
+function auReadLesson(mi, li) {
+  if (typeof CUR === "undefined" || !CUR) return;
+  var m = CUR.modules[mi], l = m.lessons[li];
+  auBegin(l, "Module " + (mi + 1) + ": " + m.m + ". Lesson: " + l + ".");
+}
+/* current course tab (skips code blocks) */
+function auReadTab() {
+  if (typeof CUR === "undefined" || !CUR) return;
+  var body = document.getElementById("tabBody");
+  auBegin(CUR.title, auTextOf(body));
+}
+/* site-wide floating button: reads the open course, else the visible wing */
+function auReadPage() {
+  var modal = document.getElementById("modal");
+  if (typeof CUR !== "undefined" && CUR && modal && modal.classList.contains("open")) { auReadTab(); return; }
+  var vis = null;
+  ["home","catalog","library","labs","projects","research","degrees","guide"].forEach(function (w) {
+    var s = document.getElementById("w-" + w);
+    if (s && !s.hidden) vis = s;
+  });
+  if (!vis) return;
+  var panel = vis.querySelector(".panel");
+  auBegin("Signature University", auTextOf(panel || vis).slice(0, 4000));
+}
+(function () {
+  var p = document.getElementById("aupause"), s = document.getElementById("austop"),
+      r = document.getElementById("aurate"), f = document.getElementById("auFloat");
+  if (p) p.addEventListener("click", function () { auPauseToggle(); });
+  if (s) s.addEventListener("click", function () { auStop(); });
+  if (r) r.addEventListener("change", function () { AU.rate = parseFloat(r.value) || 1; if (FX.audio) { try { FX.audio.playbackRate = AU.rate; } catch (e) {} } });
+  if (f) f.addEventListener("click", function () { if (AU.active) auStop(); else auReadPage(); });
+  var sheet = document.getElementById("sheet");
+  if (sheet) sheet.addEventListener("click", function (e) {
+    var b = e.target.closest ? e.target.closest(".rd") : null;
+    if (b) { auReadLesson(parseInt(b.getAttribute("data-mi"), 10), parseInt(b.getAttribute("data-li"), 10)); }
+  });
+  window.addEventListener("pagehide", function () { auStop(); });
+})();
 </script>
 </body>
 </html>
