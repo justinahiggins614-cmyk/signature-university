@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Signature University — A Free Online University by Justin Addam Higgins</title>
+<meta name="description" content="Signature University: a free online university. 3,850 courses across 11 colleges — engineering, computer science, medicine, law, business, sciences, mathematics, arts, education, trades, and PhD research. AI teachers, degrees, printable diplomas.">
+<style>
+:root{--bg:#0a0e1c;--bg2:#0d1328;--card:#121830;--card2:#161d3a;--line:#2b3560;--txt:#f0e9d6;--dim:#a9b0c7;--gold:#d9a441;--gold2:#f2d47e;--cyber:#5fd4ff;--grn:#7be495;--red:#ff7b7b;--serif:Georgia,'Times New Roman',serif;--sans:-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--txt);font-family:var(--sans);line-height:1.55;
+background-image:radial-gradient(ellipse 80% 40% at 50% -10%,rgba(217,164,65,.10),transparent),linear-gradient(rgba(95,212,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(95,212,255,.025) 1px,transparent 1px);background-size:auto,44px 44px,44px 44px}
+.jahnet{background:#070b16;color:#9aa4b2;font-size:.74em;padding:7px 10px;text-align:center;line-height:2;letter-spacing:.02em;border-bottom:1px solid var(--line)}
+.jahnet-t{color:var(--gold);font-weight:700;letter-spacing:.25em;margin-right:10px}
+.jahnet a{color:#9fc2ff;text-decoration:none;margin:0 6px;white-space:nowrap}
+.jahnet a:hover{text-decoration:underline}
+.jahnet .cur{color:var(--gold);font-weight:700;margin:0 6px;border:1px solid var(--gold);border-radius:20px;padding:2px 10px}
+.mast{max-width:1100px;margin:0 auto;padding:34px 18px 10px;text-align:center}
+.crest{width:86px;height:86px;margin:0 auto 10px;display:block}
+.mast h1{font-family:var(--serif);font-size:2.6em;margin:.1em 0;color:var(--gold2);letter-spacing:.04em;text-shadow:0 0 26px rgba(217,164,65,.35)}
+.mast .latin{font-family:var(--serif);font-style:italic;color:var(--dim);letter-spacing:.28em;font-size:.85em}
+.mast .tag{max-width:720px;margin:12px auto 0;color:var(--dim);font-size:1.02em}
+.stats{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:18px 0 6px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 18px;min-width:130px}
+.stat b{display:block;font-size:1.5em;color:var(--gold2);font-family:var(--serif)}
+.stat span{font-size:.78em;color:var(--dim);letter-spacing:.08em;text-transform:uppercase}
+.bigmenu{max-width:1100px;margin:14px auto 0;padding:0 14px;display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.bigmenu a{background:var(--card);border:1px solid var(--line);color:var(--txt);text-decoration:none;padding:10px 16px;border-radius:10px;font-size:.92em}
+.bigmenu a:hover{border-color:var(--gold)}
+.bigmenu a.on{background:var(--gold);color:#181206;font-weight:700;border-color:var(--gold)}
+.wrap{max-width:1100px;margin:0 auto;padding:18px 14px 60px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;margin:16px 0}
+.panel h2{font-family:var(--serif);color:var(--gold2);margin:.1em 0 .5em;font-size:1.5em;letter-spacing:.02em}
+.panel h3{color:var(--cyber);font-size:1.05em;margin:1.1em 0 .4em}
+.tick{color:var(--gold)}
+p.dim{color:var(--dim)}
+a{color:#9fc2ff}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.ccard{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:16px;cursor:pointer;transition:transform .12s,border-color .12s}
+.ccard:hover{transform:translateY(-2px);border-color:var(--gold)}
+.ccard h3{margin:.1em 0 .3em;color:var(--gold2);font-family:var(--serif);font-size:1.12em}
+.ccard .abbr{display:inline-block;background:var(--gold);color:#181206;font-weight:800;font-size:.72em;border-radius:6px;padding:2px 8px;margin-bottom:6px;letter-spacing:.1em}
+.ccard p{margin:.3em 0;color:var(--dim);font-size:.9em}
+.ccard .n{color:var(--cyber);font-weight:700}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0;align-items:center}
+.toolbar input[type=text],.toolbar select{background:#0b1024;border:1px solid var(--line);color:var(--txt);border-radius:8px;padding:10px 12px;font-size:.95em}
+.toolbar input[type=text]{flex:1;min-width:200px}
+.az{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+.az button{background:var(--card2);border:1px solid var(--line);color:var(--txt);border-radius:8px;width:38px;height:38px;font-size:.95em;cursor:pointer}
+.az button.on{background:var(--gold);color:#181206;font-weight:700}
+.az button:disabled{opacity:.3;cursor:default}
+.course{background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0;cursor:pointer}
+.course:hover{border-color:var(--gold)}
+.course .code{display:inline-block;background:#0b1024;border:1px solid var(--gold);color:var(--gold2);border-radius:6px;font-size:.72em;padding:2px 8px;margin-right:8px;letter-spacing:.08em;font-weight:700}
+.course .cid{color:var(--dim);font-size:.75em;font-family:monospace}
+.course h4{margin:.25em 0;font-size:1.02em;color:var(--txt)}
+.course .meta{font-size:.8em;color:var(--dim)}
+.done-badge{display:inline-block;background:var(--grn);color:#0c2413;font-size:.7em;font-weight:800;border-radius:6px;padding:2px 8px;margin-left:8px}
+#modal{position:fixed;inset:0;background:rgba(4,6,14,.82);display:none;z-index:50;overflow-y:auto;padding:20px 12px}
+#modal.open{display:block}
+.sheet{max-width:860px;margin:20px auto;background:var(--bg2);border:1px solid var(--gold);border-radius:16px;padding:26px;position:relative}
+.sheet .x{position:absolute;top:12px;right:14px;background:none;border:1px solid var(--line);color:var(--txt);border-radius:8px;font-size:1.1em;cursor:pointer;padding:4px 12px}
+.sheet h2{font-family:var(--serif);color:var(--gold2);margin:.1em 0}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+.tabs button{background:var(--card);border:1px solid var(--line);color:var(--txt);border-radius:8px;padding:8px 14px;cursor:pointer}
+.tabs button.on{background:var(--gold);color:#181206;font-weight:700}
+.mod{border:1px solid var(--line);border-radius:10px;margin:8px 0;background:var(--card)}
+.mod summary{padding:12px 14px;cursor:pointer;font-weight:700;color:var(--cyber)}
+.mod ul{margin:0;padding:0 14px 12px 34px;color:var(--dim)}
+.reading{display:flex;justify-content:space-between;gap:10px;align-items:center;border-bottom:1px dashed var(--line);padding:9px 2px;font-size:.93em}
+.pilltag{font-size:.68em;font-weight:800;letter-spacing:.08em;border-radius:6px;padding:3px 9px;text-transform:uppercase;white-space:nowrap}
+.pt-dict{background:#274b63;color:#bfe6ff}.pt-wiki{background:#3d2f63;color:#d9c8ff}.pt-spec{background:#5a4318;color:#ffd98a}.pt-patent{background:#4d1f2e;color:#ffb3c2}.pt-book{background:#1e4d33;color:#b8f0cd}
+.chatbox{border:1px solid var(--line);border-radius:12px;background:#0b1024;display:flex;flex-direction:column;height:380px}
+.chatlog{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px}
+.msg{max-width:88%;padding:10px 14px;border-radius:12px;font-size:.93em;line-height:1.5}
+.msg.ai{background:var(--card2);border:1px solid var(--line);align-self:flex-start}
+.msg.you{background:#2a2410;border:1px solid var(--gold);align-self:flex-end}
+.msg .who{display:block;font-size:.72em;color:var(--dim);margin-bottom:4px;letter-spacing:.06em}
+.chatrow{display:flex;gap:8px;padding:10px;border-top:1px solid var(--line)}
+.chatrow input{flex:1;background:var(--bg2);border:1px solid var(--line);color:var(--txt);border-radius:8px;padding:10px 12px;font-size:.95em}
+.chatrow button{background:var(--gold);border:none;color:#181206;font-weight:800;border-radius:8px;padding:10px 18px;cursor:pointer}
+.honest{background:#241a08;border:1px solid var(--gold);border-radius:10px;padding:10px 14px;font-size:.85em;color:#e8cf9a;margin:12px 0}
+.btn{display:inline-block;background:var(--gold);color:#181206;font-weight:800;border:none;border-radius:10px;padding:12px 22px;cursor:pointer;font-size:1em;text-decoration:none}
+.btn.ghost{background:transparent;border:1px solid var(--gold);color:var(--gold2)}
+.deg{border:1px solid var(--line);border-radius:12px;padding:16px;margin:10px 0;background:var(--card2)}
+.deg h4{margin:.1em 0;color:var(--gold2);font-family:var(--serif)}
+.bar{height:10px;background:#0b1024;border-radius:6px;overflow:hidden;margin:8px 0}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2))}
+#diplomaSheet{display:none}
+.shelf{margin:14px 0}
+.shelf h4{color:var(--gold2);font-family:var(--serif);margin:.4em 0}
+.shelf .links{display:flex;flex-wrap:wrap;gap:8px}
+.shelf a{background:var(--card2);border:1px solid var(--line);border-radius:8px;padding:6px 12px;font-size:.86em;text-decoration:none}
+footer{border-top:1px solid var(--line);padding:26px 18px;text-align:center;color:var(--dim);font-size:.85em;max-width:1100px;margin:0 auto}
+footer .cols{display:flex;flex-wrap:wrap;gap:18px;justify-content:center;text-align:left;margin-bottom:14px}
+footer .cols div{max-width:300px}
+.kv{display:grid;grid-template-columns:150px 1fr;gap:6px 12px;font-size:.9em;margin:10px 0}
+.kv b{color:var(--gold2)}
+@media print{
+ body>*{display:none!important}
+ #diplomaSheet{display:block!important;position:static}
+ #diplomaSheet .diploma{border:6px double #8a6a1f;border-radius:8px;padding:50px 40px;text-align:center;color:#1a1408;background:#fdf8ea;font-family:Georgia,serif;max-width:800px;margin:20px auto}
+ #diplomaSheet .diploma h1{letter-spacing:.18em;font-size:2em;margin:.2em 0}
+ #diplomaSheet .diploma .seal{width:110px;height:110px;border:3px solid #8a6a1f;border-radius:50%;margin:18px auto;display:flex;align-items:center;justify-content:center;font-size:.7em;letter-spacing:.1em;color:#8a6a1f}
+}
+@media(max-width:640px){.mast h1{font-size:1.9em}.sheet{padding:18px 14px}}
+</style>
+</head>
+<body>
+<div class="jahnet"><span class="jahnet-t">THE JAH NETWORK</span><a href="https://justinahiggins614-cmyk.github.io/jah-ai-models/">The Signature AI Telephone Book</a><a href="https://justinahiggins614-cmyk.github.io/jah-calculator/">Signature Universal Paradox Immune Calculator</a><a href="https://justinahiggins614-cmyk.github.io/jah-dictionary/">The Signature Dictionary</a><a href="https://justinahiggins614-cmyk.github.io/jah-wiki/">JAH Wiki</a><a href="https://justinahiggins614-cmyk.github.io/jah-n-wiki-leaks/">JAH-N Wiki</a><a href="https://justinahiggins614-cmyk.github.io/cyber-patent-catalog/">Globally Rejustered Patent Catalog</a><a href="https://justinahiggins614-cmyk.github.io/signature-one-archive/specs.html">Signature Spec Catalog Pending Patents</a><a href="https://justinahiggins614-cmyk.github.io/signature-llama/">Signature Llama</a><a href="https://justinahiggins614-cmyk.github.io/jah-computer-systems/">The Signature PC System Depository</a><a href="https://justinahiggins614-cmyk.github.io/signature-cyber-mega-mall/">Signature Cyber Mega Mall</a><span class="cur">YOU ARE HERE: SIGNATURE UNIVERSITY</span><a href="https://justinahiggins614-cmyk.github.io/signature-books/">Signature Books</a></div>
+
+<header class="mast">
+<svg class="crest" viewBox="0 0 100 100" aria-hidden="true"><path d="M50 6 L90 22 V52 C90 76 72 90 50 96 C28 90 10 76 10 52 V22 Z" fill="none" stroke="#d9a441" stroke-width="4"/><path d="M50 22 C40 30 32 30 26 26 V58 C32 62 40 62 50 54 C60 62 68 62 74 58 V26 C68 30 60 30 50 22 Z" fill="none" stroke="#f2d47e" stroke-width="3"/><path d="M50 22 V54" stroke="#f2d47e" stroke-width="3"/><circle cx="50" cy="72" r="7" fill="none" stroke="#5fd4ff" stroke-width="2.5"/><path d="M50 65 V79 M43 72 H57" stroke="#5fd4ff" stroke-width="2"/></svg>
+<h1>SIGNATURE UNIVERSITY</h1>
+<div class="latin">· LUX · VERITAS · SIGNATURA ·</div>
+<p class="tag">A free online university by <b style="color:var(--gold2)">Justin Addam Higgins</b>. Every college, every trade, every PhD subject — marching toward <b style="color:var(--gold2)">one million degrees</b>. No tuition. No login. Open to everyone, on any phone.</p>
+<div class="stats" id="homeStats"><div class="stat"><b>…</b><span>loading</span></div></div>
+</header>
+
+<nav class="bigmenu" aria-label="Campus menu">
+<a href="#home" data-w="home">🏛 Campus Home</a>
+<a href="#catalog" data-w="catalog">📚 Course Catalog</a>
+<a href="#library" data-w="library">📖 Library</a>
+<a href="#labs" data-w="labs">🧪 Labs</a>
+<a href="#projects" data-w="projects">🏗 Projects</a>
+<a href="#research" data-w="research">🔬 Research Wing</a>
+<a href="#degrees" data-w="degrees">🎓 Degrees &amp; Diplomas</a>
+<a href="#guide" data-w="guide">💬 AI Guide Chat</a>
+</nav>
+
+<div class="wrap">
+<!-- ============ HOME ============ -->
+<section id="w-home">
+<div class="panel">
+<h2><span class="tick">✦</span> Welcome to the Campus</h2>
+<p>Signature University is a complete free university that lives in your browser. Pick a college, take real courses with full syllabi, study with a personal <b>AI teacher</b> for every single course, run lab exercises, build capstone projects, and earn <b>printable officially-stamped diplomas</b> — all free, all at your own pace.</p>
+<div class="kv">
+<b>11 colleges</b><span>Engineering · Computer Science · Medicine &amp; Health · Law · Business · Natural Sciences · Mathematics · Arts &amp; Humanities · Education · Trade School · PhD Research</span>
+<b>6 levels</b><span>101 introductory → 201 intermediate → 301 advanced → 401 specialist → 501 graduate → 601 doctoral</span>
+<b>Every course has</b><span>full syllabus (6 modules, 24 lessons) · cross-linked reading list · its own AI teacher · hands-on labs · printable record</span>
+</div>
+<p><a class="btn" href="#catalog">Browse the Course Catalog</a> <a class="btn ghost" href="#guide">Ask the AI Guide</a></p>
+</div>
+<div class="panel">
+<h2><span class="tick">✦</span> The Eleven Colleges</h2>
+<div class="grid" id="collegeGrid"></div>
+</div>
+<div class="panel">
+<h2><span class="tick">✦</span> How It Works</h2>
+<div class="grid">
+<div class="ccard"><h3>1 · Learn</h3><p>Search 3,850 courses. Open any course for its full syllabus, readings, and labs. Deep-link any course: <code style="color:var(--cyber)">?course=JAH-COURSE-000260</code>.</p></div>
+<div class="ccard"><h3>2 · Study with AI</h3><p>Every course has its own AI teacher — ask for explanations, quizzes, and study plans. The campus guide chats free-hand and maps your goals to classes and degrees.</p></div>
+<div class="ccard"><h3>3 · Earn degrees</h3><p>Your progress saves on your device. Complete courses, unlock achievements, earn degrees, and print officially-stamped diplomas — free forever.</p></div>
+</div>
+<div class="honest"><b>Honest notes:</b> All course material is original, written for Signature University by Justin Addam Higgins. AI teachers are AI study assistants — encouraging guides, not licensed professionals. For medical, legal, or financial decisions, always consult a licensed professional. Signature University is an independent free learning project — it claims no government accreditation; diplomas certify course completion.</div>
+</div>
+</section>
+<!-- ============ CATALOG ============ -->
+<section id="w-catalog" hidden>
+<div class="panel">
+<h2><span class="tick">✦</span> Course Catalog <span style="font-size:.55em;color:var(--dim)" id="catCount"></span></h2>
+<p class="dim">Search the full catalog, filter by college and level, or browse A–Z. Click any course for its syllabus, readings, labs, and AI teacher.</p>
+<div class="toolbar">
+<input type="text" id="q" placeholder="Search courses — try “welding”, “calculus”, “contracts”…">
+<select id="fCollege"><option value="">All colleges</option></select>
+<select id="fLevel"><option value="">All levels</option><option>101</option><option>201</option><option>301</option><option>401</option><option>501</option><option>601</option></select>
+</div>
+<div class="az" id="az"></div>
+<div id="results"><p class="dim">Loading the catalog index…</p></div>
+</div>
+</section>
+
+<!-- ============ LIBRARY ============ -->
+<section id="w-library" hidden>
+<div class="panel">
+<h2><span class="tick">✦</span> The University Library</h2>
+<p class="dim">Every course reading list draws from the shelves of the whole JAH Network — the Signature Dictionary, JAH Wiki, the Signature Spec Catalog, the Globally Rejustered Patent Catalog, and Signature Books. Browse a college shelf below.</p>
+<div class="toolbar"><select id="libCollege"></select></div>
+<div id="shelves"></div>
+</div>
+</section>
+
+<!-- ============ LABS ============ -->
+<section id="w-labs" hidden>
+<div class="panel">
+<h2><span class="tick">✦</span> Teaching Laboratories <span style="font-size:.55em;color:var(--dim)" id="labCount"></span></h2>
+<p class="dim">Hands-on lab exercises from every course — bench work, field assignments, and build challenges. Click a lab to open its course.</p>
+<div class="toolbar">
+<input type="text" id="labQ" placeholder="Search labs — try “circuit”, “solder”, “survey”…">
+<select id="labCollege"><option value="">All colleges</option></select>
+</div>
+<div id="labResults"><p class="dim">Open this wing to load the lab index…</p></div>
+</div>
+</section>
+
+<!-- ============ PROJECTS ============ -->
+<section id="w-projects" hidden>
+<div class="panel">
+<h2><span class="tick">✦</span> Capstone Projects</h2>
+<p class="dim">End-of-program builds: plan it, build it, document it, present it. Completing a capstone with its course set is the traditional road to a degree.</p>
+<div id="projList"></div>
+</div>
+</section>
+<!-- ============ RESEARCH ============ -->
+<section id="w-research" hidden>
+<div class="panel">
+<h2><span class="tick">✦</span> Research Wing</h2>
+<p>The Research Wing is where the university grows. It watches the whole JAH Network and turns new knowledge into new courses:</p>
+<div class="kv">
+<b>Signature Spec Catalog</b><span>Every new original spec draft by Justin Addam Higgins becomes candidate material for engineering, science, and technology courses.</span>
+<b>Patent Catalog</b><span>Every newly harvested public patent record feeds course reading lists and research seminars — real filings, studied for real.</span>
+<b>JAH Wiki · Leaks · Dictionary</b><span>New articles, dossiers, and word records flow into reading lists across all eleven colleges.</span>
+</div>
+<h3>Live feed example — real records, real courses</h3>
+<div class="grid">
+<div class="ccard" data-open-course="JAH-COURSE-000260"><span class="abbr">COURSE</span><h3>Introduction to Renewable Energy Systems</h3><p>A live Signature University course (ENG 101). Its reading list links the live spec record below.</p><p class="n">JAH-COURSE-000260 →</p></div>
+<div class="ccard"><span class="abbr">SPEC</span><h3>JAH-SPEC-341552</h3><p>“Energy systems engine-Pc types suite hybrid for A/B testing using sharded counters” — a real draft spec in the Signature Spec Catalog, cited as course research material.</p><p><a href="https://justinahiggins614-cmyk.github.io/signature-one-archive/specs.html?spec=JAH-SPEC-341552" target="_blank" rel="noopener">Open the live spec record →</a></p></div>
+<div class="ccard" data-open-course="JAH-COURSE-002052"><span class="abbr">COURSE</span><h3>Introduction to Agricultural Science</h3><p>A live Signature University course (SCI 101). Its reading list links the live patent record below.</p><p class="n">JAH-COURSE-002052 →</p></div>
+<div class="ccard"><span class="abbr">PATENT</span><h3>AR018265A1</h3><p>“Method for controlling pests in cultures of useful transgenic plants…” — a real public patent record in the Globally Rejustered Patent Catalog, cited as course research material.</p><p><a href="https://justinahiggins614-cmyk.github.io/cyber-patent-catalog/?patent=AR018265A1" target="_blank" rel="noopener">Open the live patent record →</a></p></div>
+</div>
+<p class="dim">As the catalogs drip new records around the clock, the Research Wing drafts new courses — the curriculum never stands still. Current curriculum: <b style="color:var(--gold2)" id="resCount">…</b> courses and counting.</p>
+</div>
+</section>
+
+<!-- ============ DEGREES ============ -->
+<section id="w-degrees" hidden>
+<div class="panel">
+<h2><span class="tick">✦</span> Degrees &amp; Diplomas</h2>
+<p class="dim">Your progress is saved on <b>your device only</b> — no account, no tracking. Mark courses complete in the catalog, then watch your degrees fill up. When a degree is earned, print your officially-stamped diploma free.</p>
+<div class="toolbar"><input type="text" id="learnerName" placeholder="Your name for diplomas (e.g. Alex Rivera)" style="max-width:340px"><button class="btn ghost" id="saveName" style="padding:10px 18px">Save name</button></div>
+<div class="honest"><b>Honest notes:</b> Signature University is an independent free learning project by Justin Addam Higgins. It is <b>not accredited</b> by any government body. Diplomas certify that you completed the listed Signature University courses — a real achievement, honestly described.</div>
+<div id="achieve"></div>
+<div id="degList"><p class="dim">Loading degree programs…</p></div>
+</div>
+</section>
+
+<!-- ============ GUIDE CHAT ============ -->
+<section id="w-guide" hidden>
+<div class="panel">
+<h2><span class="tick">✦</span> AI Guide Chat</h2>
+<p class="dim">Talk free-hand. Tell the guide what you want to learn, what you want to become, or where you are stuck — it maps the conversation to real courses and degree paths across all eleven colleges.</p>
+<div class="honest" style="margin-top:0"><b>Signature University Guide</b> is an AI assistant — a friendly study guide, not a licensed professional. For medical, legal, or financial decisions, always consult a licensed professional.</div>
+<div class="chatbox" style="height:460px">
+<div class="chatlog" id="guideLog"></div>
+<div class="chatrow"><input id="guideIn" placeholder="“I want to become an electrician” or “teach me about black holes”…"><button id="guideSend">Ask</button></div>
+</div>
+</div>
+</section>
+</div><!-- /wrap -->
+
+<!-- ============ COURSE MODAL ============ -->
+<div id="modal" role="dialog" aria-modal="true"><div class="sheet" id="sheet"></div></div>
+
+<!-- ============ DIPLOMA (print) ============ -->
+<div id="diplomaSheet"></div>
+
+<footer>
+<div class="cols">
+<div><b style="color:var(--gold2)">Signature University</b><br>A free online university by Justin Addam Higgins. Original course material, written for this university. Marching toward one million degrees.</div>
+<div><b style="color:var(--gold2)">The JAH Network</b><br><a href="https://justinahiggins614-cmyk.github.io/jah-ai-models/">Telephone Book</a> · <a href="https://justinahiggins614-cmyk.github.io/jah-dictionary/">Dictionary</a> · <a href="https://justinahiggins614-cmyk.github.io/jah-wiki/">JAH Wiki</a> · <a href="https://justinahiggins614-cmyk.github.io/cyber-patent-catalog/">Patent Catalog</a> · <a href="https://justinahiggins614-cmyk.github.io/signature-one-archive/specs.html">Spec Catalog</a></div>
+<div><b style="color:var(--gold2)">Honesty</b><br>AI teachers are AI assistants, not licensed professionals. No government accreditation is claimed. Diplomas certify course completion at Signature University.</div>
+</div>
+<div>© 2026 Justin Addam Higgins · Signature University · <a href="sitemap.xml">sitemap</a> · <a href="api.json">machine-readable index</a></div>
+</footer>
+<script>
+"use strict";
+/* Signature University app */
+var DB={colleges:null,idx:null,chunks:{},labs:null,projects:null,degrees:null,library:null};
+var PROG={name:"",done:{}};
+try{var p=JSON.parse(localStorage.getItem("su_prog_v1")||"null");if(p&&p.done)PROG=p;}catch(e){}
+function saveProg(){try{localStorage.setItem("su_prog_v1",JSON.stringify(PROG));}catch(e){}}
+function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
+function $(id){return document.getElementById(id);}
+function getJSON(u){return fetch(u).then(function(r){if(!r.ok)throw new Error("http "+r.status);return r.json();});}
+var WINGS=["home","catalog","library","labs","projects","research","degrees","guide"];
+function go(w){location.hash="#"+w;}
+function route(){
+  var h=(location.hash||"#home").slice(1), w=WINGS.indexOf(h)>=0?h:"home";
+  WINGS.forEach(function(x){$("w-"+x).hidden=(x!==w);});
+  document.querySelectorAll(".bigmenu a").forEach(function(a){a.classList.toggle("on",a.getAttribute("data-w")===w);});
+  if(w==="labs"&&!DB.labs)loadLabs();
+  if(w==="projects"&&!DB.projects)loadProjects();
+  if(w==="degrees"&&!DB.degrees)loadDegrees();
+  if(w==="library")renderLibrary();
+  window.scrollTo(0,0);
+}
+window.addEventListener("hashchange",route);
+
+/* ---------- boot ---------- */
+function boot(){
+  Promise.all([getJSON("data/colleges.json"),getJSON("data/courses.idx.json")]).then(function(r){
+    DB.colleges=r[0];DB.idx=r[1];
+    renderHome();initCatalog();initLibrary();
+    $("resCount").textContent=DB.colleges.total.toLocaleString();
+    route();deepLink();
+  }).catch(function(e){
+    $("homeStats").innerHTML='<div class="stat"><b>!</b><span>data failed to load</span></div>';
+  });
+}
+function collegeName(k){var c=DB.colleges.colleges.filter(function(x){return x.key===k;})[0];return c?c.name:k;}
+function collegeAbbr(k){var c=DB.colleges.colleges.filter(function(x){return x.key===k;})[0];return c?c.abbr:k;}
+
+/* ---------- home ---------- */
+function renderHome(){
+  var c=DB.colleges;
+  $("homeStats").innerHTML=
+    '<div class="stat"><b>'+c.total.toLocaleString()+'</b><span>courses</span></div>'+
+    '<div class="stat"><b>'+c.colleges.length+'</b><span>colleges</span></div>'+
+    '<div class="stat"><b>6</b><span>levels 101–PhD</span></div>'+
+    '<div class="stat"><b>'+c.total.toLocaleString()+'</b><span>AI teachers</span></div>'+
+    '<div class="stat"><b>1M</b><span>degree goal</span></div>';
+  $("collegeGrid").innerHTML=c.colleges.map(function(x){
+    return '<div class="ccard" data-college="'+x.key+'"><span class="abbr">'+x.abbr+'</span><h3>'+esc(x.name)+'</h3><p>'+esc(x.tagline)+'</p><p class="n">'+x.courses.toLocaleString()+' courses →</p></div>';
+  }).join("");
+  document.querySelectorAll("[data-college]").forEach(function(el){
+    el.addEventListener("click",function(){$("fCollege").value=el.getAttribute("data-college");applyFilter();go("catalog");});
+  });
+  document.querySelectorAll("[data-open-course]").forEach(function(el){
+    el.addEventListener("click",function(e){if(e.target.tagName!=="A")openCourse(el.getAttribute("data-open-course"));});
+  });
+}
+
+/* ---------- catalog ---------- */
+var F={q:"",college:"",level:"",az:""};
+function initCatalog(){
+  var fc=$("fCollege");
+  DB.colleges.colleges.forEach(function(x){
+    var o=document.createElement("option");o.value=x.key;o.textContent=x.name+" ("+x.courses+")";fc.appendChild(o);
+  });
+  var letters={};
+  DB.idx.forEach(function(r){var L=r.t.charAt(0).toUpperCase();if(/[A-Z]/.test(L))letters[L]=1;});
+  $("az").innerHTML=Object.keys(letters).sort().map(function(L){return '<button data-az="'+L+'">'+L+'</button>';}).join("");
+  document.querySelectorAll("#az button").forEach(function(b){
+    b.addEventListener("click",function(){F.az=(F.az===b.getAttribute("data-az"))?"":b.getAttribute("data-az");
+      document.querySelectorAll("#az button").forEach(function(x){x.classList.toggle("on",x.getAttribute("data-az")===F.az);});
+      applyFilter();});
+  });
+  var deb=null;
+  $("q").addEventListener("input",function(){clearTimeout(deb);deb=setTimeout(function(){F.q=$("q").value.trim().toLowerCase();applyFilter();},220);});
+  fc.addEventListener("change",function(){F.college=fc.value;applyFilter();});
+  $("fLevel").addEventListener("change",function(){F.level=$("fLevel").value;applyFilter();});
+  $("catCount").textContent="· "+DB.idx.length.toLocaleString()+" courses";
+  applyFilter();
+}
+function filteredIdx(){
+  var q=F.q;
+  return DB.idx.filter(function(r){
+    if(F.college&&r.k!==F.college)return false;
+    if(F.level&&String(r.l)!==F.level)return false;
+    if(F.az&&r.t.charAt(0).toUpperCase()!==F.az)return false;
+    if(q){var hay=(r.t+" "+r.c+" "+r.i).toLowerCase();if(hay.indexOf(q)<0)return false;}
+    return true;
+  });
+}
+function applyFilter(){
+  var list=filteredIdx(), total=list.length, show=list.slice(0,200);
+  var h=show.map(function(r){
+    var done=PROG.done[r.i]?'<span class="done-badge">✓ DONE</span>':"";
+    return '<div class="course" data-id="'+r.i+'"><span class="code">'+esc(r.c)+'</span><span class="cid">'+r.i+'</span>'+done+
+      '<h4>'+esc(r.t)+'</h4><div class="meta">'+esc(collegeName(r.k))+' · Level '+r.l+'</div></div>';
+  }).join("");
+  if(!total)h='<p class="dim">No courses match. Try clearing a filter.</p>';
+  $("results").innerHTML=h+(total>200?'<p class="dim">Showing 200 of '+total.toLocaleString()+' — narrow the search to see more.</p>':'<p class="dim">'+total.toLocaleString()+' course'+(total===1?"":"s")+'.</p>');
+  document.querySelectorAll("#results .course").forEach(function(el){
+    el.addEventListener("click",function(){openCourse(el.getAttribute("data-id"));});
+  });
+}
+
+/* ---------- course modal ---------- */
+var CUR=null;
+function chunkFor(id){var n=parseInt(id.slice(-6),10);return "c"+String(Math.ceil(n/100)).padStart(4,"0");}
+function openCourse(id){
+  var ch=chunkFor(id);
+  var done=DB.chunks[ch]?Promise.resolve(DB.chunks[ch]):getJSON("data/chunks/"+ch+".json").then(function(j){DB.chunks[ch]=j;return j;});
+  done.then(function(list){
+    var c=null;for(var i=0;i<list.length;i++)if(list[i].id===id)c=list[i];
+    if(!c){alert("Course not found: "+id);return;}
+    CUR=c;renderSheet("overview");
+    $("modal").classList.add("open");document.body.style.overflow="hidden";
+  }).catch(function(){alert("Could not load course data.");});
+}
+function closeModal(){$("modal").classList.remove("open");document.body.style.overflow="";}
+$("modal").addEventListener("click",function(e){if(e.target===$("modal"))closeModal();});
+document.addEventListener("keydown",function(e){if(e.key==="Escape")closeModal();});
+var PTL={dict:"DICT",wiki:"WIKI",spec:"SPEC",patent:"PATENT",book:"BOOK"};
+function renderSheet(tab){
+  var c=CUR, done=!!PROG.done[c.id];
+  var tabs=["overview","syllabus","readings","teacher","labs"].map(function(t){
+    return '<button data-tab="'+t+'" class="'+(t===tab?"on":"")+'">'+t.charAt(0).toUpperCase()+t.slice(1)+'</button>';
+  }).join("");
+  var body="";
+  if(tab==="overview"){
+    body='<div class="kv"><b>Course ID</b><span style="font-family:monospace">'+c.id+'</span>'+
+      '<b>Catalog code</b><span>'+esc(c.code)+' · '+c.credits+' credits · Level '+c.level+'</span>'+
+      '<b>College</b><span>'+esc(c.college)+'</span>'+
+      '<b>Prerequisite</b><span>'+(c.prereq?'<a href="#" id="preLink">'+c.prereq+'</a>':'None — open to all learners')+'</span></div>'+
+      '<p>'+esc(c.desc)+'</p>'+
+      '<h3>Your AI teacher</h3><p><b style="color:var(--gold2)">'+esc(c.teacher.title+" "+c.teacher.name)+'</b> — personal AI teaching assistant for this course. Open the Teacher tab to start a study session.</p>'+
+      '<p><button class="btn" id="doneBtn">'+(done?"✓ Completed — mark not done":"Mark course complete")+'</button> '+
+      '<button class="btn ghost" id="shareBtn">Copy course link</button></p>';
+  }else if(tab==="syllabus"){
+    body=c.modules.map(function(m,mi){
+      return '<details class="mod"'+(mi<1?" open":"")+'><summary>Module '+(mi+1)+': '+esc(m.m)+'</summary><ul>'+
+        m.lessons.map(function(l){return "<li>"+esc(l)+"</li>";}).join("")+"</ul></details>";
+    }).join("");
+  }else if(tab==="readings"){
+    body='<p class="dim">Cross-linked across the JAH Network — dictionary, wiki, live specs, live patents, books.</p>'+
+      c.readings.map(function(r){
+        return '<div class="reading"><span><span class="pilltag pt-'+r.t+'">'+PTL[r.t]+'</span> '+esc(r.label)+'</span><a href="'+esc(r.url)+'" target="_blank" rel="noopener">open →</a></div>';
+      }).join("");
+  }else if(tab==="teacher"){
+    body='<div class="honest" style="margin-top:0"><b>'+esc(c.teacher.title+" "+c.teacher.name)+'</b> is an AI teaching assistant — a study guide for this course, not a licensed professional.'+
+      ((c.college_key==="medicine"||c.college_key==="law"||c.college_key==="business")?" For medical, legal, or financial decisions, always consult a licensed professional.":"")+'</div>'+
+      '<div class="chatbox"><div class="chatlog" id="tLog"></div>'+
+      '<div class="chatrow"><input id="tIn" placeholder="Ask about any lesson — or type: syllabus, quiz, help"><button id="tSend">Ask</button></div></div>';
+  }else if(tab==="labs"){
+    body=c.labs.map(function(l){
+      return '<div class="course"><h4>'+esc(l.t)+'</h4><div class="meta">'+esc(l.d)+'</div></div>';
+    }).join("");
+  }
+  $("sheet").innerHTML='<button class="x" id="xBtn" aria-label="close">✕</button>'+
+    '<div style="font-family:monospace;color:var(--dim);font-size:.78em">'+c.id+'</div>'+
+    '<h2>'+esc(c.title)+'</h2>'+
+    '<div class="meta" style="color:var(--dim);font-size:.85em;margin-bottom:6px">'+esc(c.code)+' · '+esc(c.college)+' · Level '+c.level+' · '+c.credits+' credits</div>'+
+    '<div class="tabs">'+tabs+'</div><div id="tabBody">'+body+'</div>';
+  $("xBtn").addEventListener("click",closeModal);
+  document.querySelectorAll("#sheet [data-tab]").forEach(function(b){b.addEventListener("click",function(){renderSheet(b.getAttribute("data-tab"));});});
+  if(tab==="overview"){
+    $("doneBtn").addEventListener("click",function(){
+      if(PROG.done[c.id])delete PROG.done[c.id];else PROG.done[c.id]=Date.now();
+      saveProg();renderSheet("overview");applyFilter();checkAchieve(true);
+    });
+    $("shareBtn").addEventListener("click",function(){
+      var u=location.origin+location.pathname+"?course="+c.id;
+      (navigator.clipboard?navigator.clipboard.writeText(u):Promise.reject()).then(function(){$("shareBtn").textContent="Link copied!";},function(){prompt("Copy this course link:",u);});
+    });
+    var pl=$("preLink");if(pl)pl.addEventListener("click",function(e){e.preventDefault();openCourse(c.prereq);});
+  }
+  if(tab==="teacher")initTeacherChat();
+}
+</script>
+<script>
+"use strict";
+/* ---------- AI teacher chat ---------- */
+var FRAMES=[["Principles of ",""],[""," : Core Concepts"],["Guided Practice: ",""],[""," in the Real World"],["Common Mistakes in ",""],[""," : Worked Examples"],["Review and Checkup: ",""],["Where "," Goes Next"]];
+function stripTopic(lesson){
+  for(var i=0;i<FRAMES.length;i++){var p=FRAMES[i][0],s=FRAMES[i][1];
+    if(lesson.indexOf(p)===0&&(!s||lesson.slice(-s.length)===s))return lesson.slice(p.length,s?lesson.length-s.length:lesson.length);}
+  return lesson;
+}
+function tMsg(log,who,text,html){
+  var d=document.createElement("div");d.className="msg "+(who==="you"?"you":"ai");
+  d.innerHTML='<span class="who">'+esc(who==="you"?"YOU":CUR.teacher.title+" "+CUR.teacher.name+" · AI TEACHING ASSISTANT")+'</span>'+(html?text:esc(text));
+  log.appendChild(d);log.scrollTop=log.scrollHeight;return d;
+}
+function allLessons(){var L=[];CUR.modules.forEach(function(m,mi){m.lessons.forEach(function(l){L.push({m:mi,mt:m.m,l:l});});});return L;}
+function initTeacherChat(){
+  var log=$("tLog");
+  tMsg(log,"ai","Hello! I am "+CUR.teacher.title+" "+CUR.teacher.name+", your AI teaching assistant for "+CUR.title+". Ask me about any lesson, or type <b>syllabus</b>, <b>quiz</b>, or <b>help</b>. I am an AI study guide — encouraging, honest, and here to help you learn.");
+  var send=function(){
+    var inp=$("tIn"),q=inp.value.trim();if(!q)return;inp.value="";
+    tMsg(log,"you",q);setTimeout(function(){teacherReply(log,q);},350);
+  };
+  $("tSend").addEventListener("click",send);
+  $("tIn").addEventListener("keydown",function(e){if(e.key==="Enter")send();});
+}
+function teacherReply(log,q){
+  var ql=q.toLowerCase(),c=CUR;
+  if(/syllabus|modules|outline/.test(ql)){
+    tMsg(log,"ai","Here is our journey through <b>"+esc(c.title)+"</b> — 6 modules, 24 lessons:<br><br>"+
+      c.modules.map(function(m,i){return "<b>"+(i+1)+". "+esc(m.m)+"</b> ("+m.lessons.length+" lessons)";}).join("<br>")+
+      "<br><br>Ask me about any lesson by name and I will explain it.");
+    return;
+  }
+  if(/quiz|test me|questions/.test(ql)){teacherQuiz(log);return;}
+  if(/help|what can you/.test(ql)){
+    tMsg(log,"ai","I can:<br>• <b>Explain any lesson</b> — just name it or describe it<br>• <b>Show the syllabus</b> — type <i>syllabus</i><br>• <b>Quiz you</b> — type <i>quiz</i><br>• <b>Make a study plan</b> — ask “how should I study this?”<br>• <b>Suggest next courses</b> — ask “what should I take next?”");
+    return;
+  }
+  if(/study plan|how (should|do) i (study|learn)/.test(ql)){
+    tMsg(log,"ai","A strong study plan for <b>"+esc(c.title)+"</b>:<br>1. Read one module per sitting — say each lesson title aloud.<br>2. After each module, ask me for a quiz.<br>3. Do the lab exercises with real tools or materials.<br>4. Teach one lesson back to me in your own words — that is the true test.<br>About 3 focused hours per module is plenty.");
+    return;
+  }
+  if(/next|after this|prereq/.test(ql)){
+    tMsg(log,"ai","After <b>"+esc(c.title)+"</b>, good next steps:<br>• A higher-level course in "+esc(c.college)+" (search level "+(c.level+100)+")<br>• The lab exercises in this course's Labs tab<br>• A capstone project from the Projects wing"+(c.prereq?"<br>• (You came here via prerequisite <b>"+c.prereq+"</b> — nice progress!)":""));
+    return;
+  }
+  /* lesson keyword match */
+  var toks=ql.split(/[^a-z0-9]+/).filter(function(t){return t.length>2;});
+  var stop={the:1,and:1,for:1,what:1,with:1,about:1,how:1,does:1,why:1,lesson:1,module:1,explain:1,tell:1,please:1,course:1};
+  var best=null,bs=0;
+  allLessons().forEach(function(L){
+    var lt=L.l.toLowerCase(),s=0;
+    toks.forEach(function(t){if(!stop[t]&&lt.indexOf(t)>=0)s++;});
+    if(s>bs){bs=s;best=L;}
+  });
+  if(best&&bs>0){
+    var topic=stripTopic(best.l);
+    tMsg(log,"ai","<b>"+esc(best.l)+"</b> <span style='color:var(--dim)'>(Module "+(best.m+1)+": "+esc(best.mt)+")</span><br><br>"+
+      "In this course, "+esc(topic)+" is one of the load-bearing ideas. The core principle is simple to say and takes practice to master: understand <i>why</i> it works, not just the steps. "+
+      "Work through the worked examples slowly, try the idea on a small real case of your own, then explain it back to me in your own words — I will tell you honestly how you did.<br><br>"+
+      "Want to lock it in? Type <b>quiz</b> and I will test you on this module.");
+    return;
+  }
+  tMsg(log,"ai","Good question. Here is how to think about it inside <b>"+esc(c.title)+"</b>: break it into the smallest piece you can name, master that piece with a worked example, then connect it to the next lesson. "+
+    "If you name a specific lesson I will explain it in depth — or type <b>syllabus</b> to see all 24 lessons, or <b>quiz</b> for a self-test.");
+}
+function teacherQuiz(log){
+  var lessons=allLessons(),qs=[],used={};
+  while(qs.length<3&&Object.keys(used).length<lessons.length){
+    var L=lessons[Math.floor(Math.random()*lessons.length)];
+    if(used[L.l])continue;used[L.l]=1;
+    var others=[];for(var i=0;i<CUR.modules.length;i++)if(i!==L.m)others.push(i);
+    others=others.sort(function(){return Math.random()-.5;}).slice(0,2);
+    var opts=[L.m].concat(others).sort(function(){return Math.random()-.5;});
+    qs.push({l:L.l,answer:L.m,opts:opts});
+  }
+  var html="<b>Quick quiz</b> — which module contains each lesson? Tap an answer:<br><br>";
+  qs.forEach(function(q,qi){
+    html+="<div style='margin-bottom:10px'><b>Q"+(qi+1)+":</b> "+esc(q.l)+"<br>";
+    q.opts.forEach(function(o){
+      html+="<button class='qz' data-q='"+qi+"' data-o='"+o+"' data-a='"+q.answer+"' style='display:block;width:100%;text-align:left;margin:5px 0;background:var(--card);border:1px solid var(--line);color:var(--txt);border-radius:8px;padding:8px 12px;cursor:pointer'>Module "+(o+1)+": "+esc(CUR.modules[o].m)+"</button>";
+    });
+    html+="</div>";
+  });
+  var d=tMsg(log,"ai",html,true);
+  d.querySelectorAll(".qz").forEach(function(b){
+    b.addEventListener("click",function(){
+      var ok=b.getAttribute("data-o")===b.getAttribute("data-a");
+      b.style.borderColor=ok?"var(--grn)":"var(--red)";b.style.background=ok?"#12351d":"#3a1620";
+      b.textContent=(ok?"✓ ":"✗ ")+b.textContent;
+      d.querySelectorAll(".qz").forEach(function(x){x.disabled=true;x.style.cursor="default";});
+    },{once:true});
+  });
+}
+
+/* ---------- library ---------- */
+var LIBWORDS=null;
+function initLibrary(){
+  var sel=$("libCollege");
+  DB.colleges.colleges.forEach(function(x){var o=document.createElement("option");o.value=x.key;o.textContent=x.name;sel.appendChild(o);});
+  sel.addEventListener("change",renderLibrary);
+  getJSON("data/library.json").then(function(w){LIBWORDS=w;renderLibrary();}).catch(function(){});
+}
+function renderLibrary(){
+  if(!LIBWORDS||!DB.colleges)return;
+  var k=$("libCollege").value||DB.colleges.colleges[0].key;
+  var words=LIBWORDS[k]||[],name=collegeName(k);
+  var dict=words.map(function(w){return '<a href="https://justinahiggins614-cmyk.github.io/jah-dictionary/?w='+w+'" target="_blank" rel="noopener">'+esc(w)+'</a>';}).join("");
+  var wiki=words.map(function(w){return '<a href="https://justinahiggins614-cmyk.github.io/jah-wiki/?dict='+w+'" target="_blank" rel="noopener">'+esc(w)+'</a>';}).join("");
+  $("shelves").innerHTML=
+   '<div class="shelf"><h4>📕 Dictionary shelf — '+esc(name)+'</h4><div class="links">'+dict+'</div></div>'+
+   '<div class="shelf"><h4>📗 JAH Wiki shelf — '+esc(name)+'</h4><div class="links">'+wiki+'</div></div>'+
+   '<div class="shelf"><h4>📘 Spec &amp; patent stacks</h4><div class="links">'+
+   '<a href="https://justinahiggins614-cmyk.github.io/signature-one-archive/specs.html" target="_blank" rel="noopener">Signature Spec Catalog (live drafts)</a>'+
+   '<a href="https://justinahiggins614-cmyk.github.io/cyber-patent-catalog/" target="_blank" rel="noopener">Globally Rejustered Patent Catalog (live records)</a></div>'+
+   '<p class="dim" style="font-size:.86em">Every course reading list cites live spec and patent records — see the Research Wing for a worked example.</p></div>'+
+   '<div class="shelf"><h4>📙 Signature Books</h4><div class="links"><a href="https://justinahiggins614-cmyk.github.io/signature-books/" target="_blank" rel="noopener">Browse the Signature Books shelf →</a></div></div>';
+}
+
+/* ---------- labs ---------- */
+function loadLabs(){
+  $("labResults").innerHTML='<p class="dim">Loading 11,214 lab exercises…</p>';
+  getJSON("data/labs.json").then(function(l){
+    DB.labs=l;
+    var sel=$("labCollege");
+    DB.colleges.colleges.forEach(function(x){var o=document.createElement("option");o.value=x.key;o.textContent=x.name;sel.appendChild(o);});
+    sel.addEventListener("change",renderLabs);
+    var deb=null;$("labQ").addEventListener("input",function(){clearTimeout(deb);deb=setTimeout(renderLabs,220);});
+    $("labCount").textContent="· "+l.length.toLocaleString()+" exercises";
+    renderLabs();
+  });
+}
+function renderLabs(){
+  var q=$("labQ").value.trim().toLowerCase(),ck=$("labCollege").value;
+  var list=DB.labs.filter(function(l){
+    if(ck&&l.ckey!==ck)return false;
+    if(q&&(l.t+" "+l.d+" "+l.ctitle).toLowerCase().indexOf(q)<0)return false;
+    return true;
+  });
+  var show=list.slice(0,120);
+  $("labResults").innerHTML=(list.length?show.map(function(l){
+    return '<div class="course" data-id="'+l.course+'"><span class="code">'+esc(collegeAbbr(l.ckey))+' LAB</span><span class="cid">'+l.course+'</span><h4>'+esc(l.t)+'</h4><div class="meta">'+esc(l.d)+'<br>From course: '+esc(l.ctitle)+'</div></div>';
+  }).join(""):'<p class="dim">No labs match.</p>')+
+  (list.length>120?'<p class="dim">Showing 120 of '+list.length.toLocaleString()+' — narrow the search.</p>':'<p class="dim">'+list.length.toLocaleString()+' labs.</p>');
+  document.querySelectorAll("#labResults .course").forEach(function(el){el.addEventListener("click",function(){openCourse(el.getAttribute("data-id"));});});
+}
+
+/* ---------- projects ---------- */
+function loadProjects(){
+  getJSON("data/projects.json").then(function(p){
+    DB.projects=p;
+    var by={};p.forEach(function(x){(by[x.ckey]=by[x.ckey]||[]).push(x);});
+    $("projList").innerHTML=DB.colleges.colleges.map(function(c){
+      return '<details class="mod"><summary>'+esc(c.name)+' — '+(by[c.key]||[]).length+' capstone projects</summary><div style="padding:0 14px 12px">'+
+        (by[c.key]||[]).map(function(x){return '<div class="course"><span class="cid">'+x.id+'</span><h4>'+esc(x.t)+'</h4><div class="meta">'+esc(x.d)+'</div></div>';}).join("")+"</div></details>";
+    }).join("");
+  });
+}
+
+/* ---------- degrees, diplomas, achievements ---------- */
+var IDXMAP=null;
+function idxMap(){if(!IDXMAP){IDXMAP={};DB.idx.forEach(function(r){IDXMAP[r.i]=r;});}return IDXMAP;}
+function doneInCollege(ckey,minLevel){
+  var m=idxMap(),n=0;
+  Object.keys(PROG.done).forEach(function(id){var r=m[id];if(r&&r.k===ckey&&r.l>=minLevel)n++;});
+  return n;
+}
+function degreesEarned(){
+  if(!DB.degrees)return[];
+  return DB.degrees.filter(function(d){return doneInCollege(d.ckey,d.min_level)>=d.need;});
+}
+function loadDegrees(){
+  getJSON("data/degrees.json").then(function(d){DB.degrees=d;renderDegrees();checkAchieve();});
+}
+function renderDegrees(){
+  var m=idxMap(),totalDone=Object.keys(PROG.done).length;
+  var h=DB.colleges.colleges.map(function(c){
+    var degs=DB.degrees.filter(function(d){return d.ckey===c.key;});
+    var cards=degs.map(function(d){
+      var n=doneInCollege(d.ckey,d.min_level),earned=n>=d.need,pct=Math.min(100,Math.round(n/d.need*100));
+      return '<div class="deg"><h4>'+esc(d.name)+' '+(earned?'<span class="done-badge">★ EARNED</span>':"")+'</h4>'+
+        '<p class="dim" style="font-size:.86em;margin:.2em 0">'+esc(d.d)+'</p>'+
+        '<div class="bar"><i style="width:'+pct+'%"></i></div>'+
+        '<div style="font-size:.85em;color:var(--dim)">'+n+' / '+d.need+' courses'+(earned?' <button class="btn" style="padding:8px 16px;font-size:.85em;margin-left:8px" data-dip="'+esc(d.id)+'">🖨 Print diploma</button>':"")+'</div></div>';
+    }).join("");
+    return '<h3 style="margin-top:22px">'+esc(c.name)+'</h3>'+cards;
+  }).join("");
+  $("degList").innerHTML='<p class="dim">Courses completed: <b style="color:var(--gold2)">'+totalDone.toLocaleString()+'</b> · Degrees earned: <b style="color:var(--gold2)">'+degreesEarned().length+'</b></p>'+h;
+  document.querySelectorAll("[data-dip]").forEach(function(b){
+    b.addEventListener("click",function(){printDiploma(b.getAttribute("data-dip"));});
+  });
+}
+function djb2(s){var h=5381;for(var i=0;i<s.length;i++)h=((h<<5)+h+s.charCodeAt(i))>>>0;return h;}
+function printDiploma(degId){
+  var d=DB.degrees.filter(function(x){return x.id===degId;})[0];if(!d)return;
+  var name=(PROG.name||"").trim()||"Distinguished Learner";
+  var date=new Date().toLocaleDateString("en-US",{year:"numeric",month:"long",day:"numeric"});
+  var num="JAH-DIPLOMA-"+String(djb2(name+"|"+d.id+"|"+date)%900000+100000);
+  $("diplomaSheet").innerHTML='<div class="diploma">'+
+    '<div style="letter-spacing:.3em;font-size:.8em">SIGNATURE UNIVERSITY</div>'+
+    '<h1>DIPLOMA</h1>'+
+    '<div style="font-style:italic">This certifies that</div>'+
+    '<div style="font-size:1.9em;margin:10px 0;border-bottom:1px solid #8a6a1f;display:inline-block;padding:0 30px">'+esc(name)+'</div>'+
+    '<div style="font-style:italic">has completed the required courses and earned the</div>'+
+    '<div style="font-size:1.5em;margin:10px 0"><b>'+esc(d.name)+'</b></div>'+
+    '<div>'+esc(d.college)+'</div>'+
+    '<div style="margin-top:14px;font-size:.85em">Awarded '+esc(date)+' · Stamp '+num+'<br>by Signature University, founded by Justin Addam Higgins</div>'+
+    '<div class="seal">OFFICIAL<br>STAMP<br>'+num.slice(-6)+'</div>'+
+    '<div style="font-size:.72em;color:#5a4a22;max-width:560px;margin:0 auto">Signature University is an independent free learning project. It claims no government accreditation. This diploma certifies completion of Signature University courses.</div>'+
+    '</div>';
+  setTimeout(function(){window.print();},250);
+}
+var ACH=[
+ ["first","First Steps","Complete 1 course",function(){return nDone()>=1;}],
+ ["ten","Bookworm","Complete 10 courses",function(){return nDone()>=10;}],
+ ["fifty","Scholar","Complete 50 courses",function(){return nDone()>=50;}],
+ ["hundred","Dean's List","Complete 100 courses",function(){return nDone()>=100;}],
+ ["explorer","Explorer","Courses in 5+ colleges",function(){return nColleges()>=5;}],
+ ["poly","Polymath","Courses in all 11 colleges",function(){return nColleges()>=11;}],
+ ["grad","Graduate","Earn a degree",function(){return degreesEarned().length>=1;}]
+];
+function nDone(){return Object.keys(PROG.done).length;}
+function nColleges(){var m=idxMap(),s={};Object.keys(PROG.done).forEach(function(id){if(m[id])s[m[id].k]=1;});return Object.keys(s).length;}
+function checkAchieve(live){
+  var el=$("achieve");if(!el)return;
+  var got=ACH.filter(function(a){return a[3]();});
+  el.innerHTML=got.length?'<h3>Achievements</h3><p>'+got.map(function(a){return '<span class="done-badge" style="font-size:.85em;margin:2px 4px">★ '+esc(a[1])+'</span>';}).join("")+'</p>':"";
+  if(live&&DB.degrees)renderDegrees();
+}
+$("saveName").addEventListener("click",function(){PROG.name=$("learnerName").value.trim();saveProg();$("saveName").textContent="Saved ✓";setTimeout(function(){$("saveName").textContent="Save name";},1500);});
+
+/* ---------- guide chat ---------- */
+var STOP={the:1,and:1,for:1,what:1,with:1,about:1,how:1,does:1,why:1,want:1,learn:1,study:1,become:1,courses:1,course:1,like:1,get:1,into:1,some:1,more:1,that:1,this:1,from:1,are:1,you:1,your:1,can:1,should:1,will:1,have:1,has:1,our:1,its:1,than:1,then:1,them:1,they:1,teach:1,teaching:1,degree:1,degrees:1,school:1,university:1,class:1,classes:1,tell:1,please:1,help:1};
+function gMsg(who,html){
+  var log=$("guideLog"),d=document.createElement("div");d.className="msg "+(who==="you"?"you":"ai");
+  d.innerHTML='<span class="who">'+(who==="you"?"YOU":"🎓 UNIVERSITY GUIDE · AI ASSISTANT")+'</span>'+html;
+  log.appendChild(d);log.scrollTop=log.scrollHeight;return d;
+}
+function guideInit(){
+  if($("guideLog").children.length)return;
+  gMsg("ai","Welcome to Signature University! Tell me what you want to learn or become — for example <i>“I want to become an electrician”</i>, <i>“teach me about the human heart”</i>, or <i>“what should I study to start a business?”</i> — and I will map it to real courses and degree paths. I am an AI assistant: a friendly guide, not a licensed professional.");
+}
+document.querySelector('[data-w="guide"]').addEventListener("click",guideInit);
+function scoreCourses(toks){
+  var scored=[];
+  DB.idx.forEach(function(r){
+    var t=r.t.toLowerCase(),s=0;
+    toks.forEach(function(tk){if(t.indexOf(tk)>=0)s+=tk.length>5?2:1;});
+    if(s>0)scored.push({r:r,s:s});
+  });
+  scored.sort(function(a,b){return b.s-a.s;});
+  return scored.slice(0,3);
+}
+function guideReply(q){
+  var ql=q.toLowerCase();
+  if(/^(hi|hello|hey|yo)\b/.test(ql)){gMsg("ai","Hello! What would you like to learn? Name a subject, a trade, or a dream — I will find your courses.");return;}
+  if(/thank/.test(ql)){gMsg("ai","You are very welcome. Keep learning — the campus is open day and night, and it is all free.");return;}
+  if(/my progress|how many.*(done|complete)|progress/.test(ql)){
+    var n=nDone(),nc=nColleges();
+    gMsg("ai","Your progress so far: <b>"+n+"</b> course"+(n===1?"":"s")+" completed across <b>"+nc+"</b> college"+(nc===1?"":"s")+". "+(n===0?"Open the catalog, pick a 101 course, and mark it complete when you finish — I will be cheering.":"Keep going — every course counts toward a degree. Check the Degrees wing for your diploma path."));
+    return;
+  }
+  if(/diploma|graduate|degree/.test(ql)&&!/become|want to be/.test(ql)){
+    gMsg("ai","Degrees live in the <b>Degrees &amp; Diplomas</b> wing: every college offers a Certificate, Associate, Bachelor's, and Master's (the Trade School offers Apprentice → Journeyman → Master Craftsman; PhD Research offers up to a Doctor of Philosophy). Complete the required courses, then print your officially-stamped diploma — free. Tell me a subject and I will chart your path.");
+    return;
+  }
+  var toks=ql.split(/[^a-z0-9]+/).filter(function(t){return t.length>2&&!STOP[t];});
+  var hits=scoreCourses(toks);
+  /* college intent */
+  var ck=null,best=0;
+  DB.colleges.colleges.forEach(function(c){
+    var s=0,cn=c.name.toLowerCase();
+    toks.forEach(function(t){if(cn.indexOf(t)>=0)s+=2;});
+    if(s>best){best=s;ck=c;}
+  });
+  if(!hits.length){
+    gMsg("ai","I could not quite match that to a course. Try naming a subject or trade directly — for example <i>welding</i>, <i>calculus</i>, <i>contracts</i>, <i>nursing</i>, or <i>robotics</i>. Or browse the <a href='#catalog'>Course Catalog</a> A–Z.");
+    return;
+  }
+  var cards=hits.map(function(h){
+    return '<div class="course" data-gid="'+h.r.i+'" style="cursor:pointer"><span class="code">'+esc(h.r.c)+'</span><span class="cid">'+h.r.i+'</span><h4>'+esc(h.r.t)+'</h4><div class="meta">'+esc(collegeName(h.r.k))+' · Level '+h.r.l+' — tap to open</div></div>';
+  }).join("");
+  var path="";
+  if(ck){path="<br><br>📜 <b>Suggested path in "+esc(ck.name)+":</b> start with 101-level courses, then 201s, and work toward the "+esc(ck.name)+" Certificate (6 courses) → Associate (14) → Bachelor's (28). Your progress saves automatically.";}
+  var d=gMsg("ai","Based on what you said, these courses fit you best:"+cards+path+"<br><br>Want a different direction? Just say so — <i>“something more advanced”</i> or <i>“show me trade school options”</i>.");
+  d.querySelectorAll("[data-gid]").forEach(function(el){el.addEventListener("click",function(){openCourse(el.getAttribute("data-gid"));});});
+}
+
+/* ---------- deep links ---------- */
+function deepLink(){
+  var sp=new URLSearchParams(location.search),c=sp.get("course");
+  if(c&&/^JAH-COURSE-\d{6}$/.test(c)){openCourse(c);return;}
+  var ck=sp.get("college");
+  if(ck){$("fCollege").value=ck;F.college=ck;applyFilter();go("catalog");}
+  var q=sp.get("q");
+  if(q){$("q").value=q;F.q=q.toLowerCase();applyFilter();go("catalog");}
+}
+
+/* guide send wiring */
+$("guideSend").addEventListener("click",function(){
+  var inp=$("guideIn"),q=inp.value.trim();if(!q)return;inp.value="";
+  gMsg("you",esc(q));setTimeout(function(){guideReply(q);},400);
+});
+$("guideIn").addEventListener("keydown",function(e){if(e.key==="Enter")$("guideSend").click();});
+
+boot();
+</script>
+</body>
+</html>

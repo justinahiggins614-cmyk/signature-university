@@ -1,0 +1,380 @@
+[
+ {
+  "id": "JAH-DEGREE-ENG-1",
+  "college": "College of Engineering",
+  "ckey": "engineering",
+  "name": "Certificate",
+  "need": 6,
+  "min_level": 101,
+  "d": "Complete 6 College of Engineering courses (any level 101 or higher) to earn the Certificate."
+ },
+ {
+  "id": "JAH-DEGREE-ENG-2",
+  "college": "College of Engineering",
+  "ckey": "engineering",
+  "name": "Associate Degree",
+  "need": 14,
+  "min_level": 201,
+  "d": "Complete 14 College of Engineering courses (at level 201 or higher) to earn the Associate Degree."
+ },
+ {
+  "id": "JAH-DEGREE-ENG-3",
+  "college": "College of Engineering",
+  "ckey": "engineering",
+  "name": "Bachelor's Degree",
+  "need": 28,
+  "min_level": 301,
+  "d": "Complete 28 College of Engineering courses (at level 301 or higher) to earn the Bachelor's Degree."
+ },
+ {
+  "id": "JAH-DEGREE-ENG-4",
+  "college": "College of Engineering",
+  "ckey": "engineering",
+  "name": "Master's Degree",
+  "need": 16,
+  "min_level": 401,
+  "d": "Complete 16 College of Engineering courses (at level 401 or higher) to earn the Master's Degree."
+ },
+ {
+  "id": "JAH-DEGREE-CS-1",
+  "college": "College of Computer Science",
+  "ckey": "cs",
+  "name": "Certificate",
+  "need": 6,
+  "min_level": 101,
+  "d": "Complete 6 College of Computer Science courses (any level 101 or higher) to earn the Certificate."
+ },
+ {
+  "id": "JAH-DEGREE-CS-2",
+  "college": "College of Computer Science",
+  "ckey": "cs",
+  "name": "Associate Degree",
+  "need": 14,
+  "min_level": 201,
+  "d": "Complete 14 College of Computer Science courses (at level 201 or higher) to earn the Associate Degree."
+ },
+ {
+  "id": "JAH-DEGREE-CS-3",
+  "college": "College of Computer Science",
+  "ckey": "cs",
+  "name": "Bachelor's Degree",
+  "need": 28,
+  "min_level": 301,
+  "d": "Complete 28 College of Computer Science courses (at level 301 or higher) to earn the Bachelor's Degree."
+ },
+ {
+  "id": "JAH-DEGREE-CS-4",
+  "college": "College of Computer Science",
+  "ckey": "cs",
+  "name": "Master's Degree",
+  "need": 16,
+  "min_level": 401,
+  "d": "Complete 16 College of Computer Science courses (at level 401 or higher) to earn the Master's Degree."
+ },
+ {
+  "id": "JAH-DEGREE-MED-1",
+  "college": "College of Medicine & Health",
+  "ckey": "medicine",
+  "name": "Certificate",
+  "need": 6,
+  "min_level": 101,
+  "d": "Complete 6 College of Medicine & Health courses (any level 101 or higher) to earn the Certificate."
+ },
+ {
+  "id": "JAH-DEGREE-MED-2",
+  "college": "College of Medicine & Health",
+  "ckey": "medicine",
+  "name": "Associate Degree",
+  "need": 14,
+  "min_level": 201,
+  "d": "Complete 14 College of Medicine & Health courses (at level 201 or higher) to earn the Associate Degree."
+ },
+ {
+  "id": "JAH-DEGREE-MED-3",
+  "college": "College of Medicine & Health",
+  "ckey": "medicine",
+  "name": "Bachelor's Degree",
+  "need": 28,
+  "min_level": 301,
+  "d": "Complete 28 College of Medicine & Health courses (at level 301 or higher) to earn the Bachelor's Degree."
+ },
+ {
+  "id": "JAH-DEGREE-MED-4",
+  "college": "College of Medicine & Health",
+  "ckey": "medicine",
+  "name": "Master's Degree",
+  "need": 16,
+  "min_level": 401,
+  "d": "Complete 16 College of Medicine & Health courses (at level 401 or higher) to earn the Master's Degree."
+ },
+ {
+  "id": "JAH-DEGREE-LAW-1",
+  "college": "College of Law",
+  "ckey": "law",
+  "name": "Certificate",
+  "need": 6,
+  "min_level": 101,
+  "d": "Complete 6 College of Law courses (any level 101 or higher) to earn the Certificate."
+ },
+ {
+  "id": "JAH-DEGREE-LAW-2",
+  "college": "College of Law",
+  "ckey": "law",
+  "name": "Associate Degree",
+  "need": 14,
+  "min_level": 201,
+  "d": "Complete 14 College of Law courses (at level 201 or higher) to earn the Associate Degree."
+ },
+ {
+  "id": "JAH-DEGREE-LAW-3",
+  "college": "College of Law",
+  "ckey": "law",
+  "name": "Bachelor's Degree",
+  "need": 28,
+  "min_level": 301,
+  "d": "Complete 28 College of Law courses (at level 301 or higher) to earn the Bachelor's Degree."
+ },
+ {
+  "id": "JAH-DEGREE-LAW-4",
+  "college": "College of Law",
+  "ckey": "law",
+  "name": "Master's Degree",
+  "need": 16,
+  "min_level": 401,
+  "d": "Complete 16 College of Law courses (at level 401 or higher) to earn the Master's Degree."
+ },
+ {
+  "id": "JAH-DEGREE-BUS-1",
+  "college": "College of Business",
+  "ckey": "business",
+  "name": "Certificate",
+  "need": 6,
+  "min_level": 101,
+  "d": "Complete 6 College of Business courses (any level 101 or higher) to earn the Certificate."
+ },
+ {
+  "id": "JAH-DEGREE-BUS-2",
+  "college": "College of Business",
+  "ckey": "business",
+  "name": "Associate Degree",
+  "need": 14,
+  "min_level": 201,
+  "d": "Complete 14 College of Business courses (at level 201 or higher) to earn the Associate Degree."
+ },
+ {
+  "id": "JAH-DEGREE-BUS-3",
+  "college": "College of Business",
+  "ckey": "business",
+  "name": "Bachelor's Degree",
+  "need": 28,
+  "min_level": 301,
+  "d": "Complete 28 College of Business courses (at level 301 or higher) to earn the Bachelor's Degree."
+ },
+ {
+  "id": "JAH-DEGREE-BUS-4",
+  "college": "College of Business",
+  "ckey": "business",
+  "name": "Master's Degree",
+  "need": 16,
+  "min_level": 401,
+  "d": "Complete 16 College of Business courses (at level 401 or higher) to earn the Master's Degree."
+ },
+ {
+  "id": "JAH-DEGREE-SCI-1",
+  "college": "College of Natural Sciences",
+  "ckey": "science",
+  "name": "Certificate",
+  "need": 6,
+  "min_level": 101,
+  "d": "Complete 6 College of Natural Sciences courses (any level 101 or higher) to earn the Certificate."
+ },
+ {
+  "id": "JAH-DEGREE-SCI-2",
+  "college": "College of Natural Sciences",
+  "ckey": "science",
+  "name": "Associate Degree",
+  "need": 14,
+  "min_level": 201,
+  "d": "Complete 14 College of Natural Sciences courses (at level 201 or higher) to earn the Associate Degree."
+ },
+ {
+  "id": "JAH-DEGREE-SCI-3",
+  "college": "College of Natural Sciences",
+  "ckey": "science",
+  "name": "Bachelor's Degree",
+  "need": 28,
+  "min_level": 301,
+  "d": "Complete 28 College of Natural Sciences courses (at level 301 or higher) to earn the Bachelor's Degree."
+ },
+ {
+  "id": "JAH-DEGREE-SCI-4",
+  "college": "College of Natural Sciences",
+  "ckey": "science",
+  "name": "Master's Degree",
+  "need": 16,
+  "min_level": 401,
+  "d": "Complete 16 College of Natural Sciences courses (at level 401 or higher) to earn the Master's Degree."
+ },
+ {
+  "id": "JAH-DEGREE-MATH-1",
+  "college": "College of Mathematics",
+  "ckey": "math",
+  "name": "Certificate",
+  "need": 6,
+  "min_level": 101,
+  "d": "Complete 6 College of Mathematics courses (any level 101 or higher) to earn the Certificate."
+ },
+ {
+  "id": "JAH-DEGREE-MATH-2",
+  "college": "College of Mathematics",
+  "ckey": "math",
+  "name": "Associate Degree",
+  "need": 14,
+  "min_level": 201,
+  "d": "Complete 14 College of Mathematics courses (at level 201 or higher) to earn the Associate Degree."
+ },
+ {
+  "id": "JAH-DEGREE-MATH-3",
+  "college": "College of Mathematics",
+  "ckey": "math",
+  "name": "Bachelor's Degree",
+  "need": 28,
+  "min_level": 301,
+  "d": "Complete 28 College of Mathematics courses (at level 301 or higher) to earn the Bachelor's Degree."
+ },
+ {
+  "id": "JAH-DEGREE-MATH-4",
+  "college": "College of Mathematics",
+  "ckey": "math",
+  "name": "Master's Degree",
+  "need": 16,
+  "min_level": 401,
+  "d": "Complete 16 College of Mathematics courses (at level 401 or higher) to earn the Master's Degree."
+ },
+ {
+  "id": "JAH-DEGREE-ART-1",
+  "college": "College of Arts & Humanities",
+  "ckey": "arts",
+  "name": "Certificate",
+  "need": 6,
+  "min_level": 101,
+  "d": "Complete 6 College of Arts & Humanities courses (any level 101 or higher) to earn the Certificate."
+ },
+ {
+  "id": "JAH-DEGREE-ART-2",
+  "college": "College of Arts & Humanities",
+  "ckey": "arts",
+  "name": "Associate Degree",
+  "need": 14,
+  "min_level": 201,
+  "d": "Complete 14 College of Arts & Humanities courses (at level 201 or higher) to earn the Associate Degree."
+ },
+ {
+  "id": "JAH-DEGREE-ART-3",
+  "college": "College of Arts & Humanities",
+  "ckey": "arts",
+  "name": "Bachelor's Degree",
+  "need": 28,
+  "min_level": 301,
+  "d": "Complete 28 College of Arts & Humanities courses (at level 301 or higher) to earn the Bachelor's Degree."
+ },
+ {
+  "id": "JAH-DEGREE-ART-4",
+  "college": "College of Arts & Humanities",
+  "ckey": "arts",
+  "name": "Master's Degree",
+  "need": 16,
+  "min_level": 401,
+  "d": "Complete 16 College of Arts & Humanities courses (at level 401 or higher) to earn the Master's Degree."
+ },
+ {
+  "id": "JAH-DEGREE-EDU-1",
+  "college": "College of Education",
+  "ckey": "education",
+  "name": "Certificate",
+  "need": 6,
+  "min_level": 101,
+  "d": "Complete 6 College of Education courses (any level 101 or higher) to earn the Certificate."
+ },
+ {
+  "id": "JAH-DEGREE-EDU-2",
+  "college": "College of Education",
+  "ckey": "education",
+  "name": "Associate Degree",
+  "need": 14,
+  "min_level": 201,
+  "d": "Complete 14 College of Education courses (at level 201 or higher) to earn the Associate Degree."
+ },
+ {
+  "id": "JAH-DEGREE-EDU-3",
+  "college": "College of Education",
+  "ckey": "education",
+  "name": "Bachelor's Degree",
+  "need": 28,
+  "min_level": 301,
+  "d": "Complete 28 College of Education courses (at level 301 or higher) to earn the Bachelor's Degree."
+ },
+ {
+  "id": "JAH-DEGREE-EDU-4",
+  "college": "College of Education",
+  "ckey": "education",
+  "name": "Master's Degree",
+  "need": 16,
+  "min_level": 401,
+  "d": "Complete 16 College of Education courses (at level 401 or higher) to earn the Master's Degree."
+ },
+ {
+  "id": "JAH-DEGREE-TRD-1",
+  "college": "Trade School",
+  "ckey": "trade",
+  "name": "Apprentice Certificate",
+  "need": 6,
+  "min_level": 101,
+  "d": "Complete 6 Trade School courses (any level 101 or higher) to earn the Apprentice Certificate."
+ },
+ {
+  "id": "JAH-DEGREE-TRD-2",
+  "college": "Trade School",
+  "ckey": "trade",
+  "name": "Journeyman Diploma",
+  "need": 14,
+  "min_level": 201,
+  "d": "Complete 14 Trade School courses (at level 201 or higher) to earn the Journeyman Diploma."
+ },
+ {
+  "id": "JAH-DEGREE-TRD-3",
+  "college": "Trade School",
+  "ckey": "trade",
+  "name": "Master Craftsman Degree",
+  "need": 24,
+  "min_level": 301,
+  "d": "Complete 24 Trade School courses (at level 301 or higher) to earn the Master Craftsman Degree."
+ },
+ {
+  "id": "JAH-DEGREE-PHD-1",
+  "college": "PhD Research College",
+  "ckey": "phd",
+  "name": "Graduate Certificate",
+  "need": 6,
+  "min_level": 501,
+  "d": "Complete 6 PhD Research College courses (at level 501 or higher) to earn the Graduate Certificate."
+ },
+ {
+  "id": "JAH-DEGREE-PHD-2",
+  "college": "PhD Research College",
+  "ckey": "phd",
+  "name": "Master of Research",
+  "need": 12,
+  "min_level": 501,
+  "d": "Complete 12 PhD Research College courses (at level 501 or higher) to earn the Master of Research."
+ },
+ {
+  "id": "JAH-DEGREE-PHD-3",
+  "college": "PhD Research College",
+  "ckey": "phd",
+  "name": "Doctor of Philosophy (PhD)",
+  "need": 18,
+  "min_level": 601,
+  "d": "Complete 18 PhD Research College courses (at level 601 or higher) to earn the Doctor of Philosophy (PhD)."
+ }
+]

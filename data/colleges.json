@@ -1,0 +1,106 @@
+{
+ "total": 3850,
+ "colleges": [
+  {
+   "key": "engineering",
+   "name": "College of Engineering",
+   "abbr": "ENG",
+   "tagline": "Build, design, and engineer the physical world.",
+   "courses": 350,
+   "first_id": "JAH-COURSE-000001",
+   "last_id": "JAH-COURSE-000350"
+  },
+  {
+   "key": "cs",
+   "name": "College of Computer Science",
+   "abbr": "CS",
+   "tagline": "Code, systems, and intelligent machines.",
+   "courses": 350,
+   "first_id": "JAH-COURSE-000351",
+   "last_id": "JAH-COURSE-000700"
+  },
+  {
+   "key": "medicine",
+   "name": "College of Medicine & Health",
+   "abbr": "MED",
+   "tagline": "The human body, care, and healing.",
+   "courses": 350,
+   "first_id": "JAH-COURSE-000701",
+   "last_id": "JAH-COURSE-001050"
+  },
+  {
+   "key": "law",
+   "name": "College of Law",
+   "abbr": "LAW",
+   "tagline": "Justice, rights, and the rule of law.",
+   "courses": 350,
+   "first_id": "JAH-COURSE-001051",
+   "last_id": "JAH-COURSE-001400"
+  },
+  {
+   "key": "business",
+   "name": "College of Business",
+   "abbr": "BUS",
+   "tagline": "Enterprise, markets, and leadership.",
+   "courses": 350,
+   "first_id": "JAH-COURSE-001401",
+   "last_id": "JAH-COURSE-001750"
+  },
+  {
+   "key": "science",
+   "name": "College of Natural Sciences",
+   "abbr": "SCI",
+   "tagline": "The living and physical universe.",
+   "courses": 350,
+   "first_id": "JAH-COURSE-001751",
+   "last_id": "JAH-COURSE-002100"
+  },
+  {
+   "key": "math",
+   "name": "College of Mathematics",
+   "abbr": "MATH",
+   "tagline": "Proof, pattern, and pure reason.",
+   "courses": 350,
+   "first_id": "JAH-COURSE-002101",
+   "last_id": "JAH-COURSE-002450"
+  },
+  {
+   "key": "arts",
+   "name": "College of Arts & Humanities",
+   "abbr": "ART",
+   "tagline": "Expression, culture, and meaning.",
+   "courses": 350,
+   "first_id": "JAH-COURSE-002451",
+   "last_id": "JAH-COURSE-002800"
+  },
+  {
+   "key": "education",
+   "name": "College of Education",
+   "abbr": "EDU",
+   "tagline": "Teaching the next generation.",
+   "courses": 350,
+   "first_id": "JAH-COURSE-002801",
+   "last_id": "JAH-COURSE-003150"
+  },
+  {
+   "key": "trade",
+   "name": "Trade School",
+   "abbr": "TRD",
+   "tagline": "Master a skilled trade with your hands.",
+   "courses": 350,
+   "first_id": "JAH-COURSE-003151",
+   "last_id": "JAH-COURSE-003500"
+  },
+  {
+   "key": "phd",
+   "name": "PhD Research College",
+   "abbr": "PHD",
+   "tagline": "Original research at the frontier.",
+   "courses": 350,
+   "first_id": "JAH-COURSE-003501",
+   "last_id": "JAH-COURSE-003850"
+  }
+ ],
+ "updated": "2026-10-01",
+ "by": "Justin Addam Higgins"
+}

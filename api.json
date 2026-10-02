@@ -1,0 +1,110 @@
+{
+ "site": "Signature University",
+ "by": "Justin Addam Higgins",
+ "url": "https://justinahiggins614-cmyk.github.io/signature-university/",
+ "updated": "2026-10-01",
+ "total_courses": 3850,
+ "colleges": [
+  {
+   "key": "engineering",
+   "name": "College of Engineering",
+   "abbr": "ENG",
+   "courses": 350,
+   "first_id": "JAH-COURSE-000001",
+   "last_id": "JAH-COURSE-000350"
+  },
+  {
+   "key": "cs",
+   "name": "College of Computer Science",
+   "abbr": "CS",
+   "courses": 350,
+   "first_id": "JAH-COURSE-000351",
+   "last_id": "JAH-COURSE-000700"
+  },
+  {
+   "key": "medicine",
+   "name": "College of Medicine & Health",
+   "abbr": "MED",
+   "courses": 350,
+   "first_id": "JAH-COURSE-000701",
+   "last_id": "JAH-COURSE-001050"
+  },
+  {
+   "key": "law",
+   "name": "College of Law",
+   "abbr": "LAW",
+   "courses": 350,
+   "first_id": "JAH-COURSE-001051",
+   "last_id": "JAH-COURSE-001400"
+  },
+  {
+   "key": "business",
+   "name": "College of Business",
+   "abbr": "BUS",
+   "courses": 350,
+   "first_id": "JAH-COURSE-001401",
+   "last_id": "JAH-COURSE-001750"
+  },
+  {
+   "key": "science",
+   "name": "College of Natural Sciences",
+   "abbr": "SCI",
+   "courses": 350,
+   "first_id": "JAH-COURSE-001751",
+   "last_id": "JAH-COURSE-002100"
+  },
+  {
+   "key": "math",
+   "name": "College of Mathematics",
+   "abbr": "MATH",
+   "courses": 350,
+   "first_id": "JAH-COURSE-002101",
+   "last_id": "JAH-COURSE-002450"
+  },
+  {
+   "key": "arts",
+   "name": "College of Arts & Humanities",
+   "abbr": "ART",
+   "courses": 350,
+   "first_id": "JAH-COURSE-002451",
+   "last_id": "JAH-COURSE-002800"
+  },
+  {
+   "key": "education",
+   "name": "College of Education",
+   "abbr": "EDU",
+   "courses": 350,
+   "first_id": "JAH-COURSE-002801",
+   "last_id": "JAH-COURSE-003150"
+  },
+  {
+   "key": "trade",
+   "name": "Trade School",
+   "abbr": "TRD",
+   "courses": 350,
+   "first_id": "JAH-COURSE-003151",
+   "last_id": "JAH-COURSE-003500"
+  },
+  {
+   "key": "phd",
+   "name": "PhD Research College",
+   "abbr": "PHD",
+   "courses": 350,
+   "first_id": "JAH-COURSE-003501",
+   "last_id": "JAH-COURSE-003850"
+  }
+ ],
+ "levels": [
+  101,
+  201,
+  301,
+  401,
+  501,
+  601
+ ],
+ "course_index": "https://justinahiggins614-cmyk.github.io/signature-university/data/courses.idx.json",
+ "course_chunk_pattern": "https://justinahiggins614-cmyk.github.io/signature-university/data/chunks/cNNNN.json (100 courses each)",
+ "course_deep_link": "https://justinahiggins614-cmyk.github.io/signature-university/?course=JAH-COURSE-000001",
+ "diploma_stamp_pattern": "JAH-DIPLOMA-######",
+ "degrees": "https://justinahiggins614-cmyk.github.io/signature-university/data/degrees.json"
+}
