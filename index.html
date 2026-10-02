@@ -88,6 +88,17 @@ a{color:#9fc2ff}
 .deg h4{margin:.1em 0;color:var(--gold2);font-family:var(--serif)}
 .bar{height:10px;background:#0b1024;border-radius:6px;overflow:hidden;margin:8px 0}
 .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2))}
+.cur{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin:8px 0;background:var(--card2)}
+.cur input{width:22px;height:22px;margin-top:2px;flex:none;cursor:pointer}
+.cur.done{opacity:.72}
+.cur.done .ct{text-decoration:line-through}
+.cur .cid2{font-family:monospace;font-size:.75em;color:var(--dim)}
+.tq{margin:16px 0;padding:12px;border:1px solid var(--line);border-radius:10px;background:var(--card2)}
+.tq .opt{display:block;width:100%;text-align:left;margin:6px 0;background:var(--card);border:1px solid var(--line);color:var(--txt);border-radius:8px;padding:10px 14px;cursor:pointer;font-size:.95em}
+.tq .opt.sel{border-color:var(--gold);background:#2a230f}
+.tq .opt.ok{border-color:var(--grn);background:#12351d}
+.tq .opt.bad{border-color:var(--red);background:#3a1620}
+.award{border:2px solid var(--gold);border-radius:14px;padding:20px;margin:16px 0;background:linear-gradient(180deg,#1a1408,#0f0c06);text-align:center}
 #diplomaSheet{display:none}
 .shelf{margin:14px 0}
 .shelf h4{color:var(--gold2);font-family:var(--serif);margin:.4em 0}
@@ -162,7 +173,7 @@ footer .cols div{max-width:300px}
 <div class="grid">
 <div class="ccard"><h3>1 · Learn</h3><p>Search 3,850 courses. Open any course for its full syllabus, readings, and labs. Deep-link any course: <code style="color:var(--cyber)">?course=JAH-COURSE-000260</code>.</p></div>
 <div class="ccard"><h3>2 · Study with AI</h3><p>Every course has its own AI teacher — ask for explanations, quizzes, and study plans. The campus guide chats free-hand and maps your goals to classes and degrees.</p></div>
-<div class="ccard"><h3>3 · Earn degrees</h3><p>Your progress saves on your device. Complete courses, unlock achievements, earn degrees, and print officially-stamped diplomas — free forever.</p></div>
+<div class="ccard"><h3>3 · Earn degrees</h3><p>Pick a degree, finish its full material list, pass the official test — your progress saves on your device. Earn degrees, and print officially-stamped diplomas — free forever.</p></div>
 </div>
 <div class="honest"><b>Honest notes:</b> All course material is original, written for Signature University by Justin Addam Higgins. AI teachers are AI study assistants — encouraging guides, not licensed professionals. For medical, legal, or financial decisions, always consult a licensed professional. Signature University is an independent free learning project — it claims no government accreditation; diplomas certify course completion.</div>
 </div>
@@ -258,11 +269,15 @@ footer .cols div{max-width:300px}
 <section id="w-degrees" hidden>
 <div class="panel">
 <h2><span class="tick">✦</span> Degrees &amp; Diplomas</h2>
-<p class="dim">Your progress is saved on <b>your device only</b> — no account, no tracking. Mark courses complete in the catalog, then watch your degrees fill up. When a degree is earned, print your officially-stamped diploma free.</p>
-<div class="toolbar"><input type="text" id="learnerName" placeholder="Your name for diplomas (e.g. Alex Rivera)" style="max-width:340px"><button class="btn ghost" id="saveName" style="padding:10px 18px">Save name</button></div>
-<div class="honest"><b>Honest notes:</b> Signature University is an independent free learning project by Justin Addam Higgins. It is <b>not accredited</b> by any government body. Diplomas certify that you completed the listed Signature University courses — a real achievement, honestly described.</div>
-<div id="achieve"></div>
+<p class="dim"><b style="color:var(--gold2)">How it works, step by step:</b> 1 · Select the degree you want below. 2 · Finish <b>every item</b> in its material list — the full curriculum, nothing hidden. 3 · Pass the <b>official test</b>. 4 · Your degree is <b>awarded, stamped and sealed</b>. Your progress is saved on <b>your device only</b> — no account, no tracking.</p>
+<div class="toolbar"><input type="text" id="learnerName" placeholder="Your name for diplomas (e.g. Alex Rivera)" style="max-width:340px"><button class="btn ghost" id="saveName" style="padding:10px 18px">Save name</button> <button class="btn ghost" id="exportProg" style="padding:10px 18px">⤓ Export my progress</button> <button class="btn ghost" id="readDegPage" style="padding:10px 18px">🔊 Read this page</button></div>
+<div class="honest"><b>Honest notes:</b> Signature University is an independent free learning project by Justin Addam Higgins. It is <b>not accredited</b> by any government body. Diplomas certify that you completed the listed Signature University courses and passed the official test — a real achievement, honestly described.</div>
+<div id="degPicker" style="margin:14px 0"><label for="degPick"><b style="color:var(--gold2)">Select the degree you want:</b></label><br>
+<select id="degPick" aria-label="Select the degree you want" style="max-width:100%;margin:8px 0;padding:12px;font-size:1em;border-radius:10px"></select>
+<button class="btn" id="degGo" style="padding:10px 22px;margin-left:8px">Start →</button></div>
+<div id="degDetail" hidden></div>
 <div id="degList"><p class="dim">Loading degree programs…</p></div>
+<div id="achieve"></div>
 </div>
 </section>
 
@@ -310,6 +325,7 @@ footer .cols div{max-width:300px}
 <div>© 2026 Justin Addam Higgins · Signature University · <a href="sitemap.xml">sitemap</a> · <a href="api.json">machine-readable index</a></div>
 </footer>
 <script src="js/jah-talk-fallback.js"></script>
+<script src="js/degree-flow.js"></script>
 <script>
 "use strict";
 /* Signature University app */
@@ -750,30 +766,233 @@ function doneInCollege(ckey,minLevel){
   Object.keys(PROG.done).forEach(function(id){var r=m[id];if(r&&r.k===ckey&&r.l>=minLevel)n++;});
   return n;
 }
+/* ---------- degree-first flow: pick a degree -> full material list ->
+   record completion -> official test -> stamped degree award ---------- */
+var SELDEG=null, CURR=[], TESTQ=[], TESTANS=[], PENDINGDEG=null;
+function degById(id){return (DB.degrees||[]).filter(function(d){return d.id===id;})[0]||null;}
+function curriculumOf(d){return DegFlow.curriculum(DB.idx,d);}
+function currDoneCount(d){
+  var n=0;curriculumOf(d).forEach(function(r){if(PROG.done[r.i])n++;});return n;
+}
+function isAwarded(d){return !!(PROG.degrees&&PROG.degrees[d.id]);}
 function degreesEarned(){
-  if(!DB.degrees)return[];
-  return DB.degrees.filter(function(d){return doneInCollege(d.ckey,d.min_level)>=d.need;});
+  if(!PROG.degrees)return[];
+  return Object.keys(PROG.degrees);
 }
 function loadDegrees(){
-  getJSON("data/degrees.json").then(function(d){DB.degrees=d;renderDegrees();checkAchieve();});
+  getJSON("data/degrees.json").then(function(d){
+    DB.degrees=d;renderDegPicker();renderDegrees();checkAchieve();
+    if(PENDINGDEG){var p=PENDINGDEG;PENDINGDEG=null;selectDegree(p);}
+  });
+}
+function renderDegPicker(){
+  var sel=$("degPick");if(!sel||!DB.degrees)return;
+  sel.innerHTML='<option value="">— choose a degree —</option>'+DB.colleges.colleges.map(function(c){
+    var opts=DB.degrees.filter(function(d){return d.ckey===c.key;}).map(function(d){
+      return '<option value="'+esc(d.id)+'">'+esc(d.name)+' — '+esc(d.need)+' courses</option>';
+    }).join("");
+    return '<optgroup label="'+esc(c.name)+'">'+opts+'</optgroup>';
+  }).join("");
 }
 function renderDegrees(){
-  var m=idxMap(),totalDone=Object.keys(PROG.done).length;
+  var totalDone=Object.keys(PROG.done).length;
   var h=DB.colleges.colleges.map(function(c){
     var degs=DB.degrees.filter(function(d){return d.ckey===c.key;});
     var cards=degs.map(function(d){
-      var n=doneInCollege(d.ckey,d.min_level),earned=n>=d.need,pct=Math.min(100,Math.round(n/d.need*100));
-      return '<div class="deg"><h4>'+esc(d.name)+' '+(earned?'<span class="done-badge">★ EARNED</span>':"")+'</h4>'+
+      var n=currDoneCount(d),pct=Math.min(100,Math.round(n/d.need*100)),earned=isAwarded(d);
+      return '<div class="deg"><h4>'+esc(d.name)+' '+(earned?'<span class="done-badge">★ AWARDED</span>':"")+'</h4>'+
         '<p class="dim" style="font-size:.86em;margin:.2em 0">'+esc(d.d)+'</p>'+
         '<div class="bar"><i style="width:'+pct+'%"></i></div>'+
-        '<div style="font-size:.85em;color:var(--dim)">'+n+' / '+d.need+' courses'+(earned?' <button class="btn" style="padding:8px 16px;font-size:.85em;margin-left:8px" data-dip="'+esc(d.id)+'">🖨 Print diploma</button>':"")+'</div></div>';
+        '<div style="font-size:.85em;color:var(--dim)">'+n+' / '+d.need+' material items complete'+
+        ' <button class="btn ghost" style="padding:8px 16px;font-size:.85em;margin-left:8px" data-deg="'+esc(d.id)+'">▶ View degree &amp; material list</button></div></div>';
     }).join("");
     return '<h3 style="margin-top:22px">'+esc(c.name)+'</h3>'+cards;
   }).join("");
-  $("degList").innerHTML='<p class="dim">Courses completed: <b style="color:var(--gold2)">'+totalDone.toLocaleString()+'</b> · Degrees earned: <b style="color:var(--gold2)">'+degreesEarned().length+'</b></p>'+h;
-  document.querySelectorAll("[data-dip]").forEach(function(b){
-    b.addEventListener("click",function(){printDiploma(b.getAttribute("data-dip"));});
+  $("degList").innerHTML='<p class="dim">Courses completed: <b style="color:var(--gold2)">'+totalDone.toLocaleString()+'</b> · Degrees awarded: <b style="color:var(--gold2)">'+degreesEarned().length+'</b></p>'+h;
+  document.querySelectorAll("[data-deg]").forEach(function(b){
+    b.addEventListener("click",function(){selectDegree(b.getAttribute("data-deg"));});
   });
+}
+function selectDegree(id){
+  if(!degById(id))return;
+  SELDEG=id;CURR=curriculumOf(degById(id));
+  $("degList").hidden=true;$("degPicker").style.display="none";$("degDetail").hidden=false;
+  renderDegreeDetail();
+  $("degDetail").scrollIntoView();
+}
+function backToDegrees(){
+  SELDEG=null;$("degDetail").hidden=true;$("degDetail").innerHTML="";
+  $("degList").hidden=false;$("degPicker").style.display="";
+  renderDegrees();
+}
+function toggleCurr(id){
+  if(PROG.done[id])delete PROG.done[id];else PROG.done[id]=Date.now();
+  saveProg();renderDegreeDetail();renderDegrees();
+}
+function materialText(d){
+  return d.name+". "+d.college+". "+d.d+" The full material list, "+CURR.length+" items: "+
+    CURR.map(function(r,i){return (i+1)+". "+r.c+", "+r.t+(PROG.done[r.i]?" (complete)":"");}).join(" ");
+}
+function renderDegreeDetail(){
+  var d=degById(SELDEG);if(!d)return;
+  var n=currDoneCount(d),pct=Math.min(100,Math.round(n/d.need*100));
+  var rows=CURR.map(function(r,i){
+    var done=!!PROG.done[r.i];
+    return '<div class="cur'+(done?" done":"")+'"><input type="checkbox" data-cid="'+esc(r.i)+'"'+(done?" checked":"")+' aria-label="Mark '+esc(r.c)+' complete">'+
+      '<div><span class="ct"><b>'+esc(r.c)+'</b> — '+esc(r.t)+'</span><br>'+
+      '<span class="cid2">'+esc(r.i)+' · Level '+r.l+'</span> '+
+      '<a href="javascript:void(0)" data-open="'+esc(r.i)+'" style="font-size:.85em">open record →</a></div></div>';
+  }).join("");
+  var testBtn,note="";
+  if(isAwarded(d)){
+    testBtn="";
+  }else if(n>=d.need){
+    testBtn='<button class="btn" id="takeTest">🎓 Take the official test</button>';
+    note='<p class="dim">All '+d.need+' material items complete — the official test is unlocked.</p>';
+  }else{
+    testBtn='<button class="btn ghost" disabled>🎓 Take the official test</button>';
+    note='<p class="dim">Complete all '+d.need+' material items ('+(d.need-n)+' to go) to unlock the official test.</p>';
+  }
+  $("degDetail").innerHTML=
+    '<button class="btn ghost" id="degBack" style="padding:8px 16px;font-size:.85em">← Back to all degrees</button>'+
+    '<h3 style="margin-top:12px">'+esc(d.name)+'</h3>'+
+    '<p class="dim">'+esc(d.college)+' · '+esc(d.id)+'</p>'+
+    '<p class="dim">'+esc(d.d)+'</p>'+
+    '<h4>📚 All the material required — '+d.need+' items</h4>'+
+    '<div class="bar"><i style="width:'+pct+'%"></i></div>'+
+    '<p class="dim">'+n+' of '+d.need+' complete</p>'+
+    '<p><button class="btn ghost" id="readMat" style="padding:8px 16px;font-size:.85em">🔊 Read material list aloud</button></p>'+
+    '<div id="currList">'+rows+'</div>'+note+'<p>'+testBtn+'</p>'+
+    '<div id="testZone"></div><div id="awardZone">'+awardHtml(d)+'</div>';
+  $("degBack").addEventListener("click",backToDegrees);
+  $("readMat").addEventListener("click",function(){auBegin("Material list for "+d.name,materialText(d));});
+  document.querySelectorAll("#currList [data-cid]").forEach(function(cb){
+    cb.addEventListener("change",function(){toggleCurr(cb.getAttribute("data-cid"));});
+  });
+  document.querySelectorAll("#currList [data-open]").forEach(function(a){
+    a.addEventListener("click",function(e){e.preventDefault();openCourse(a.getAttribute("data-open"));});
+  });
+  var tt=$("takeTest");if(tt)tt.addEventListener("click",startTest);
+  wireAwardButtons(d);
+}
+function awardHtml(d){
+  var a=PROG.degrees&&PROG.degrees[d.id];
+  if(!a)return "";
+  return '<div class="award"><div style="letter-spacing:.3em;font-size:.75em;color:var(--gold2)">SIGNATURE UNIVERSITY</div>'+
+    '<h3 style="margin:.3em 0">🎓 DEGREE AWARDED</h3>'+
+    '<div style="font-size:1.4em"><b>'+esc(d.name)+'</b></div>'+
+    '<div class="dim">'+esc(d.college)+'</div>'+
+    '<div style="margin:10px 0">This certifies that <b>'+esc(a.name)+'</b> completed all '+d.need+' material items and passed the official test ('+esc(a.score)+').</div>'+
+    '<div class="dim">Awarded '+esc(a.date)+' · Stamp <b style="color:var(--gold2)">'+esc(a.stamp)+'</b></div>'+
+    '<p><button class="btn" id="printDip2" style="padding:8px 16px;font-size:.85em">🖨 Print diploma</button> '+
+    '<button class="btn ghost" id="copyRec" style="padding:8px 16px;font-size:.85em">⧉ Copy degree record</button> '+
+    '<button class="btn ghost" id="dlRec" style="padding:8px 16px;font-size:.85em">⤓ Download degree record</button></p></div>';
+}
+function degreeRecord(d){
+  var a=PROG.degrees[d.id];
+  return {
+    record:"JAH-DEGREE-RECORD",
+    degree_id:d.id,degree_name:d.name,college:d.college,
+    learner:a.name,awarded:a.date,official_test_score:a.score,stamp:a.stamp,
+    curriculum:curriculumOf(d).map(function(r){return r.i;}),
+    issuer:"Signature University, founded by Justin Addam Higgins",
+    note:"Independent free learning project; not government-accredited. This record certifies completion of the listed Signature University courses and a passed official test."
+  };
+}
+function wireAwardButtons(d){
+  var pd=$("printDip2");if(pd)pd.addEventListener("click",function(){printDiploma(d.id);});
+  var cp=$("copyRec");if(cp)cp.addEventListener("click",function(){
+    var t=JSON.stringify(degreeRecord(d),null,1);
+    (navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(function(){cp.textContent="Copied ✓";},function(){prompt("Copy the degree record:",t);});
+  });
+  var dl=$("dlRec");if(dl)dl.addEventListener("click",function(){
+    var blob=new Blob([JSON.stringify(degreeRecord(d),null,1)],{type:"application/json"});
+    var a=document.createElement("a");a.href=URL.createObjectURL(blob);
+    a.download=d.id+"-degree-record.json";document.body.appendChild(a);a.click();
+    setTimeout(function(){URL.revokeObjectURL(a.href);a.remove();},500);
+  });
+}
+/* ---------- official test ---------- */
+function loadCurrRecords(ids){
+  var need={},jobs=[];
+  ids.forEach(function(id){
+    var ch=chunkFor(id);
+    var p=DB.chunks[ch]?Promise.resolve(DB.chunks[ch]):getJSON("data/chunks/"+ch+".json").then(function(j){DB.chunks[ch]=j;return j;});
+    jobs.push(p.then(function(list){
+      for(var i=0;i<list.length;i++)if(list[i].id===id){need[id]=list[i];break;}
+    }));
+  });
+  return Promise.all(jobs).then(function(){return ids.map(function(id){return need[id];}).filter(Boolean);});
+}
+function startTest(){
+  var d=degById(SELDEG);if(!d)return;
+  var attempt=((PROG.tests&&PROG.tests[d.id])||0)+1;
+  $("testZone").innerHTML='<p class="dim">Preparing your official test…</p>';
+  loadCurrRecords(CURR.map(function(r){return r.i;})).then(function(recs){
+    TESTQ=DegFlow.buildTest(recs,DegFlow.testSeed(d.id,attempt),10);
+    TESTANS=new Array(TESTQ.length);TESTATT=attempt;
+    renderTest(d);
+  }).catch(function(){$("testZone").innerHTML='<p class="dim">Could not load the test — check your connection and try again.</p>';});
+}
+function renderTest(d){
+  var h='<div class="tqwrap"><h4>📝 Official test — '+esc(d.name)+'</h4>'+
+    '<p class="dim">'+TESTQ.length+' questions · 70% to pass · Attempt '+TESTATT+'. Answer every question, then submit.</p>'+
+    '<p><button class="btn ghost" id="readTest" style="padding:8px 16px;font-size:.85em">🔊 Read test aloud</button></p>';
+  h+=TESTQ.map(function(q,qi){
+    return '<div class="tq" data-qi="'+qi+'"><b>Q'+(qi+1)+'.</b> '+esc(q.q)+
+      q.opts.map(function(o,oi){
+        return '<button class="opt" data-qi="'+qi+'" data-oi="'+oi+'">'+esc(o)+'</button>';
+      }).join("")+'</div>';
+  }).join("");
+  h+='<p><button class="btn" id="submitTest">Submit test</button> <button class="btn ghost" id="cancelTest">← Back to material list</button></p><div id="testResult"></div></div>';
+  $("testZone").innerHTML=h;
+  $("testZone").scrollIntoView();
+  $("readTest").addEventListener("click",function(){
+    auBegin("Official test, "+d.name,TESTQ.map(function(q,i){return "Question "+(i+1)+". "+q.q+" Options: "+q.opts.join(", ");}).join(" "));
+  });
+  $("cancelTest").addEventListener("click",function(){$("testZone").innerHTML="";});
+  document.querySelectorAll("#testZone .opt").forEach(function(b){
+    b.addEventListener("click",function(){
+      var qi=+b.getAttribute("data-qi");
+      TESTANS[qi]=TESTQ[qi].opts[+b.getAttribute("data-oi")];
+      document.querySelectorAll('#testZone .tq[data-qi="'+qi+'"] .opt').forEach(function(x){x.classList.remove("sel");});
+      b.classList.add("sel");
+    });
+  });
+  $("submitTest").addEventListener("click",function(){submitTest(d);});
+}
+function submitTest(d){
+  for(var i=0;i<TESTQ.length;i++)if(!TESTANS[i]){$("testResult").innerHTML='<p class="dim">Please answer every question first.</p>';return;}
+  var g=DegFlow.gradeTest(TESTQ,TESTANS);
+  var h='<div class="tq"><h4>Result: '+g.score+' / '+g.total+'</h4>';
+  TESTQ.forEach(function(q,qi){
+    var ok=TESTANS[qi]===q.answer;
+    h+='<div style="margin:8px 0;font-size:.9em"><b>Q'+(qi+1)+':</b> '+esc(q.q)+'<br>'+
+      '<span style="color:'+(ok?"var(--grn)":"var(--red)")+'">'+(ok?"✓":"✗")+' Your answer: '+esc(TESTANS[qi])+'</span>'+
+      (ok?"":'<br><span style="color:var(--grn)">Correct: '+esc(q.answer)+'</span>')+'</div>';
+  });
+  h+='</div>';
+  if(g.passed){
+    PROG.tests=PROG.tests||{};PROG.tests[d.id]=TESTATT;
+    awardDegree(d,g.score+"/"+g.total);
+    h+='<p class="dim">🎉 You passed — your degree is awarded below.</p>';
+  }else{
+    h+='<p><button class="btn" id="retake">↻ Retake the test</button></p>';
+  }
+  $("testResult").innerHTML=h;
+  var rt=$("retake");if(rt)rt.addEventListener("click",startTest);
+  $("testResult").scrollIntoView();
+}
+function awardDegree(d,scoreStr){
+  var dateStr=new Date().toLocaleDateString("en-US",{year:"numeric",month:"long",day:"numeric"});
+  var name=(PROG.name||"").trim()||"Distinguished Learner";
+  PROG.degrees=PROG.degrees||{};
+  PROG.degrees[d.id]={date:dateStr,stamp:DegFlow.degreeStamp(name,d.id,dateStr),score:scoreStr,name:name};
+  saveProg();
+  $("awardZone").innerHTML=awardHtml(d);
+  wireAwardButtons(d);
+  renderDegrees();checkAchieve();
+  $("awardZone").scrollIntoView();
 }
 function djb2(s){var h=5381;for(var i=0;i<s.length;i++)h=((h<<5)+h+s.charCodeAt(i))>>>0;return h;}
 function printDiploma(degId){
@@ -781,6 +1000,8 @@ function printDiploma(degId){
   var name=(PROG.name||"").trim()||"Distinguished Learner";
   var date=new Date().toLocaleDateString("en-US",{year:"numeric",month:"long",day:"numeric"});
   var num="JAH-DIPLOMA-"+String(djb2(name+"|"+d.id+"|"+date)%900000+100000);
+  var aw=(PROG.degrees&&PROG.degrees[d.id])?PROG.degrees[d.id]:null;
+  var testLine=aw?'<div style="margin-top:6px;font-size:.85em">Official test passed: '+esc(aw.score)+' · Degree stamp '+esc(aw.stamp)+'</div>':"";
   $("diplomaSheet").innerHTML='<div class="diploma">'+
     '<div style="letter-spacing:.3em;font-size:.8em">SIGNATURE UNIVERSITY</div>'+
     '<h1>DIPLOMA</h1>'+
@@ -789,7 +1010,7 @@ function printDiploma(degId){
     '<div style="font-style:italic">has completed the required courses and earned the</div>'+
     '<div style="font-size:1.5em;margin:10px 0"><b>'+esc(d.name)+'</b></div>'+
     '<div>'+esc(d.college)+'</div>'+
-    '<div style="margin-top:14px;font-size:.85em">Awarded '+esc(date)+' · Stamp '+num+'<br>by Signature University, founded by Justin Addam Higgins</div>'+
+    '<div style="margin-top:14px;font-size:.85em">Awarded '+esc(date)+' · Stamp '+num+testLine+'<br>by Signature University, founded by Justin Addam Higgins</div>'+
     '<div class="seal">OFFICIAL<br>STAMP<br>'+num.slice(-6)+'</div>'+
     '<div style="font-size:.72em;color:#5a4a22;max-width:560px;margin:0 auto">Signature University is an independent free learning project. It claims no government accreditation. This diploma certifies completion of Signature University courses.</div>'+
     '</div>';
@@ -813,6 +1034,19 @@ function checkAchieve(live){
   if(live&&DB.degrees)renderDegrees();
 }
 $("saveName").addEventListener("click",function(){PROG.name=$("learnerName").value.trim();saveProg();$("saveName").textContent="Saved ✓";setTimeout(function(){$("saveName").textContent="Save name";},1500);});
+$("degGo").addEventListener("click",function(){var v=$("degPick").value;if(v)selectDegree(v);});
+$("degPick").addEventListener("change",function(){var v=$("degPick").value;if(v)selectDegree(v);});
+$("exportProg").addEventListener("click",function(){
+  var data={exported:new Date().toISOString(),site:"Signature University",name:PROG.name||"",
+    courses_completed:Object.keys(PROG.done),degrees_awarded:PROG.degrees||{},test_attempts:PROG.tests||{}};
+  var blob=new Blob([JSON.stringify(data,null,1)],{type:"application/json"});
+  var a=document.createElement("a");a.href=URL.createObjectURL(blob);
+  a.download="signature-university-progress.json";document.body.appendChild(a);a.click();
+  setTimeout(function(){URL.revokeObjectURL(a.href);a.remove();},500);
+});
+$("readDegPage").addEventListener("click",function(){
+  auBegin("Degrees and diplomas","How it works, step by step. 1. Select the degree you want. 2. Finish every item in its material list — the full curriculum, nothing hidden. 3. Pass the official test. 4. Your degree is awarded, stamped and sealed. Your progress is saved on your device only.");
+});
 
 /* ---------- guide chat ---------- */
 var STOP={the:1,and:1,for:1,what:1,with:1,about:1,how:1,does:1,why:1,want:1,learn:1,study:1,become:1,courses:1,course:1,like:1,get:1,into:1,some:1,more:1,that:1,this:1,from:1,are:1,you:1,your:1,can:1,should:1,will:1,have:1,has:1,our:1,its:1,than:1,then:1,them:1,they:1,teach:1,teaching:1,degree:1,degrees:1,school:1,university:1,class:1,classes:1,tell:1,please:1,help:1};
@@ -878,6 +1112,12 @@ function guideReply(q){
 function deepLink(){
   var sp=new URLSearchParams(location.search),c=sp.get("course");
   if(c&&/^JAH-COURSE-\d{6}$/.test(c)){openCourse(c);return;}
+  var dg=sp.get("degree");
+  if(dg&&/^JAH-DEGREE-[A-Z]+-\d+$/.test(dg)){
+    go("degrees");
+    if(DB.degrees)selectDegree(dg);else PENDINGDEG=dg;
+    return;
+  }
   var ck=sp.get("college");
   if(ck){$("fCollege").value=ck;F.college=ck;applyFilter();go("catalog");}
   var q=sp.get("q");
