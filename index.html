@@ -222,7 +222,7 @@ footer .cols div{max-width:300px}
 <div class="toolbar">
 <input type="text" id="q" placeholder="Search courses — try “welding”, “calculus”, “contracts”…">
 <select id="fCollege"><option value="">All colleges</option></select>
-<select id="fLevel"><option value="">All levels</option><option>101</option><option>201</option><option>301</option><option>401</option><option>501</option><option>601</option></select>
+<select id="fLevel"><option value="">All levels</option><option>101</option><option>201</option><option>301</option><option>401</option><option>501</option><option>601</option></select><p class="dim" style="font-size:.82em;margin:6px 0 0">Levels are Signature University curriculum levels (101 introductory → 601 doctoral) — not accredited university-credit equivalencies.</p>
 </div>
 <div class="deptbtns" id="deptbtns" role="group" aria-label="Filter by college"></div>
 <style>
@@ -303,6 +303,8 @@ footer .cols div{max-width:300px}
 <b>Patent Catalog</b><span>Every newly harvested public patent record feeds course reading lists and research seminars — real filings, studied for real.</span>
 <b>JAH Wiki · Leaks · Dictionary</b><span>New articles, dossiers, and word records flow into reading lists across all eleven colleges.</span>
 </div>
+<h3>Research pipeline</h3>
+<p class="dim">Every research item moves through review states: <b>CANDIDATE</b> → <b>REVIEWED</b> → <b>ACCEPTED</b> / <b>REJECTED</b> → <b>PUBLISHED</b>. Source types stay distinct: Signature spec drafts, public patent records, Wiki articles, dossiers, and dictionary records never share evidentiary status.</p>
 <h3>Live feed example — real records, real courses</h3>
 <p class="dim"><b>Material origins:</b> <span class="pilltag pt-course">GENERATED COURSE MATERIAL</span> = written for Signature University · <span class="pilltag pt-spec">JAH DRAFT</span> = an original draft by Justin Addam Higgins · <span class="pilltag pt-patent">PUBLIC PATENT</span> = a real public patent filing.</p>
 <div class="grid">
@@ -321,9 +323,11 @@ footer .cols div{max-width:300px}
 <h2><span class="tick">✦</span> Degrees &amp; Diplomas <span class="notacc">NOT GOVERNMENT ACCREDITED</span></h2>
 <p class="dim"><b style="color:var(--gold2)">How it works, step by step:</b> 1 · Select the degree you want below. 2 · Finish <b>every item</b> in its material list — the full curriculum, nothing hidden. 3 · Pass the <b>official test</b> (official within the Signature system). 4 · Your degree is <b>awarded, stamped and sealed</b>. Your progress is saved on <b>your device only</b> — no account, no tracking.</p>
 <div class="toolbar"><input type="text" id="learnerName" placeholder="Your name for diplomas (e.g. Alex Rivera)" style="max-width:340px"><button class="btn ghost" id="saveName" style="padding:10px 18px">Save name</button> <button class="btn ghost" id="exportProg" style="padding:10px 18px">⤓ Export my progress</button> <button class="btn ghost" id="importProg" style="padding:10px 18px">⤒ Import progress</button> <button class="btn ghost" id="readDegPage" style="padding:10px 18px">🔊 Read this page</button></div>
+<div class="toolbar" style="margin-top:8px"><span class="dim" style="font-size:.85em">Transcript:</span> <button class="btn ghost" id="trJson" style="padding:8px 14px">⤓ JSON</button> <button class="btn ghost" id="trCsv" style="padding:8px 14px">⤓ CSV</button> <button class="btn ghost" id="trTxt" style="padding:8px 14px">⤓ TXT</button> <button class="btn ghost" id="trPrint" style="padding:8px 14px">🖨 Print / Save PDF</button> <a class="btn ghost" href="verify/" target="_blank" rel="noopener" style="padding:8px 14px;text-decoration:none">✓ Verify a diploma</a></div>
 <input type="file" id="importFile" accept="application/json" hidden>
 <div class="savestate" id="saveState">💾 <b>Saved on this device</b> — your progress lives in this browser only, no account, no tracking. <span id="saveCount">0</span> courses complete.</div>
 <div class="honest"><b>Honest notes:</b> Signature University is an independent free learning project by Justin Addam Higgins. It is <b>not accredited</b> by any government body. Diplomas certify that you completed the listed Signature University courses and passed the official test (official within the Signature system) — a real achievement, honestly described.</div>
+<div class="honest"><b>Academic integrity:</b> AI teachers are tutors — they explain, quiz, and help you plan. Your own submitted work (projects, capstones, test answers) must be your own: do not present AI-generated answers as your work. Cite AI assistance where you used it. Course records, not the AI, determine requirements, completion, and degree eligibility.</div>
 <div id="degPicker" style="margin:14px 0"><label for="degPick"><b style="color:var(--gold2)">Select the degree you want:</b></label><br>
 <select id="degPick" aria-label="Select the degree you want" style="max-width:100%;margin:8px 0;padding:12px;font-size:1em;border-radius:10px"></select>
 <button class="btn" id="degGo" style="padding:10px 22px;margin-left:8px">Start →</button></div>
@@ -375,8 +379,9 @@ footer .cols div{max-width:300px}
 <div><b style="color:var(--gold2)">The JAH Network</b><br><a href="https://justinahiggins614-cmyk.github.io/jah-ai-models/">Telephone Book</a> · <a href="https://justinahiggins614-cmyk.github.io/jah-calculator/">Calculator</a> · <a href="https://justinahiggins614-cmyk.github.io/jah-dictionary/">Dictionary</a> · <a href="https://justinahiggins614-cmyk.github.io/jah-wiki/">JAH Wiki</a> · <a href="https://justinahiggins614-cmyk.github.io/jah-n-wiki-leaks/">JAH-N Wiki</a> · <a href="https://justinahiggins614-cmyk.github.io/cyber-patent-catalog/">Patent Catalog</a> · <a href="https://justinahiggins614-cmyk.github.io/signature-one-archive/specs.html">Spec Catalog</a> · <a href="https://justinahiggins614-cmyk.github.io/signature-llama/">Signature Llama</a> · <a href="https://justinahiggins614-cmyk.github.io/jah-computer-systems/">PC Depository</a> · <a href="https://justinahiggins614-cmyk.github.io/signature-cyber-mega-mall/">Mega-Mall</a> · <a href="https://justinahiggins614-cmyk.github.io/signature-university/">University</a> · <a href="https://justinahiggins614-cmyk.github.io/signature-books/">Book Depository</a> · <a href="https://justinahiggins614-cmyk.github.io/signature-comics/">Comic Store</a> · <a href="https://justinahiggins614-cmyk.github.io/signature-newspapers/">Newspaper Archive</a> · <a href="https://justinahiggins614-cmyk.github.io/signature-3d-print/">3D Print Depository</a> · <a href="https://justinahiggins614-cmyk.github.io/signature-backend/">Backend</a> · <a href="https://justinahiggins614-cmyk.github.io/signature-boundless-generators/">Generator Archive</a></div>
 <div><b style="color:var(--gold2)">Honesty</b><br>AI teachers are AI assistants, not licensed professionals. No government accreditation is claimed. Diplomas certify course completion at Signature University.</div>
 </div>
-<div>© 2026 Justin Addam Higgins · Signature University · <a href="sitemap.xml">sitemap</a> · <a href="api.json">machine-readable index</a></div>
+<div>© 2026 Justin Addam Higgins · Signature University · <a href="sitemap.xml">sitemap</a> · <a href="api.json">machine-readable index</a> · <a href="university-manifest.json">manifest</a> · <a href="university-schema.json">schema</a> · <a href="llms.txt">llms.txt</a> · <button class="btn ghost" id="reportBtn" style="padding:6px 12px;font-size:.85em">⚠ Report a problem</button></div>
 </footer>
+<script src="js/sha256.js"></script>
 <script src="js/jah-talk-fallback.js"></script>
 <script src="js/degree-flow.js"></script>
 <script>
@@ -414,7 +419,7 @@ function boot(){
     $("resCount").textContent=DB.colleges.total.toLocaleString();
     route();deepLink();
   }).catch(function(e){
-    $("homeStats").innerHTML='<div class="stat"><b>!</b><span>data failed to load</span></div>';
+    $("homeStats").innerHTML='<div class="stat"><b>!</b><span>data failed to load</span></div><div class="stat"><button class="btn ghost" style="padding:6px 14px" onclick="location.reload()">↻ Retry</button></div><div class="stat"><span style="font-size:.8em">or open the <a href="data/counts.json">machine-readable counts</a></span></div>';
   });
 }
 function collegeName(k){var c=DB.colleges.colleges.filter(function(x){return x.key===k;})[0];return c?c.name:k;}
@@ -428,7 +433,7 @@ function renderHome(){
     '<div class="stat"><b>'+c.colleges.length+'</b><span>colleges</span></div>'+
     '<div class="stat"><b>6</b><span>levels 101–PhD</span></div>'+
     '<div class="stat"><b>'+c.total.toLocaleString()+'</b><span>AI teachers</span></div>'+
-    '<div class="stat"><b>1M</b><span>degree goal</span></div>';
+    '<div class="stat" title="Expansion goal — the count of degree paths the university is marching toward, not a current count"><b>1M</b><span>degree-path goal</span></div>';
   $("collegeGrid").innerHTML=c.colleges.map(function(x){
     return '<div class="ccard" data-college="'+x.key+'"><span class="abbr">'+x.abbr+'</span><h3>'+esc(x.name)+'</h3><p>'+esc(x.tagline)+'</p><p class="n">'+x.courses.toLocaleString()+' courses →</p></div>';
   }).join("");
@@ -744,7 +749,7 @@ function tMsg(log,who,text,html){
 function allLessons(){var L=[];CUR.modules.forEach(function(m,mi){m.lessons.forEach(function(l){L.push({m:mi,mt:m.m,l:l});});});return L;}
 function initTeacherChat(){
   var log=$("tLog");
-  tMsg(log,"ai","Hello! I am "+CUR.teacher.title+" "+CUR.teacher.name+", your AI teaching assistant for "+CUR.title+". Ask me about any lesson, or type <b>syllabus</b>, <b>quiz</b>, or <b>help</b>. I am an AI study guide — encouraging, honest, and here to help you learn.");
+  tMsg(log,"ai","Hello! I am "+CUR.teacher.title+" "+CUR.teacher.name+", your AI teaching assistant for "+CUR.title+". Ask me about any lesson, or type <b>syllabus</b>, <b>quiz</b>, or <b>help</b>. I teach from this course\u2019s material \u2014 if you ask about something outside it, I\u2019ll say so. I am an AI study guide — encouraging, honest, and here to help you learn.");
   var send=function(){
     var inp=$("tIn"),q=inp.value.trim();if(!q)return;inp.value="";
     tMsg(log,"you",q);setTimeout(function(){teacherReply(log,q);},350);
@@ -859,6 +864,8 @@ function loadLabs(){
     var deb=null;$("labQ").addEventListener("input",function(){clearTimeout(deb);deb=setTimeout(renderLabs,220);});
     $("labCount").textContent="· "+l.length.toLocaleString()+" exercises";
     renderLabs();
+  }).catch(function(){
+    $("labResults").innerHTML='<p class="dim">The lab index could not be loaded.</p><p><button class="btn ghost" onclick="loadLabs()">↻ Retry</button></p>';
   });
 }
 function renderLabs(){
@@ -913,6 +920,8 @@ function loadDegrees(){
   getJSON("data/degrees.json").then(function(d){
     DB.degrees=d;renderDegPicker();renderDegrees();checkAchieve();
     if(PENDINGDEG){var p=PENDINGDEG;PENDINGDEG=null;selectDegree(p);}
+  }).catch(function(){
+    $("degList").innerHTML='<p class="dim">Degree programs could not be loaded.</p><p><button class="btn ghost" onclick="loadDegrees()">↻ Retry</button></p>';
   });
 }
 function renderDegPicker(){
@@ -1014,19 +1023,24 @@ function awardHtml(d){
     '<div class="dim">'+esc(d.college)+'</div>'+
     '<div style="margin:10px 0">This certifies that <b>'+esc(a.name)+'</b> completed all '+d.need+' material items and passed the official test (official within the Signature system, '+esc(a.score)+').</div>'+
     '<div class="dim">Awarded '+esc(a.date)+' · Stamp <b style="color:var(--gold2)">'+esc(a.stamp)+'</b></div>'+
+    '<p class="dim" style="font-size:.85em">Diploma ID <b style="font-family:monospace">JAH-DIPLOMA-'+esc(String(djb2(a.name+"|"+d.id+"|"+a.date)%900000+100000))+'</b> · <a href="verify/?diploma=JAH-DIPLOMA-'+esc(String(djb2(a.name+"|"+d.id+"|"+a.date)%900000+100000))+'" target="_blank" rel="noopener">Verify this diploma →</a></p>'+
     '<p><button class="btn" id="printDip2" style="padding:8px 16px;font-size:.85em">🖨 Print diploma</button> '+
     '<button class="btn ghost" id="copyRec" style="padding:8px 16px;font-size:.85em">⧉ Copy degree record</button> '+
     '<button class="btn ghost" id="dlRec" style="padding:8px 16px;font-size:.85em">⤓ Download degree record</button></p></div>';
 }
 function degreeRecord(d){
   var a=PROG.degrees[d.id];
+  var dip=diplomaRecord(d.id,a.name,a.date,a.stamp,a.score);
+  var dipHash=dip?sha256hex(JSON.stringify(dip)):"";
   return {
-    record:"JAH-DEGREE-RECORD",
+    record:"JAH-DEGREE-RECORD",version:"1.0",
     degree_id:d.id,degree_name:d.name,college:d.college,
     learner:a.name,awarded:a.date,official_test_score:a.score,stamp:a.stamp,
+    diploma_id:dip?dip.diploma_id:"",diploma_hash:dipHash,
+    curriculum_version:"2026.10",
     curriculum:curriculumOf(d).map(function(r){return r.i;}),
     issuer:"Signature University, founded by Justin Addam Higgins",
-    note:"Independent free learning project; not government-accredited. This record certifies completion of the listed Signature University courses and a passed official test (official within the Signature system)."
+    note:"Independent free learning project; not government-accredited. This record certifies completion of the listed Signature University courses and a passed official test (official within the Signature system). The learner name is user-supplied and is not independently verified."
   };
 }
 function wireAwardButtons(d){
@@ -1067,6 +1081,7 @@ function startTest(){
 function renderTest(d){
   var h='<div class="tqwrap"><h4>📝 Official test — official within the Signature system — '+esc(d.name)+'</h4>'+
     '<p class="dim">'+TESTQ.length+' questions · 70% to pass · Attempt '+TESTATT+'. Answer every question, then submit.</p>'+
+    '<p class="dim" style="font-size:.82em">Browser-based assessment: the test runs entirely in your browser from the course material above. It is not a proctored or accredited examination.</p>'+
     '<p><button class="btn ghost" id="readTest" style="padding:8px 16px;font-size:.85em">🔊 Read test aloud</button></p>';
   h+=TESTQ.map(function(q,qi){
     return '<div class="tq" data-qi="'+qi+'"><b>Q'+(qi+1)+'.</b> '+esc(q.q)+
@@ -1125,6 +1140,15 @@ function awardDegree(d,scoreStr){
   $("awardZone").scrollIntoView();
 }
 function djb2(s){var h=5381;for(var i=0;i<s.length;i++)h=((h<<5)+h+s.charCodeAt(i))>>>0;return h;}
+function diplomaRecord(degId,name,dateStr,stamp,score){
+  var d=DB.degrees.filter(function(x){return x.id===degId;})[0];if(!d)return null;
+  return {record:"JAH-DIPLOMA-RECORD",version:"1.0",
+    diploma_id:"JAH-DIPLOMA-"+String(djb2(name+"|"+d.id+"|"+dateStr)%900000+100000),
+    degree_id:d.id,degree_name:d.name,college:d.college,learner:name,awarded:dateStr,
+    official_test_score:score||"",stamp:stamp,curriculum_version:"2026.10",
+    issuer:"Signature University, founded by Justin Addam Higgins",
+    note:"Independent free learning project; not government-accredited. This record certifies completion of the listed Signature University courses and a passed official test (official within the Signature system). The learner name is user-supplied and is not independently verified."};
+}
 function printDiploma(degId){
   var d=DB.degrees.filter(function(x){return x.id===degId;})[0];if(!d)return;
   var name=(PROG.name||"").trim()||"Distinguished Learner";
@@ -1140,8 +1164,13 @@ function printDiploma(degId){
     '<div style="font-style:italic">has completed the required courses and earned the</div>'+
     '<div style="font-size:1.5em;margin:10px 0"><b>'+esc(d.name)+'</b></div>'+
     '<div>'+esc(d.college)+'</div>'+
-    '<div style="font-size:.85em;letter-spacing:.05em;margin-top:10px"><b>Signature University — Certificate of Course/Program Completion — Not Government Accreditation.</b></div>'+
-    '<div style="margin-top:14px;font-size:.85em">Awarded '+esc(date)+' · Stamp '+num+testLine+'<br>by Signature University, founded by Justin Addam Higgins</div>'+
+    '<div style="font-size:.85em;letter-spacing:.05em;margin-top:10px"><b>Signature University Diploma — Certificate of Completion — Not Government Accredited.</b></div>'+
+    (function(){var aw2=(PROG.degrees&&PROG.degrees[d.id])?PROG.degrees[d.id]:null;
+    var rec=diplomaRecord(d.id,name,date,num,aw2?aw2.score:"");
+    var dh=rec?sha256hex(JSON.stringify(rec)):"";
+    try{if(aw2){aw2.diploma_hash=dh;saveProg();}}catch(e){}
+    return '<div style="margin-top:14px;font-size:.85em">Awarded '+esc(date)+' · Stamp '+num+testLine+'<br>by Signature University, founded by Justin Addam Higgins</div>'+
+    (dh?'<div style="margin-top:6px;font-size:.78em;color:#5a4a22">Diploma record SHA-256: <span style="font-family:monospace">'+dh.slice(0,20)+'…</span> · <a href="verify/?diploma='+num+'" target="_blank" rel="noopener" style="color:#8a6a1f">Verify this diploma →</a></div>':'');})()+
     '<div class="seal" title="Official within the Signature system — not a government accreditation">OFFICIAL<br>STAMP<br>'+num.slice(-6)+'</div>'+
     '<div style="font-size:.72em;color:#5a4a22;max-width:560px;margin:0 auto">Signature University — Certificate of Course/Program Completion — Not Government Accreditation. This diploma certifies completion of Signature University courses.</div>'+
     '</div>';
@@ -1167,6 +1196,59 @@ function checkAchieve(live){
 $("saveName").addEventListener("click",function(){PROG.name=$("learnerName").value.trim();saveProg();$("saveName").textContent="Saved ✓";setTimeout(function(){$("saveName").textContent="Save name";},1500);});
 $("degGo").addEventListener("click",function(){var v=$("degPick").value;if(v)selectDegree(v);});
 $("degPick").addEventListener("change",function(){var v=$("degPick").value;if(v)selectDegree(v);});
+function buildTranscript(){
+  var idxM={};(DB.idx||[]).forEach(function(r){idxM[r.i]=r;});
+  var courses=Object.keys(PROG.done||{}).map(function(id){
+    var r=idxM[id]||{};
+    return {course_id:id,code:r.c||"",title:r.t||"",college:r.k||"",completed:PROG.done[id]||""};
+  });
+  var degrees=Object.keys(PROG.degrees||{}).map(function(id){
+    var a=PROG.degrees[id],d=(DB.degrees||[]).filter(function(x){return x.id===id;})[0]||{};
+    var dip=diplomaRecord(id,a.name,a.date,a.stamp,a.score);
+    return {degree_id:id,degree_name:d.name||"",college:d.college||"",learner:a.name,awarded:a.date,
+      official_test_score:a.score,stamp:a.stamp,diploma_id:dip?dip.diploma_id:"",
+      diploma_hash:dip?sha256hex(JSON.stringify(dip)):"",curriculum_version:"2026.10"};
+  });
+  var tr={record:"JAH-TRANSCRIPT",version:"1.0",site:"Signature University",
+    learner:PROG.name||"",exported:new Date().toISOString(),curriculum_version:"2026.10",
+    courses_completed:courses,degrees_awarded:degrees,
+    note:"Independent free learning project; not government-accredited. Progress is stored on the learner's device; this transcript is generated locally from that device data. The learner name is user-supplied and is not independently verified."};
+  tr.transcript_hash=sha256hex(JSON.stringify(tr));
+  return tr;
+}
+function dlFile(name,text,type){
+  var blob=new Blob([text],{type:type||"application/octet-stream"});
+  var a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=name;
+  document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove();},500);
+}
+$("trJson").addEventListener("click",function(){dlFile("signature-university-transcript.json",JSON.stringify(buildTranscript(),null,1),"application/json");});
+$("trCsv").addEventListener("click",function(){
+  var tr=buildTranscript(),L=["type,id,code_or_degree,title_or_name,detail,date"];
+  tr.courses_completed.forEach(function(c){L.push(["course",c.course_id,c.code,'"'+String(c.title).replace(/"/g,'""')+'"',c.college,c.completed].join(","));});
+  tr.degrees_awarded.forEach(function(d){L.push(["degree",d.degree_id,"",'"'+String(d.degree_name).replace(/"/g,'""')+'"',d.diploma_id+"; score "+d.official_test_score,d.awarded].join(","));});
+  L.push("transcript_hash,"+tr.transcript_hash);
+  dlFile("signature-university-transcript.csv",L.join("\n"),"text/csv");
+});
+$("trTxt").addEventListener("click",function(){
+  var tr=buildTranscript(),L=[];
+  L.push("SIGNATURE UNIVERSITY — TRANSCRIPT");L.push("Learner: "+(tr.learner||"(name not set)"));
+  L.push("Exported: "+tr.exported+" · Curriculum: "+tr.curriculum_version);
+  L.push("");L.push("COURSES COMPLETED ("+tr.courses_completed.length+"):");
+  tr.courses_completed.forEach(function(c){L.push("  "+c.course_id+"  "+c.code+" — "+c.title);});
+  L.push("");L.push("DEGREES AWARDED ("+tr.degrees_awarded.length+"):");
+  tr.degrees_awarded.forEach(function(d){L.push("  "+d.degree_name+" ("+d.degree_id+") — awarded "+d.awarded+" — diploma "+d.diploma_id);});
+  L.push("");L.push("Transcript SHA-256: "+tr.transcript_hash);
+  L.push("Not government-accredited. Verification verifies the record, not the learner's identity.");
+  dlFile("signature-university-transcript.txt",L.join("\n"),"text/plain");
+});
+$("trPrint").addEventListener("click",function(){window.print();});
+var rb=$("reportBtn");if(rb)rb.addEventListener("click",function(){
+  var rid="JAH-REPORT-"+String(Date.now()).slice(-6);
+  var txt="Signature University problem report "+rid+"\nDate: "+new Date().toISOString()+
+    "\nPage: "+location.href+"\n\nDescribe the problem (wrong fact, broken link, typo, bad metadata, accessibility):\n\n[describe here]";
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(function(){rb.textContent="Report "+rid+" copied ✓";setTimeout(function(){rb.textContent="⚠ Report a problem";},2500);});}
+  else{prompt("Copy your report "+rid+" and send it to the site owner:",txt);}
+});
 $("exportProg").addEventListener("click",function(){
   var data={exported:new Date().toISOString(),site:"Signature University",name:PROG.name||"",
     courses_completed:Object.keys(PROG.done),degrees_awarded:PROG.degrees||{},test_attempts:PROG.tests||{}};

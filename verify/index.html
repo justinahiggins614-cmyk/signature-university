@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Verify a Diploma — Signature University</title>
+<meta name="description" content="Verify a Signature University diploma record: checks the diploma ID, content hash, degree, and curriculum version. Verification verifies the record, not the learner's identity.">
+<link rel="canonical" href="https://justinahiggins614-cmyk.github.io/signature-university/verify/">
+<style>
+body{font-family:Georgia,'Times New Roman',serif;background:#0a0e1c;color:#f0e9d6;margin:0;line-height:1.6}
+.wrap{max-width:760px;margin:0 auto;padding:28px 18px}
+h1{color:#f2d47e;font-size:1.6em;letter-spacing:.04em}
+h2{color:#d9a441;font-size:1.15em}
+a{color:#9fc2ff}
+.panel{background:#11162a;border:1px solid #2b3560;border-radius:12px;padding:20px;margin:18px 0}
+.dim{color:#a9b0c7;font-size:.9em}
+input,textarea{width:100%;box-sizing:border-box;background:#0a0e1c;color:#f0e9d6;border:1px solid #2b3560;border-radius:8px;padding:10px;font-size:1em;font-family:inherit}
+textarea{min-height:150px;font-family:monospace;font-size:.85em}
+.btn{background:#8a6a1f;color:#fff;border:none;border-radius:10px;padding:12px 22px;font-size:1em;cursor:pointer;font-family:inherit;margin-top:10px}
+.btn:hover{background:#a37f28}
+.verdict{font-size:1.3em;font-weight:bold;padding:14px;border-radius:10px;margin:14px 0}
+.valid{background:#12351f;border:2px solid #2e7d43;color:#b9f0c9}
+.invalid{background:#3a1414;border:2px solid #a03a3a;color:#f3b0b0}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;margin:12px 0}
+.kv b{color:#f2d47e;font-weight:normal}
+code{font-family:monospace;font-size:.88em;word-break:break-all}
+.honest{background:#1a1430;border-left:4px solid #8a6a1f;padding:12px 16px;margin:18px 0;font-size:.92em}
+.notacc{display:inline-block;background:#7a1f1f;color:#ffd9d9;font-size:.68em;padding:3px 10px;border-radius:20px;letter-spacing:.08em;vertical-align:middle}
+</style>
+</head>
+<body>
+<div class="wrap">
+<p><a href="../">← Signature University</a></p>
+<h1>Verify a Diploma <span class="notacc">NOT GOVERNMENT ACCREDITED</span></h1>
+<p class="dim">A Signature University diploma is a <b>Certificate of Completion</b> — it certifies completion of Signature University coursework. Verification checks that a diploma <b>record</b> is intact and well-formed: its ID, its content hash, its degree, and its curriculum version. It does <b>not</b> verify the identity of the named learner — the name on a diploma is user-supplied.</p>
+
+<div class="panel">
+<h2>1 · Diploma ID</h2>
+<input id="dipId" placeholder="JAH-DIPLOMA-123456" aria-label="Diploma ID">
+<h2 style="margin-top:18px">2 · Diploma record (JSON)</h2>
+<p class="dim">Paste the diploma/degree record JSON — from the <b>Download degree record</b> button on your degree page. The hash is recomputed from this record.</p>
+<textarea id="dipJson" placeholder='{"record":"JAH-DIPLOMA-RECORD", ...}' aria-label="Diploma record JSON"></textarea>
+<br><button class="btn" id="verifyBtn">Verify diploma</button>
+</div>
+
+<div id="result"></div>
+
+<div class="honest"><b>What VALID means:</b> the record's diploma ID matches its content (learner name + degree + award date), the SHA-256 content hash matches, the degree exists in the university catalog, and the curriculum version is current. <b>What it does not mean:</b> government accreditation, or independent confirmation of who completed the work.</div>
+</div>
+<script src="../js/sha256.js"></script>
+<script>
+"use strict";
+function djb2(s){var h=5381;for(var i=0;i<s.length;i++)h=((h<<5)+h+s.charCodeAt(i))>>>0;return h;}
+function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
+var $=function(id){return document.getElementById(id);};
+var DEGREES=null;
+fetch("../data/degrees.json").then(function(r){return r.json();}).then(function(d){DEGREES=d;}).catch(function(){});
+
+function diplomaIdFor(name,degId,dateStr){
+  return "JAH-DIPLOMA-"+String(djb2(name+"|"+degId+"|"+dateStr)%900000+100000);
+}
+function canonicalDiploma(rec){
+  // rebuild the canonical record in the exact field order the issuer uses
+  return {record:"JAH-DIPLOMA-RECORD",version:"1.0",
+    diploma_id:rec.diploma_id,degree_id:rec.degree_id,degree_name:rec.degree_name,
+    college:rec.college,learner:rec.learner,awarded:rec.awarded,
+    official_test_score:rec.official_test_score||"",stamp:rec.stamp,
+    curriculum_version:rec.curriculum_version,
+    issuer:"Signature University, founded by Justin Addam Higgins",
+    note:"Independent free learning project; not government-accredited. This record certifies completion of the listed Signature University courses and a passed official test (official within the Signature system). The learner name is user-supplied and is not independently verified."};
+}
+function verify(){
+  var id=$("dipId").value.trim(),raw=$("dipJson").value.trim(),out=$("result"),problems=[],facts=[];
+  if(!/^JAH-DIPLOMA-\d{6}$/.test(id)){out.innerHTML='<div class="verdict invalid">INVALID — diploma ID must look like JAH-DIPLOMA-123456.</div>';return;}
+  var rec;try{rec=JSON.parse(raw);}catch(e){out.innerHTML='<div class="verdict invalid">INVALID — the pasted record is not valid JSON.</div>';return;}
+  if(rec.record!=="JAH-DIPLOMA-RECORD"&&rec.record!=="JAH-DEGREE-RECORD"){
+    out.innerHTML='<div class="verdict invalid">INVALID — not a Signature University diploma/degree record.</div>';return;
+  }
+  var dip=rec.record==="JAH-DIPLOMA-RECORD"?rec:null;
+  // degree existence
+  if(DEGREES===null){problems.push("Catalog not loaded yet — degree existence not checked. Try again in a moment.");}
+  else{
+    var degId=rec.degree_id;
+    var found=DEGREES.filter(function(d){return d.id===degId;})[0];
+    if(!found)problems.push("Degree "+degId+" is not in the university catalog.");
+    else facts.push(["Degree",found.name+" ("+found.id+")"]);
+  }
+  if(dip){
+    var expectId=diplomaIdFor(dip.learner||"",dip.degree_id||"",dip.awarded||"");
+    if(dip.diploma_id!==expectId)problems.push("Diploma ID does not match its content (expected "+expectId+").");
+    else facts.push(["Diploma ID","matches record content ✓"]);
+    var canon=canonicalDiploma(dip);
+    var h=sha256hex(JSON.stringify(canon));
+    if(dip.diploma_hash&&dip.diploma_hash!==h)problems.push("Content hash mismatch — the record was altered after issuance.");
+    else if(dip.diploma_hash){facts.push(["Content hash","SHA-256 matches ✓"]);}
+    else problems.push("Record carries no diploma_hash to check.");
+    if(dip.curriculum_version&&dip.curriculum_version!=="2026.10")problems.push("Curriculum version "+dip.curriculum_version+" is not the current 2026.10.");
+    else facts.push(["Curriculum","2026.10 ✓"]);
+    facts.push(["Learner (user-supplied, unverified)",dip.learner||"(none)"]);
+    facts.push(["Awarded",dip.awarded||"(unknown)"]);
+    facts.push(["Test score",dip.official_test_score||"(none recorded)"]);
+  }else{
+    // degree record: verify embedded diploma fields
+    if(rec.diploma_id&&rec.diploma_id!==id)problems.push("Record's diploma ID ("+rec.diploma_id+") differs from the entered ID.");
+    else if(rec.diploma_id)facts.push(["Diploma ID","matches entered ID ✓"]);
+    if(rec.diploma_hash){
+      var d2={record:"JAH-DIPLOMA-RECORD",version:"1.0",diploma_id:rec.diploma_id,degree_id:rec.degree_id,
+        degree_name:rec.degree_name,college:rec.college,learner:rec.learner,awarded:rec.awarded,
+        official_test_score:rec.official_test_score||"",stamp:rec.stamp,curriculum_version:rec.curriculum_version,
+        issuer:"Signature University, founded by Justin Addam Higgins",
+        note:"Independent free learning project; not government-accredited. This record certifies completion of the listed Signature University courses and a passed official test (official within the Signature system). The learner name is user-supplied and is not independently verified."};
+      if(sha256hex(JSON.stringify(d2))!==rec.diploma_hash)problems.push("Embedded diploma hash mismatch — the record was altered after issuance.");
+      else facts.push(["Diploma hash","SHA-256 matches ✓"]);
+    }
+    facts.push(["Degree",rec.degree_name+" ("+rec.degree_id+")"]);
+    facts.push(["Learner (user-supplied, unverified)",rec.learner||"(none)"]);
+  }
+  var html;
+  if(problems.length){
+    html='<div class="verdict invalid">INVALID — '+problems.length+' problem'+(problems.length>1?'s':'')+' found.</div>';
+    html+='<div class="panel"><h2>Problems</h2><ul>'+problems.map(function(x){return '<li>'+esc(x)+'</li>';}).join("")+'</ul></div>';
+  }else{
+    html='<div class="verdict valid">VALID — Signature University completion record.</div>';
+  }
+  if(facts.length)html+='<div class="panel"><h2>Record details</h2><div class="kv">'+facts.map(function(f){return '<b>'+esc(f[0])+'</b><span>'+esc(f[1])+'</span>';}).join("")+'</div></div>';
+  out.innerHTML=html;
+}
+$("verifyBtn").addEventListener("click",verify);
+(function(){var m=/[?&]diploma=(JAH-DIPLOMA-\d{6})/.exec(location.search);if(m)$("dipId").value=m[1];})();
+</script>
+</body>
+</html>

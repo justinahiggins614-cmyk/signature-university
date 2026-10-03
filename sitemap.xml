@@ -2,6 +2,12 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://justinahiggins614-cmyk.github.io/signature-university/</loc><changefreq>weekly</changefreq></url>
   <url><loc>https://justinahiggins614-cmyk.github.io/signature-university/api.json</loc><changefreq>weekly</changefreq></url>
+  <url><loc>https://justinahiggins614-cmyk.github.io/signature-university/university-manifest.json</loc><changefreq>weekly</changefreq></url>
+  <url><loc>https://justinahiggins614-cmyk.github.io/signature-university/university-schema.json</loc><changefreq>weekly</changefreq></url>
+  <url><loc>https://justinahiggins614-cmyk.github.io/signature-university/course-record-example.json</loc><changefreq>weekly</changefreq></url>
+  <url><loc>https://justinahiggins614-cmyk.github.io/signature-university/llms.txt</loc><changefreq>weekly</changefreq></url>
+  <url><loc>https://justinahiggins614-cmyk.github.io/signature-university/verify/</loc><changefreq>weekly</changefreq></url>
+  <url><loc>https://justinahiggins614-cmyk.github.io/signature-university/data/counts.json</loc><changefreq>weekly</changefreq></url>
   <url><loc>https://justinahiggins614-cmyk.github.io/signature-university/?course=JAH-COURSE-000001</loc><changefreq>weekly</changefreq></url>
   <url><loc>https://justinahiggins614-cmyk.github.io/signature-university/?course=JAH-COURSE-000002</loc><changefreq>weekly</changefreq></url>
   <url><loc>https://justinahiggins614-cmyk.github.io/signature-university/?course=JAH-COURSE-000003</loc><changefreq>weekly</changefreq></url>
