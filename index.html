@@ -1262,7 +1262,11 @@ $("importFile").addEventListener("change",function(e){
   var f=e.target.files[0];if(!f)return;
   var r=new FileReader();
   r.onload=function(){try{var d=JSON.parse(r.result);
-    if(d&&d.courses_completed){PROG.done={};d.courses_completed.forEach(function(id){PROG.done[id]=Date.now();});}
+    if(!d||typeof d!=="object")throw 0;
+    var nc=(d.courses_completed||[]).length, nd=Object.keys(d.degrees_awarded||{}).length;
+    var msg="Import this progress file?\n\n"+nc+" courses completed\n"+nd+" degrees awarded\n"+(d.name?("Name: "+d.name+"\n"):"")+"\nThis REPLACES the progress currently on this device.";
+    if(!window.confirm(msg))return;
+    if(d&&d.courses_completed){PROG.done={};d.courses_completed.forEach(function(id){if(/^JAH-COURSE-\d{6}$/.test(id))PROG.done[id]=Date.now();});}
     if(d&&d.name)PROG.name=d.name;
     if(d&&d.degrees_awarded)PROG.degrees=d.degrees_awarded;
     if(d&&d.test_attempts)PROG.tests=d.test_attempts;
