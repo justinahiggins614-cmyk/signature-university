@@ -60,7 +60,7 @@ def main():
 
     # colleges page
     citems = "\n".join(
-        f'<li><a href="../?college={c["key"]}">{html.escape(c["name"])}</a> '
+        f'<li><a href="college-{c["key"]}.html">{html.escape(c["name"])}</a> '
         f'<span class="meta">{c["courses"]} courses &middot; {c["first_id"]}\u2013{c["last_id"]} &middot; {html.escape(c["tagline"])}</span></li>'
         for c in cols)
     cbody = (f'<div class="top"><p class="meta"><a href="../">Signature University</a> &middot; '
@@ -74,16 +74,48 @@ def main():
 
     # browse index
     shards_links = " ".join(f'<a href="courses-{s+1:03d}.html">{s+1}</a>' for s in range(shards))
+    coll_links = " ".join(f'<a href="college-{c["key"]}.html">{html.escape(c["name"])}</a>' for c in cols)
     ibody = (f'<div class="top"><p class="meta"><a href="../">Signature University</a></p>\n'
              f"<h1>Browse the catalog</h1>\n"
              f"<p>Static, crawler-friendly index of all {n:,} courses. Every link is a permanent course URL.</p></div>\n"
              f"<h2>Course pages</h2><p>{shards_links}</p>\n"
-             f'<h2>By college</h2><p><a href="colleges.html">The 11 colleges</a></p>')
+             f"<h2>By college</h2><p>{coll_links}</p>\n"
+             f'<h2>Departments</h2><p><a href="colleges.html">The 11 colleges</a></p>')
     with open(os.path.join(OUT, "index.html"), "w") as f:
         f.write(page("Signature University \u2014 browse index",
                      f"Static browse index: all {n:,} Signature University courses and the 11 colleges.",
                      ibody, BASE+"browse/"))
-    print(f"wrote {shards} course shards + colleges + index ({n} courses)")
+
+    # per-college static department pages (pre-rendered fallback for crawlers)
+    byk = {}
+    for r in idx:
+        byk.setdefault(r["k"], []).append(r)
+    for c in cols:
+        rows = byk.get(c["key"], [])
+        items = "\n".join(
+            f'<li><a href="../?course={r["i"]}">{html.escape(r["c"])} \u2014 {html.escape(r["t"])}</a> '
+            f'<span class="meta">{r["i"]} &middot; level {r["l"]}</span></li>' for r in rows)
+        colbody = (f'<div class="top"><p class="meta"><a href="../">Signature University</a> &middot; '
+                   f'<a href="index.html">Browse index</a> &middot; <a href="colleges.html">Colleges</a></p>\n'
+                   f"<h1>{html.escape(c['name'])}</h1>\n"
+                   f"<p>{html.escape(c['tagline'])} {len(rows)} courses, each with a permanent course page.</p></div>\n"
+                   f"<ul>\n{items}\n</ul>")
+        with open(os.path.join(OUT, f"college-{c['key']}.html"), "w") as f:
+            f.write(page(f"Signature University \u2014 {c['name']}",
+                         f"{len(rows)} free {c['name']} courses with full syllabi and AI teachers.",
+                         colbody, BASE+f"browse/college-{c['key']}.html"))
+
+    # machine-readable curriculum feed
+    feed = {"generated": __import__("datetime").date.today().isoformat(),
+            "site": "Signature University",
+            "base": BASE,
+            "total_courses": n,
+            "courses": [{"id": r["i"], "code": r["c"], "title": r["t"],
+                         "college": r["k"], "level": r["l"],
+                         "url": BASE + "?course=" + r["i"]} for r in idx]}
+    with open(os.path.join(ROOT, "data", "courses-catalog.json"), "w") as f:
+        json.dump(feed, f, separators=(",", ":"))
+    print(f"wrote {shards} course shards + colleges + {len(cols)} college pages + index + courses-catalog.json ({n} courses)")
 
 if __name__ == "__main__":
     main()

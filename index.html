@@ -7,6 +7,8 @@
 <meta name="description" content="Signature University: a free online university. 3,850 courses across 11 colleges — engineering, computer science, medicine, law, business, sciences, mathematics, arts, education, trades, and PhD research. AI teachers, degrees, printable diplomas.">
 <link rel="canonical" href="https://justinahiggins614-cmyk.github.io/signature-university/">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Signature University","url":"https://justinahiggins614-cmyk.github.io/signature-university/","creator":{"@type":"Person","name":"Justin Addam Higgins"},"description":"A free online university: 3,850 original Signature courses across 11 colleges — engineering, computer science, medicine, law, business, sciences, mathematics, arts, education, trades, and PhD research. AI teachers, degrees, printable diplomas."}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Signature University Course Catalog","creator":{"@type":"Person","name":"Justin Addam Higgins"},"description":"3,850 original Signature University courses across 11 colleges, each with full syllabus, readings, labs, and AI teacher. Machine-readable feed: data/courses-catalog.json.","url":"https://justinahiggins614-cmyk.github.io/signature-university/data/courses-catalog.json"}</script>
+<script type="application/ld+json" id="ld-course">{}</script>
 <style>
 :root{--bg:#0a0e1c;--bg2:#0d1328;--card:#121830;--card2:#161d3a;--line:#2b3560;--txt:#f0e9d6;--dim:#a9b0c7;--gold:#d9a441;--gold2:#f2d47e;--cyber:#5fd4ff;--grn:#7be495;--red:#ff7b7b;--serif:Georgia,'Times New Roman',serif;--sans:-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif}
 *{box-sizing:border-box}
@@ -44,10 +46,29 @@ a{color:#9fc2ff}
 .ccard .abbr{display:inline-block;background:var(--gold);color:#181206;font-weight:800;font-size:.72em;border-radius:6px;padding:2px 8px;margin-bottom:6px;letter-spacing:.1em}
 .ccard p{margin:.3em 0;color:var(--dim);font-size:.9em}
 .ccard .n{color:var(--cyber);font-weight:700}
-.toolbar{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0;align-items:center}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0;align-items:center;position:sticky;top:0;z-index:15;background:var(--card);padding:10px;border-radius:10px}
 .toolbar input[type=text],.toolbar select{background:#0b1024;border:1px solid var(--line);color:var(--txt);border-radius:8px;padding:10px 12px;font-size:.95em}
 .toolbar input[type=text]{flex:1;min-width:200px}
-.az{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+.deptbtns{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.deptbtns button{background:var(--card2);border:1px solid var(--line);color:var(--txt);border-radius:20px;padding:8px 16px;cursor:pointer;font-size:.88em;min-height:40px}
+.deptbtns button.on{background:var(--gold);color:#181206;font-weight:700;border-color:var(--gold)}
+.sheet{line-height:1.6}
+.statwrap summary.statsum{display:none;cursor:pointer;color:var(--gold2);font-weight:700;padding:8px 4px;font-size:.9em}
+@media(max-width:767px){
+ .statwrap summary.statsum{display:block}
+ .statwrap .stats{display:none}
+ .statwrap[open] .stats{display:flex}
+ .stats{flex-direction:column;align-items:stretch}
+ .stat{min-width:0}
+}
+@media(max-width:640px){
+ .course{padding:14px 12px;line-height:1.6}
+ .course .code{margin-bottom:6px}
+ .course .cid{display:block;margin-top:4px}
+ .finder .fcards{grid-template-columns:1fr}
+ .sheet p,.sheet li,.sheet .meta{line-height:1.6}
+}
+.az{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0;position:sticky;top:0;z-index:20;background:var(--card);padding:8px 4px;border-radius:10px}
 .az button{background:var(--card2);border:1px solid var(--line);color:var(--txt);border-radius:8px;width:38px;height:38px;font-size:.95em;cursor:pointer}
 .az button.on{background:var(--gold);color:#181206;font-weight:700}
 .az button:disabled{opacity:.3;cursor:default}
@@ -58,7 +79,7 @@ a{color:#9fc2ff}
 .course h4{margin:.25em 0;font-size:1.02em;color:var(--txt)}
 .course .meta{font-size:.8em;color:var(--dim)}
 .done-badge{display:inline-block;background:var(--grn);color:#0c2413;font-size:.7em;font-weight:800;border-radius:6px;padding:2px 8px;margin-left:8px}
-#modal{position:fixed;inset:0;background:rgba(4,6,14,.82);display:none;z-index:50;overflow-y:auto;padding:20px 12px}
+#modal{position:fixed;inset:0;background:rgba(4,6,14,.82);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);display:none;z-index:50;overflow-y:auto;padding:20px 12px}
 #modal.open{display:block}
 .sheet{max-width:860px;margin:20px auto;background:var(--bg2);border:1px solid var(--gold);border-radius:16px;padding:26px;position:relative}
 .sheet .x{position:absolute;top:12px;right:14px;background:none;border:1px solid var(--line);color:var(--txt);border-radius:8px;font-size:1.1em;cursor:pointer;padding:4px 12px}
@@ -130,14 +151,14 @@ footer .cols div{max-width:300px}
 </style>
 </head>
 <body>
-<div class="jahnet"><span class="jahnet-t">THE JAH NETWORK</span><a href="https://justinahiggins614-cmyk.github.io/jah-ai-models/">The Signature AI Phone Book</a><a href="https://justinahiggins614-cmyk.github.io/jah-calculator/">Calculator</a><a href="https://justinahiggins614-cmyk.github.io/jah-dictionary/">Dictionary</a><a href="https://justinahiggins614-cmyk.github.io/jah-wiki/">JAH Wiki</a><a href="https://justinahiggins614-cmyk.github.io/jah-n-wiki-leaks/">JAH-N Wiki</a><a href="https://justinahiggins614-cmyk.github.io/cyber-patent-catalog/">Patent Catalog</a><a href="https://justinahiggins614-cmyk.github.io/signature-one-archive/specs.html">Spec Catalog</a><a href="https://justinahiggins614-cmyk.github.io/signature-llama/">Signature Llama</a><a href="https://justinahiggins614-cmyk.github.io/jah-computer-systems/">PC Depository</a><a href="https://justinahiggins614-cmyk.github.io/signature-cyber-mega-mall/">Cyber Mega-Mall</a><span class="cur">YOU ARE HERE: SIGNATURE UNIVERSITY</span><a href="https://justinahiggins614-cmyk.github.io/signature-books/">Book Depository</a><a href="https://justinahiggins614-cmyk.github.io/signature-comics/">Comic Store</a><a href="https://justinahiggins614-cmyk.github.io/signature-newspapers/">Global Newspaper Archive</a><a href="https://justinahiggins614-cmyk.github.io/signature-3d-print/">3D Print Depository</a><a href="https://justinahiggins614-cmyk.github.io/signature-backend/">Mad Scientist Lab</a><a href="https://justinahiggins614-cmyk.github.io/signature-boundless-generators/">Boundless Generator Archive</a><a href="https://justinahiggins614-cmyk.github.io/signature-ai-mixlab/">AI Mix Lab</a><a href="https://justinahiggins614-cmyk.github.io/signature-ai-olypics/">AI Olypics</a><a href="https://justinahiggins614-cmyk.github.io/signature-chip-maker/">Chip Maker and Archive</a><a href="https://justinahiggins614-cmyk.github.io/signature-app-archive/">App Archive</a><a href="https://justinahiggins614-cmyk.github.io/signature-ai-robot-matcher/">AI Robot Matcher</a><a href="https://justinahiggins614-cmyk.github.io/signature-experiment-solver/">Experiment Solver</a><a href="https://justinahiggins614-cmyk.github.io/signature-ai-image-video-maker/">Signature AI Pixel</a><a href="https://justinahiggins614-cmyk.github.io/signature-ai-song-maker/">Signature Music Studio</a></div>
+<nav class="jahnet" aria-label="JAH Network Global Ecosystem" role="navigation"><span class="jahnet-t">THE JAH NETWORK</span><a href="https://justinahiggins614-cmyk.github.io/jah-ai-models/">The Signature AI Phone Book</a><a href="https://justinahiggins614-cmyk.github.io/jah-calculator/">Calculator</a><a href="https://justinahiggins614-cmyk.github.io/jah-dictionary/">Dictionary</a><a href="https://justinahiggins614-cmyk.github.io/jah-wiki/">JAH Wiki</a><a href="https://justinahiggins614-cmyk.github.io/jah-n-wiki-leaks/">JAH-N Wiki</a><a href="https://justinahiggins614-cmyk.github.io/cyber-patent-catalog/">Patent Catalog</a><a href="https://justinahiggins614-cmyk.github.io/signature-one-archive/specs.html">Spec Catalog</a><a href="https://justinahiggins614-cmyk.github.io/signature-llama/">Signature Llama</a><a href="https://justinahiggins614-cmyk.github.io/jah-computer-systems/">PC Depository</a><a href="https://justinahiggins614-cmyk.github.io/signature-cyber-mega-mall/">Cyber Mega-Mall</a><span class="cur">YOU ARE HERE: SIGNATURE UNIVERSITY</span><a href="https://justinahiggins614-cmyk.github.io/signature-books/">Book Depository</a><a href="https://justinahiggins614-cmyk.github.io/signature-comics/">Comic Store</a><a href="https://justinahiggins614-cmyk.github.io/signature-newspapers/">Global Newspaper Archive</a><a href="https://justinahiggins614-cmyk.github.io/signature-3d-print/">3D Print Depository</a><a href="https://justinahiggins614-cmyk.github.io/signature-backend/">Mad Scientist Lab</a><a href="https://justinahiggins614-cmyk.github.io/signature-boundless-generators/">Boundless Generator Archive</a><a href="https://justinahiggins614-cmyk.github.io/signature-ai-mixlab/">AI Mix Lab</a><a href="https://justinahiggins614-cmyk.github.io/signature-ai-olypics/">AI Olypics</a><a href="https://justinahiggins614-cmyk.github.io/signature-chip-maker/">Chip Maker and Archive</a><a href="https://justinahiggins614-cmyk.github.io/signature-app-archive/">App Archive</a><a href="https://justinahiggins614-cmyk.github.io/signature-ai-robot-matcher/">AI Robot Matcher</a><a href="https://justinahiggins614-cmyk.github.io/signature-experiment-solver/">Experiment Solver</a><a href="https://justinahiggins614-cmyk.github.io/signature-ai-image-video-maker/">Signature AI Pixel</a><a href="https://justinahiggins614-cmyk.github.io/signature-ai-song-maker/">Signature Music Studio</a></nav>
 
 <header class="mast">
 <svg class="crest" viewBox="0 0 100 100" aria-hidden="true"><path d="M50 6 L90 22 V52 C90 76 72 90 50 96 C28 90 10 76 10 52 V22 Z" fill="none" stroke="#d9a441" stroke-width="4"/><path d="M50 22 C40 30 32 30 26 26 V58 C32 62 40 62 50 54 C60 62 68 62 74 58 V26 C68 30 60 30 50 22 Z" fill="none" stroke="#f2d47e" stroke-width="3"/><path d="M50 22 V54" stroke="#f2d47e" stroke-width="3"/><circle cx="50" cy="72" r="7" fill="none" stroke="#5fd4ff" stroke-width="2.5"/><path d="M50 65 V79 M43 72 H57" stroke="#5fd4ff" stroke-width="2"/></svg>
 <h1>SIGNATURE UNIVERSITY</h1>
 <div class="latin">· LUX · VERITAS · SIGNATURA ·</div>
 <p class="tag">A free online university by <b style="color:var(--gold2)">Justin Addam Higgins</b>. Every college, every trade, every PhD subject — marching toward <b style="color:var(--gold2)">one million degrees</b>. No tuition. No login. Open to everyone, on any phone.</p>
-<div class="stats" id="homeStats"><div class="stat"><b>…</b><span>loading</span></div></div>
+<details class="statwrap" id="statwrap"><summary class="statsum">▸ Site stats</summary><div class="stats" id="homeStats"><div class="stat"><b>…</b><span>loading</span></div></div></details>
 </header>
 
 <nav class="bigmenu" aria-label="Campus menu">
@@ -188,6 +209,7 @@ footer .cols div{max-width:300px}
 <select id="fCollege"><option value="">All colleges</option></select>
 <select id="fLevel"><option value="">All levels</option><option>101</option><option>201</option><option>301</option><option>401</option><option>501</option><option>601</option></select>
 </div>
+<div class="deptbtns" id="deptbtns" role="group" aria-label="Filter by college"></div>
 <style>
 /* COURSE FINDER — additive, does not restyle existing components */
 .finder{margin:10px 0;border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:#0b0f1c}
@@ -352,6 +374,8 @@ window.addEventListener("hashchange",route);
 
 /* ---------- boot ---------- */
 function boot(){
+  /* stat drawer: open by default on desktop, collapsible on mobile */
+  try{if(window.innerWidth>=768){var sw=document.getElementById("statwrap");if(sw)sw.setAttribute("open","");}}catch(e){}
   Promise.all([getJSON("data/colleges.json"),getJSON("data/courses.idx.json")]).then(function(r){
     DB.colleges=r[0];DB.idx=r[1];
     renderHome();initCatalog();initLibrary();
@@ -429,8 +453,20 @@ function initCatalog(){
   });
   var deb=null;
   $("q").addEventListener("input",function(){clearTimeout(deb);deb=setTimeout(function(){F.q=$("q").value.trim().toLowerCase();applyFilter();},220);});
-  fc.addEventListener("change",function(){F.college=fc.value;applyFilter();});
+  fc.addEventListener("change",function(){F.college=fc.value;syncDeptBtns();applyFilter();});
   $("fLevel").addEventListener("change",function(){F.level=$("fLevel").value;applyFilter();});
+  var db=$("deptbtns");
+  if(db&&!db.children.length){
+    var all=document.createElement("button");all.textContent="All";all.setAttribute("data-ck","");all.className="on";
+    all.addEventListener("click",function(){fc.value="";F.college="";syncDeptBtns();applyFilter();});
+    db.appendChild(all);
+    DB.colleges.colleges.forEach(function(x){
+      var b=document.createElement("button");b.textContent=x.abbr;b.setAttribute("data-ck",x.key);b.title=x.name;
+      b.addEventListener("click",function(){fc.value=x.key;F.college=x.key;syncDeptBtns();applyFilter();});
+      db.appendChild(b);
+    });
+  }
+  window.syncDeptBtns=function(){if(!db)return;for(var i=0;i<db.children.length;i++){db.children[i].className=(db.children[i].getAttribute("data-ck")===F.college)?"on":"";}};
   $("catCount").textContent="· "+DB.idx.length.toLocaleString()+" courses";
   applyFilter();
 }
@@ -464,6 +500,8 @@ var CUR=null;
 var _uhome=null;
 function uHome(){if(!_uhome){var md=document.querySelector('meta[name="description"]'),cl=document.querySelector('link[rel="canonical"]');_uhome={t:document.title,d:md?md.getAttribute("content"):"",c:cl?cl.getAttribute("href"):"https://justinahiggins614-cmyk.github.io/signature-university/"}}return _uhome}
 function uHead(title,desc,canon){var h=uHome();document.title=title||h.t;var md=document.querySelector('meta[name="description"]');if(md)md.setAttribute("content",desc||h.d);var cl=document.querySelector('link[rel="canonical"]');if(cl)cl.setAttribute("href",canon||h.c)}
+/* per-course Course JSON-LD for crawlers — additive, invisible */
+function ldCourse(c){var el=document.getElementById("ld-course");if(!el)return;if(!c){el.textContent="{}";return;}var ld={"@context":"https://schema.org","@type":"Course","name":c.code+": "+c.title,"courseCode":c.code,"identifier":c.id,"description":c.desc,"provider":{"@type":"EducationalOrganization","name":"Signature University","url":"https://justinahiggins614-cmyk.github.io/signature-university/"},"author":{"@type":"Person","name":"Justin Addam Higgins"},"educationalLevel":"Level "+c.level,"numberOfCredits":c.credits,"url":"https://justinahiggins614-cmyk.github.io/signature-university/?course="+c.id};try{el.textContent=JSON.stringify(ld)}catch(e){}}
 function chunkFor(id){var n=parseInt(id.slice(-6),10);return "c"+String(Math.ceil(n/100)).padStart(4,"0");}
 function openCourse(id){
   var ch=chunkFor(id);
@@ -475,10 +513,11 @@ function openCourse(id){
     $("modal").classList.add("open");document.body.style.overflow="hidden";
     var curl="https://justinahiggins614-cmyk.github.io/signature-university/?course="+c.id;
     uHead(c.code+" \u00b7 "+c.title+" \u2014 Signature University",c.desc,curl);
+    ldCourse(c);
     try{history.replaceState(null,"",curl)}catch(e){}
   }).catch(function(){alert("Could not load course data.");});
 }
-function closeModal(){$("modal").classList.remove("open");document.body.style.overflow="";var h=uHome();uHead(h.t,h.d,h.c);try{history.replaceState(null,"",h.c)}catch(e){}}
+function closeModal(){$("modal").classList.remove("open");document.body.style.overflow="";var h=uHome();uHead(h.t,h.d,h.c);ldCourse(null);try{history.replaceState(null,"",h.c)}catch(e){}}
 $("modal").addEventListener("click",function(e){if(e.target===$("modal"))closeModal();});
 document.addEventListener("keydown",function(e){if(e.key==="Escape")closeModal();});
 var PTL={dict:"DICT",wiki:"WIKI",spec:"SPEC",patent:"PATENT",book:"BOOK"};
