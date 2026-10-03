@@ -189,18 +189,55 @@ def main():
         json.dump(colleges, f, indent=1)
         f.write("\n")
 
-    # stamp the generated count into index.html static strings (exact matches only)
+    # stamp the generated counts into index.html static strings.
+    # Targeted, id-anchored regexes (plus exact-match string rules) so a
+    # future catalog change re-stamps the boot-state counts and never drifts.
+    # Stamps apply ONLY to the static markup before the first <script> tag —
+    # the JS template strings in renderHome()/initCatalog() render live and
+    # must not be touched.
     html_path = os.path.join(ROOT, "index.html")
     html_text = open(html_path, encoding="utf-8").read()
-    old_count_str = "3,850"
-    new_count_str = "%d" % n_courses if n_courses < 10000 else "%s,%03d" % (n_courses // 1000, n_courses % 1000)
-    # all current "3,850" occurrences refer to the course count (verified by grep)
-    n_rep = html_text.count(old_count_str)
-    html_text = html_text.replace(old_count_str, new_count_str)
-    # fix the wrong hard-coded lab count: make it number-free
-    html_text = html_text.replace("Loading 11,214 lab exercises…", "Loading lab exercises…")
+    # Hide executable <script> blocks before stamping: the JS template strings
+    # in renderHome()/initCatalog() mirror the static stats markup and must
+    # not be touched (they render live). JSON-LD stays stampable.
+    stashed = []
+    def _stash(m):
+        if "application/ld+json" in m.group(0)[:160]:
+            return m.group(0)
+        stashed.append(m.group(0))
+        return "\x00SCRIPT%d\x00" % (len(stashed) - 1)
+    work = re.sub(r"<script\b.*?</script>", _stash, html_text, flags=re.S | re.I)
+
+    def fmt(n):
+        return "{:,}".format(n)
+
+    c_fmt, col_fmt, lvl_fmt, lab_fmt = fmt(n_courses), str(n_colleges), str(len(LEVELS)), fmt(n_labs)
+    stamp_rules = [
+        (r'(id="homeStats"><div class="stat"><b>)[\d,]+(</b><span>courses</span></div>)', r"\g<1>" + c_fmt + r"\g<2>"),
+        (r'(<div class="stat"><b>)\d+(</b><span>colleges</span></div>)', r"\g<1>" + col_fmt + r"\g<2>"),
+        (r'(<div class="stat"><b>)\d+(</b><span>levels 101–PhD</span></div>)', r"\g<1>" + lvl_fmt + r"\g<2>"),
+        (r'(<div class="stat"><b>)[\d,]+(</b><span>AI teachers</span></div>)', r"\g<1>" + c_fmt + r"\g<2>"),
+        (r'(id="resCount">)[\d,]+(<)', r"\g<1>" + c_fmt + r"\g<2>"),
+        (r'(id="labCount">·\s*)[\d,]+(\s*exercises<)', r"\g<1>" + lab_fmt + r"\g<2>"),
+        (r'(id="catCount">·\s*)[\d,]+(\s*courses<)', r"\g<1>" + c_fmt + r"\g<2>"),
+        # bare "3850" in meta/OG/JSON-LD/how-it-works static strings
+        (r"(?<![\d,])3850(?![\d,])", c_fmt),
+    ]
+    for pat, rep in stamp_rules:
+        n = len(re.findall(pat, work))
+        if n < 1:
+            errors.append("index.html stamp rule matched 0 times: %s" % pat)
+        work = re.sub(pat, rep, work)
+    for i, blk in enumerate(stashed):
+        work = work.replace("\x00SCRIPT%d\x00" % i, blk)
+    html_text = work
     open(html_path, "w", encoding="utf-8").write(html_text)
-    print("index.html: stamped course count in %d places; de-numbered lab loading string" % n_rep)
+    print("index.html: %d count-stamp rules applied to static markup" % len(stamp_rules))
+    if errors:
+        print("BUILD GATES FAILED:")
+        for e in errors:
+            print("  -", e)
+        sys.exit(1)
 
     print("wrote data/counts.json, university-manifest.json, api.json, data/colleges.json")
     print("ALL META BUILD STEPS PASSED")
