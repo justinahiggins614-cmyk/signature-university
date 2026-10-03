@@ -1,0 +1,213 @@
+{
+ "$schema": "university-schema.json",
+ "id": "JAH-COURSE-000001",
+ "code": "ENG 101",
+ "title": "Introduction to Structural Mechanics",
+ "college": "College of Engineering",
+ "college_key": "engineering",
+ "college_id": "JAH-COLLEGE-01",
+ "level": 101,
+ "credits": 3,
+ "desc": "Introduction to Structural Mechanics is a introductory course in engineering at Signature University. You will master Structural Mechanics from first principles through real examples, and finish able to design working solutions with it.",
+ "prereq": null,
+ "modules": [
+  {
+   "module_id": "JAH-COURSE-000001-M01",
+   "title": "Foundations: Structural Mechanics",
+   "lessons": [
+    {
+     "lesson_id": "JAH-COURSE-000001-M01-L01",
+     "title": "Principles of Structural Mechanics"
+    },
+    {
+     "lesson_id": "JAH-COURSE-000001-M01-L02",
+     "title": "Structural Mechanics: Core Concepts"
+    },
+    {
+     "lesson_id": "JAH-COURSE-000001-M01-L03",
+     "title": "Guided Practice: Structural Mechanics"
+    },
+    {
+     "lesson_id": "JAH-COURSE-000001-M01-L04",
+     "title": "Structural Mechanics in the Real World"
+    }
+   ]
+  },
+  {
+   "module_id": "JAH-COURSE-000001-M02",
+   "title": "Core Principles: Structural Mechanics",
+   "lessons": [
+    {
+     "lesson_id": "JAH-COURSE-000001-M02-L01",
+     "title": "Structural Mechanics: Core Concepts"
+    },
+    {
+     "lesson_id": "JAH-COURSE-000001-M02-L02",
+     "title": "Guided Practice: Structural Mechanics"
+    },
+    {
+     "lesson_id": "JAH-COURSE-000001-M02-L03",
+     "title": "Structural Mechanics in the Real World"
+    },
+    {
+     "lesson_id": "JAH-COURSE-000001-M02-L04",
+     "title": "Common Mistakes in Structural Mechanics"
+    }
+   ]
+  },
+  {
+   "module_id": "JAH-COURSE-000001-M03",
+   "title": "Tools of the Trade: Structural Mechanics",
+   "lessons": [
+    {
+     "lesson_id": "JAH-COURSE-000001-M03-L01",
+     "title": "Guided Practice: Structural Mechanics"
+    },
+    {
+     "lesson_id": "JAH-COURSE-000001-M03-L02",
+     "title": "Structural Mechanics in the Real World"
+    },
+    {
+     "lesson_id": "JAH-COURSE-000001-M03-L03",
+     "title": "Common Mistakes in Structural Mechanics"
+    },
+    {
+     "lesson_id": "JAH-COURSE-000001-M03-L04",
+     "title": "Structural Mechanics: Worked Examples"
+    }
+   ]
+  },
+  {
+   "module_id": "JAH-COURSE-000001-M04",
+   "title": "Applied Practice: Structural Mechanics",
+   "lessons": [
+    {
+     "lesson_id": "JAH-COURSE-000001-M04-L01",
+     "title": "Structural Mechanics in the Real World"
+    },
+    {
+     "lesson_id": "JAH-COURSE-000001-M04-L02",
+     "title": "Common Mistakes in Structural Mechanics"
+    },
+    {
+     "lesson_id": "JAH-COURSE-000001-M04-L03",
+     "title": "Structural Mechanics: Worked Examples"
+    },
+    {
+     "lesson_id": "JAH-COURSE-000001-M04-L04",
+     "title": "Review and Checkup: Structural Mechanics"
+    }
+   ]
+  },
+  {
+   "module_id": "JAH-COURSE-000001-M05",
+   "title": "Case Studies: Structural Mechanics",
+   "lessons": [
+    {
+     "lesson_id": "JAH-COURSE-000001-M05-L01",
+     "title": "Common Mistakes in Structural Mechanics"
+    },
+    {
+     "lesson_id": "JAH-COURSE-000001-M05-L02",
+     "title": "Structural Mechanics: Worked Examples"
+    },
+    {
+     "lesson_id": "JAH-COURSE-000001-M05-L03",
+     "title": "Review and Checkup: Structural Mechanics"
+    },
+    {
+     "lesson_id": "JAH-COURSE-000001-M05-L04",
+     "title": "Where Structural Mechanics Goes Next"
+    }
+   ]
+  },
+  {
+   "module_id": "JAH-COURSE-000001-M06",
+   "title": "Advanced Topics: Structural Mechanics",
+   "lessons": [
+    {
+     "lesson_id": "JAH-COURSE-000001-M06-L01",
+     "title": "Structural Mechanics: Worked Examples"
+    },
+    {
+     "lesson_id": "JAH-COURSE-000001-M06-L02",
+     "title": "Review and Checkup: Structural Mechanics"
+    },
+    {
+     "lesson_id": "JAH-COURSE-000001-M06-L03",
+     "title": "Where Structural Mechanics Goes Next"
+    },
+    {
+     "lesson_id": "JAH-COURSE-000001-M06-L04",
+     "title": "Principles of Structural Mechanics"
+    }
+   ]
+  }
+ ],
+ "readings": [
+  {
+   "t": "dict",
+   "label": "Dictionary: torque",
+   "url": "https://justinahiggins614-cmyk.github.io/jah-dictionary/?w=torque"
+  },
+  {
+   "t": "dict",
+   "label": "Dictionary: alloy",
+   "url": "https://justinahiggins614-cmyk.github.io/jah-dictionary/?w=alloy"
+  },
+  {
+   "t": "dict",
+   "label": "Dictionary: turbine",
+   "url": "https://justinahiggins614-cmyk.github.io/jah-dictionary/?w=turbine"
+  },
+  {
+   "t": "wiki",
+   "label": "JAH Wiki: torque",
+   "url": "https://justinahiggins614-cmyk.github.io/jah-wiki/?dict=torque"
+  },
+  {
+   "t": "wiki",
+   "label": "JAH Wiki: Structural Mechanics",
+   "url": "https://justinahiggins614-cmyk.github.io/jah-wiki/?dict=Structural+Mechanics"
+  },
+  {
+   "t": "spec",
+   "label": "Signature spec JAH-SPEC-188670",
+   "url": "https://justinahiggins614-cmyk.github.io/signature-one-archive/specs.html?spec=JAH-SPEC-188670"
+  },
+  {
+   "t": "patent",
+   "label": "Patent record CN102585035B",
+   "url": "https://justinahiggins614-cmyk.github.io/cyber-patent-catalog/?patent=CN102585035B"
+  },
+  {
+   "t": "book",
+   "label": "Signature Books shelf",
+   "url": "https://justinahiggins614-cmyk.github.io/signature-books/"
+  }
+ ],
+ "labs": [
+  {
+   "t": "Lab 1: Bench Exercise — Structural Mechanics",
+   "d": "Hands-on walkthrough applying Structural Mechanics with real tools and materials."
+  },
+  {
+   "t": "Lab 2: Field Assignment — Structural Mechanics",
+   "d": "Take Structural Mechanics out of the classroom: observe, measure, and report."
+  },
+  {
+   "t": "Lab 3: Build Challenge — Structural Mechanics",
+   "d": "Design and build a small working piece that demonstrates Structural Mechanics."
+  }
+ ],
+ "teacher": {
+  "teacher_id": "JAH-TEACHER-000001",
+  "name": "Ambrose Ravenshaw",
+  "title": "Professor",
+  "persona": "I am Ambrose Ravenshaw, your AI teaching assistant for Introduction to Structural Mechanics. I explain Structural Mechanics in plain language, walk you through every lesson, quiz you until it sticks, and help you plan your degree path. I am an AI study guide — encouraging and honest about what I don't know.",
+  "scope": "course"
+ },
+ "version": "2026.10",
+ "content_hash": "21f3dc40174f2209baadcb70c99d6a5fe4e08f36ac59e890ef9eefc82d9e48d8",
+ "canonical_url": "https://justinahiggins614-cmyk.github.io/signature-university/?course=JAH-COURSE-000001"
+}

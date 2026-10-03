@@ -1,0 +1,286 @@
+{
+ "$schema": "http://json-schema.org/draft-07/schema#",
+ "$id": "https://justinahiggins614-cmyk.github.io/signature-university/university-schema.json",
+ "title": "JAH-COURSE-RECORD/1.0",
+ "description": "Permanent record standard for Signature University courses. Independent free learning project; not government-accredited.",
+ "version": "1.0",
+ "type": "object",
+ "required": [
+  "id",
+  "code",
+  "title",
+  "college",
+  "college_key",
+  "level",
+  "desc",
+  "modules",
+  "readings",
+  "labs",
+  "teacher",
+  "version"
+ ],
+ "properties": {
+  "id": {
+   "type": "string",
+   "pattern": "^JAH-COURSE-[0-9]{6}$",
+   "description": "Permanent immutable course ID. Never reused."
+  },
+  "code": {
+   "type": "string",
+   "description": "Department code + level, e.g. ENG 101"
+  },
+  "title": {
+   "type": "string"
+  },
+  "college": {
+   "type": "string"
+  },
+  "college_key": {
+   "type": "string"
+  },
+  "college_id": {
+   "type": "string",
+   "pattern": "^JAH-COLLEGE-[0-9]{2}$"
+  },
+  "level": {
+   "type": "integer",
+   "enum": [
+    101,
+    201,
+    301,
+    401,
+    501,
+    601
+   ],
+   "description": "Signature University curriculum level (not an accredited credit equivalency)."
+  },
+  "credits": {
+   "type": "integer"
+  },
+  "desc": {
+   "type": "string"
+  },
+  "prereq": {
+   "type": [
+    "string",
+    "null"
+   ],
+   "description": "JAH-COURSE-###### or null"
+  },
+  "modules": {
+   "type": "array",
+   "minItems": 6,
+   "maxItems": 6,
+   "items": {
+    "type": "object",
+    "required": [
+     "module_id",
+     "title",
+     "lessons"
+    ],
+    "properties": {
+     "module_id": {
+      "type": "string",
+      "pattern": "^JAH-COURSE-[0-9]{6}-M[0-9]{2}$"
+     },
+     "title": {
+      "type": "string"
+     },
+     "lessons": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": {
+       "type": "object",
+       "required": [
+        "lesson_id",
+        "title"
+       ],
+       "properties": {
+        "lesson_id": {
+         "type": "string",
+         "pattern": "^JAH-COURSE-[0-9]{6}-M[0-9]{2}-L[0-9]{2}$"
+        },
+        "title": {
+         "type": "string"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "readings": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "required": [
+     "t",
+     "label",
+     "url"
+    ],
+    "properties": {
+     "t": {
+      "type": "string",
+      "enum": [
+       "dict",
+       "wiki",
+       "spec",
+       "patent",
+       "book"
+      ],
+      "description": "Source type: dictionary, wiki, Signature spec draft, public patent record, book shelf."
+     },
+     "label": {
+      "type": "string"
+     },
+     "url": {
+      "type": "string",
+      "format": "uri"
+     }
+    }
+   }
+  },
+  "labs": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "properties": {
+     "lab_id": {
+      "type": "string"
+     },
+     "t": {
+      "type": "string"
+     },
+     "d": {
+      "type": "string"
+     },
+     "lab_type": {
+      "type": "string",
+      "enum": [
+       "BROWSER_SIMULATION",
+       "VIRTUAL_LAB",
+       "HOME_PROJECT",
+       "FIELD_ASSIGNMENT",
+       "BUILD_CHALLENGE"
+      ]
+     }
+    }
+   }
+  },
+  "teacher": {
+   "type": "object",
+   "required": [
+    "teacher_id",
+    "name",
+    "title"
+   ],
+   "properties": {
+    "teacher_id": {
+     "type": "string",
+     "pattern": "^JAH-TEACHER-[0-9]{6}$"
+    },
+    "name": {
+     "type": "string"
+    },
+    "title": {
+     "type": "string"
+    },
+    "scope": {
+     "type": "string",
+     "enum": [
+      "course"
+     ]
+    }
+   }
+  },
+  "version": {
+   "type": "string",
+   "description": "Curriculum version of this record."
+  },
+  "content_hash": {
+   "type": "string",
+   "pattern": "^[0-9a-f]{64}$"
+  },
+  "canonical_url": {
+   "type": "string",
+   "format": "uri"
+  }
+ },
+ "definitions": {
+  "degree": {
+   "title": "JAH-DEGREE-RECORD/1.0",
+   "type": "object",
+   "required": [
+    "id",
+    "name",
+    "college",
+    "need",
+    "min_level"
+   ],
+   "properties": {
+    "id": {
+     "type": "string"
+    },
+    "name": {
+     "type": "string"
+    },
+    "college": {
+     "type": "string"
+    },
+    "ckey": {
+     "type": "string"
+    },
+    "need": {
+     "type": "integer",
+     "description": "Required number of courses."
+    },
+    "min_level": {
+     "type": "integer"
+    },
+    "version": {
+     "type": "string"
+    }
+   }
+  },
+  "diploma": {
+   "title": "JAH-DIPLOMA-RECORD/1.0",
+   "description": "Certificate of Completion record. Not government-accredited. Verification verifies the record, not the identity of the named learner.",
+   "type": "object",
+   "required": [
+    "diploma_id",
+    "degree_id",
+    "learner",
+    "awarded",
+    "curriculum_version",
+    "diploma_hash"
+   ],
+   "properties": {
+    "diploma_id": {
+     "type": "string",
+     "pattern": "^JAH-DIPLOMA-[0-9]{6}$"
+    },
+    "degree_id": {
+     "type": "string"
+    },
+    "learner": {
+     "type": "string",
+     "description": "User-supplied name; not independently verified."
+    },
+    "awarded": {
+     "type": "string"
+    },
+    "official_test_score": {
+     "type": "string"
+    },
+    "curriculum_version": {
+     "type": "string"
+    },
+    "diploma_hash": {
+     "type": "string",
+     "pattern": "^[0-9a-f]{64}$"
+    }
+   }
+  }
+ }
+}
