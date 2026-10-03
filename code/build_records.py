@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Signature University record builder — machine-readable course structure.
+"""The Signature University record builder — machine-readable course structure.
 
 Reads data/chunks/cNNNN.json and writes (deterministic, no content changes):
   data/lessons.idx.json       — every module + lesson with permanent IDs:
@@ -72,7 +72,7 @@ def main():
         "$schema": "http://json-schema.org/draft-07/schema#",
         "$id": "https://justinahiggins614-cmyk.github.io/signature-university/university-schema.json",
         "title": "JAH-COURSE-RECORD/1.0",
-        "description": ("Permanent record standard for Signature University courses. "
+        "description": ("Permanent record standard for The Signature University courses. "
                         "Independent free learning project; not government-accredited."),
         "version": "1.0",
         "type": "object",
@@ -87,7 +87,7 @@ def main():
             "college_key": {"type": "string"},
             "college_id": {"type": "string", "pattern": "^JAH-COLLEGE-[0-9]{2}$"},
             "level": {"type": "integer", "enum": [101, 201, 301, 401, 501, 601],
-                      "description": "Signature University curriculum level (not an accredited credit equivalency)."},
+                      "description": "The Signature University curriculum level (not an accredited credit equivalency)."},
             "credits": {"type": "integer"},
             "desc": {"type": "string"},
             "prereq": {"type": ["string", "null"], "description": "JAH-COURSE-###### or null"},

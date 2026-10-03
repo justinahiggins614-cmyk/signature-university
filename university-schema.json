@@ -2,7 +2,7 @@
  "$schema": "http://json-schema.org/draft-07/schema#",
  "$id": "https://justinahiggins614-cmyk.github.io/signature-university/university-schema.json",
  "title": "JAH-COURSE-RECORD/1.0",
- "description": "Permanent record standard for Signature University courses. Independent free learning project; not government-accredited.",
+ "description": "Permanent record standard for The Signature University courses. Independent free learning project; not government-accredited.",
  "version": "1.0",
  "type": "object",
  "required": [
@@ -52,7 +52,7 @@
     501,
     601
    ],
-   "description": "Signature University curriculum level (not an accredited credit equivalency)."
+   "description": "The Signature University curriculum level (not an accredited credit equivalency)."
   },
   "credits": {
    "type": "integer"

@@ -1,5 +1,5 @@
 "use strict";
-/* Degree-flow logic for Signature University — pure functions, no DOM.
+/* Degree-flow logic for The Signature University — pure functions, no DOM.
    Browser: window.DegFlow. Node: module.exports (used by the harness test). */
 var DegFlow = (function () {
   function numOf(id) { var m = /(\d+)$/.exec(id || ""); return m ? parseInt(m[1], 10) : 0; }

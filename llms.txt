@@ -1,9 +1,9 @@
-# Signature University — llms.txt
+# The Signature University — llms.txt
 # A free online university by Justin Addam Higgins. Independent learning project.
-# NOT government-accredited. Diplomas certify completion of Signature University coursework.
+# NOT government-accredited. Diplomas certify completion of The Signature University coursework.
 
 ## Identity
-- Name: Signature University
+- Name: The Signature University
 - University ID: JAH-UNIVERSITY-01
 - Founder: Justin Addam Higgins
 - Canonical URL: https://justinahiggins614-cmyk.github.io/signature-university/
@@ -35,7 +35,7 @@
 - Degrees: JAH-DEGREE-<ABBR>-<n> · Diplomas: JAH-DIPLOMA-###### (content-hashed)
 - Colleges: JAH-COLLEGE-## · Projects: JAH-PROJECT-######
 
-## Levels (Signature University curriculum levels — NOT accredited credit equivalencies)
+## Levels (The Signature University curriculum levels — NOT accredited credit equivalencies)
 101 introductory, 201 intermediate, 301 advanced, 401 specialist, 501 graduate, 601 doctoral.
 
 ## Diplomas & verification

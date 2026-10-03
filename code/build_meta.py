@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Signature University meta builder — the single authoritative count source.
+"""The Signature University meta builder — the single authoritative count source.
 
 Reads the real data files and writes:
   data/counts.json          — every public count, generated (never hand-edited)
@@ -105,7 +105,7 @@ def main():
     catalog_hash = sha256_file(os.path.join(DATA, "courses.idx.json"))
 
     counts = {
-        "site": "Signature University",
+        "site": "The Signature University",
         "generated_at": NOW,
         "last_updated": TODAY,
         "snapshot_id": snapshot_id,
@@ -128,7 +128,7 @@ def main():
 
     manifest = {
         "university_id": "JAH-UNIVERSITY-01",
-        "name": "Signature University",
+        "name": "The Signature University",
         "founder": "Justin Addam Higgins",
         "version": "1.0",
         "course_count": n_courses,
@@ -160,7 +160,7 @@ def main():
             "llms": "llms.txt",
         },
         "honesty": ("Independent free learning project. Not accredited by any government body. "
-                    "Diplomas certify completion of Signature University coursework."),
+                    "Diplomas certify completion of The Signature University coursework."),
     }
     with open(os.path.join(ROOT, "university-manifest.json"), "w", encoding="utf-8") as f:
         json.dump(manifest, f, indent=1)

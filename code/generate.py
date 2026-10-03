@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Signature University course catalog generator — deterministic.
+"""The Signature University course catalog generator — deterministic.
 Produces 11 colleges x 350 courses = 3,850 course records with
 JAH-COURSE-###### IDs, chunked JSON, compact search index, labs,
 projects, degrees, library shelves, sitemap and api.json.
@@ -96,7 +96,7 @@ LAB_FRAMES = [("Bench Exercise", "Hands-on walkthrough applying {t} with real to
               ("Build Challenge", "Design and build a small working piece that demonstrates {t}.")]
 
 DESC_T = [
- "{title} is a {lname} course in {cname} at Signature University. You will master {t} from first principles through real examples, and finish able to {out}.",
+ "{title} is a {lname} course in {cname} at The Signature University. You will master {t} from first principles through real examples, and finish able to {out}.",
  "Welcome to {title}. This {lname} {cname} course takes you deep into {t} — the ideas, the methods, and the craft. By the final module you will {out}, with a portfolio piece to prove it.",
  "{title} ({code}) covers {t} at the {lname} level. Expect clear explanations, guided practice, and honest assessments. Complete it and you will {out}.",
 ]

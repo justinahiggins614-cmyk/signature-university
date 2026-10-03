@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Coherence check: every AI Signature University presents vs the phone-book canon.
+"""Coherence check: every AI The Signature University presents vs the phone-book canon.
 
 Canon: /home/hatch/workspace/jah-ai-models/ai-catalog.json
 Rule: any AI presented WITH a JAH-AI ID must match the canon exactly

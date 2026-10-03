@@ -1,5 +1,5 @@
 "use strict";
-/* SHA-256 for Signature University — compact public-domain-style implementation.
+/* SHA-256 for The Signature University — compact public-domain-style implementation.
    UTF-8 safe (input is UTF-8 encoded first). Exposes window.sha256hex(str).
    Used for diploma content hashes and transcript hashes. */
 (function () {

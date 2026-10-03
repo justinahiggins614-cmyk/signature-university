@@ -1,6 +1,6 @@
 {
  "university_id": "JAH-UNIVERSITY-01",
- "name": "Signature University",
+ "name": "The Signature University",
  "founder": "Justin Addam Higgins",
  "version": "1.0",
  "course_count": 3850,
@@ -31,5 +31,5 @@
   "schema": "university-schema.json",
   "llms": "llms.txt"
  },
- "honesty": "Independent free learning project. Not accredited by any government body. Diplomas certify completion of Signature University coursework."
+ "honesty": "Independent free learning project. Not accredited by any government body. Diplomas certify completion of The Signature University coursework."
 }
