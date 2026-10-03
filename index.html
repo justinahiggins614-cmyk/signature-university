@@ -103,6 +103,11 @@ a{color:#9fc2ff}
 .chatrow input{flex:1;background:var(--bg2);border:1px solid var(--line);color:var(--txt);border-radius:8px;padding:10px 12px;font-size:.95em}
 .chatrow button{background:var(--gold);border:none;color:#181206;font-weight:800;border-radius:8px;padding:10px 18px;cursor:pointer}
 .honest{background:#241a08;border:1px solid var(--gold);border-radius:10px;padding:10px 14px;font-size:.85em;color:#e8cf9a;margin:12px 0}
+.savestate{background:#0b1024;border:1px solid var(--gold);border-radius:10px;padding:10px 14px;margin:10px 0;font-size:.9em;color:var(--gold2)}
+.savestate b{color:var(--gold2)}
+.notacc{display:inline-block;background:#3a1620;border:2px solid var(--red);color:#ffb3c2;font-size:.48em;font-weight:800;letter-spacing:.08em;border-radius:8px;padding:5px 12px;vertical-align:middle;white-space:nowrap}
+.edulabel{background:#3a1620;border:2px solid var(--red);color:#ffb3c2;border-radius:10px;padding:12px 14px;font-weight:800;margin:12px 0;font-size:.95em}
+.pt-course{background:#2a230f;color:var(--gold2)}
 .btn{display:inline-block;background:var(--gold);color:#181206;font-weight:800;border:none;border-radius:10px;padding:12px 22px;cursor:pointer;font-size:1em;text-decoration:none}
 .btn.ghost{background:transparent;border:1px solid var(--gold);color:var(--gold2)}
 .deg{border:1px solid var(--line);border-radius:12px;padding:16px;margin:10px 0;background:var(--card2)}
@@ -277,11 +282,12 @@ footer .cols div{max-width:300px}
 <b>JAH Wiki · Leaks · Dictionary</b><span>New articles, dossiers, and word records flow into reading lists across all eleven colleges.</span>
 </div>
 <h3>Live feed example — real records, real courses</h3>
+<p class="dim"><b>Material origins:</b> <span class="pilltag pt-course">GENERATED COURSE MATERIAL</span> = written for Signature University · <span class="pilltag pt-spec">JAH DRAFT</span> = an original draft by Justin Addam Higgins · <span class="pilltag pt-patent">PUBLIC PATENT</span> = a real public patent filing.</p>
 <div class="grid">
-<div class="ccard" data-open-course="JAH-COURSE-000260"><span class="abbr">COURSE</span><h3>Introduction to Renewable Energy Systems</h3><p>A live Signature University course (ENG 101). Its reading list links the live spec record below.</p><p class="n">JAH-COURSE-000260 →</p></div>
-<div class="ccard"><span class="abbr">SPEC</span><h3>JAH-SPEC-341552</h3><p>“Energy systems engine-Pc types suite hybrid for A/B testing using sharded counters” — a real draft spec in the Signature Spec Catalog, cited as course research material.</p><p><a href="https://justinahiggins614-cmyk.github.io/signature-one-archive/specs.html?spec=JAH-SPEC-341552" target="_blank" rel="noopener">Open the live spec record →</a></p></div>
-<div class="ccard" data-open-course="JAH-COURSE-002052"><span class="abbr">COURSE</span><h3>Introduction to Agricultural Science</h3><p>A live Signature University course (SCI 101). Its reading list links the live patent record below.</p><p class="n">JAH-COURSE-002052 →</p></div>
-<div class="ccard"><span class="abbr">PATENT</span><h3>AR018265A1</h3><p>“Method for controlling pests in cultures of useful transgenic plants…” — a real public patent record in the Globally Rejustered Patent Catalog, cited as course research material.</p><p><a href="https://justinahiggins614-cmyk.github.io/cyber-patent-catalog/?patent=AR018265A1" target="_blank" rel="noopener">Open the live patent record →</a></p></div>
+<div class="ccard" data-open-course="JAH-COURSE-000260"><span class="abbr">COURSE</span> <span class="pilltag pt-course">GENERATED COURSE MATERIAL</span><h3>Introduction to Renewable Energy Systems</h3><p>A live Signature University course (ENG 101). Its reading list links the live spec record below.</p><p class="n">JAH-COURSE-000260 →</p></div>
+<div class="ccard"><span class="abbr">SPEC</span> <span class="pilltag pt-spec">JAH DRAFT</span><h3>JAH-SPEC-341552</h3><p>“Energy systems engine-Pc types suite hybrid for A/B testing using sharded counters” — a real draft spec in the Signature Spec Catalog, cited as course research material.</p><p><a href="https://justinahiggins614-cmyk.github.io/signature-one-archive/specs.html?spec=JAH-SPEC-341552" target="_blank" rel="noopener">Open the live spec record →</a></p></div>
+<div class="ccard" data-open-course="JAH-COURSE-002052"><span class="abbr">COURSE</span> <span class="pilltag pt-course">GENERATED COURSE MATERIAL</span><h3>Introduction to Agricultural Science</h3><p>A live Signature University course (SCI 101). Its reading list links the live patent record below.</p><p class="n">JAH-COURSE-002052 →</p></div>
+<div class="ccard"><span class="abbr">PATENT</span> <span class="pilltag pt-patent">PUBLIC PATENT</span><h3>AR018265A1</h3><p>“Method for controlling pests in cultures of useful transgenic plants…” — a real public patent record in the Globally Rejustered Patent Catalog, cited as course research material.</p><p><a href="https://justinahiggins614-cmyk.github.io/cyber-patent-catalog/?patent=AR018265A1" target="_blank" rel="noopener">Open the live patent record →</a></p></div>
 </div>
 <p class="dim">As the catalogs drip new records around the clock, the Research Wing drafts new courses — the curriculum never stands still. Current curriculum: <b style="color:var(--gold2)" id="resCount">…</b> courses and counting.</p>
 </div>
@@ -290,9 +296,11 @@ footer .cols div{max-width:300px}
 <!-- ============ DEGREES ============ -->
 <section id="w-degrees" hidden>
 <div class="panel">
-<h2><span class="tick">✦</span> Degrees &amp; Diplomas</h2>
+<h2><span class="tick">✦</span> Degrees &amp; Diplomas <span class="notacc">NOT GOVERNMENT ACCREDITED</span></h2>
 <p class="dim"><b style="color:var(--gold2)">How it works, step by step:</b> 1 · Select the degree you want below. 2 · Finish <b>every item</b> in its material list — the full curriculum, nothing hidden. 3 · Pass the <b>official test</b>. 4 · Your degree is <b>awarded, stamped and sealed</b>. Your progress is saved on <b>your device only</b> — no account, no tracking.</p>
-<div class="toolbar"><input type="text" id="learnerName" placeholder="Your name for diplomas (e.g. Alex Rivera)" style="max-width:340px"><button class="btn ghost" id="saveName" style="padding:10px 18px">Save name</button> <button class="btn ghost" id="exportProg" style="padding:10px 18px">⤓ Export my progress</button> <button class="btn ghost" id="readDegPage" style="padding:10px 18px">🔊 Read this page</button></div>
+<div class="toolbar"><input type="text" id="learnerName" placeholder="Your name for diplomas (e.g. Alex Rivera)" style="max-width:340px"><button class="btn ghost" id="saveName" style="padding:10px 18px">Save name</button> <button class="btn ghost" id="exportProg" style="padding:10px 18px">⤓ Export my progress</button> <button class="btn ghost" id="importProg" style="padding:10px 18px">⤒ Import progress</button> <button class="btn ghost" id="readDegPage" style="padding:10px 18px">🔊 Read this page</button></div>
+<input type="file" id="importFile" accept="application/json" hidden>
+<div class="savestate" id="saveState">💾 <b>Saved on this device</b> — your progress lives in this browser only, no account, no tracking. <span id="saveCount">0</span> courses complete.</div>
 <div class="honest"><b>Honest notes:</b> Signature University is an independent free learning project by Justin Addam Higgins. It is <b>not accredited</b> by any government body. Diplomas certify that you completed the listed Signature University courses and passed the official test — a real achievement, honestly described.</div>
 <div id="degPicker" style="margin:14px 0"><label for="degPick"><b style="color:var(--gold2)">Select the degree you want:</b></label><br>
 <select id="degPick" aria-label="Select the degree you want" style="max-width:100%;margin:8px 0;padding:12px;font-size:1em;border-radius:10px"></select>
@@ -354,7 +362,8 @@ footer .cols div{max-width:300px}
 var DB={colleges:null,idx:null,chunks:{},labs:null,projects:null,degrees:null,library:null};
 var PROG={name:"",done:{}};
 try{var p=JSON.parse(localStorage.getItem("su_prog_v1")||"null");if(p&&p.done)PROG=p;}catch(e){}
-function saveProg(){try{localStorage.setItem("su_prog_v1",JSON.stringify(PROG));}catch(e){}}
+function saveProg(){try{localStorage.setItem("su_prog_v1",JSON.stringify(PROG));}catch(e){}refreshSaveState();}
+function refreshSaveState(){var el=document.getElementById("saveCount");if(el)el.textContent=Object.keys(PROG.done||{}).length;}
 function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
 function $(id){return document.getElementById(id);}
 function getJSON(u){return fetch(u).then(function(r){if(!r.ok)throw new Error("http "+r.status);return r.json();});}
@@ -378,7 +387,7 @@ function boot(){
   try{if(window.innerWidth>=768){var sw=document.getElementById("statwrap");if(sw)sw.setAttribute("open","");}}catch(e){}
   Promise.all([getJSON("data/colleges.json"),getJSON("data/courses.idx.json")]).then(function(r){
     DB.colleges=r[0];DB.idx=r[1];
-    renderHome();initCatalog();initLibrary();
+    renderHome();initCatalog();initLibrary();refreshSaveState();
     $("resCount").textContent=DB.colleges.total.toLocaleString();
     route();deepLink();
   }).catch(function(e){
@@ -553,6 +562,8 @@ function renderSheet(tab){
       '<b>Prerequisite</b><span>'+(c.prereq?'<a href="#" id="preLink">'+c.prereq+'</a>':'None — open to all learners')+'</span></div>'+
       '<p>'+esc(c.desc)+'</p>'+
       '<h3>Your AI teacher</h3><p><b style="color:var(--gold2)">'+esc(c.teacher.title+" "+c.teacher.name)+'</b> — personal AI teaching assistant for this course. Open the Teacher tab to start a study session.</p>'+
+      '<h3>Completion requirements</h3><p>Work through all '+c.modules.length+' syllabus modules and their lessons, finish the lab exercises, then press “Mark course complete”. Completed courses count toward degrees.</p>'+
+      '<h3>Assessment</h3><p>Course completion is recorded when you mark it complete. Degrees require passing the official 10-question test (70% to pass). Your AI teacher can quiz you any time from the Teacher tab.</p>'+
             '<div class="qhelp"><b style="color:var(--gold2)">Quick answers</b><p class="dim" style="margin:4px 0">From this course&apos;s own record — plain facts, nothing invented.</p>'+
       '<div class="chatrow" style="margin-top:6px"><input id="qIn" placeholder="Ask about this course…" aria-label="Ask about this course"><button class="btn" id="qAsk">Ask</button></div>'+
       '<div class="chatlog" id="qAns" style="margin-top:6px;min-height:0"></div></div>'+
@@ -583,6 +594,7 @@ function renderSheet(tab){
     '<div style="font-family:monospace;color:var(--dim);font-size:.78em">'+c.id+'</div>'+
     '<h2>'+esc(c.title)+'</h2>'+
     '<div class="meta" style="color:var(--dim);font-size:.85em;margin-bottom:6px">'+esc(c.code)+' · '+esc(c.college)+' · Level '+c.level+' · '+c.credits+' credits</div>'+
+    ((c.college_key==="medicine"||c.college_key==="law"||c.college_key==="business")?'<div class="edulabel">⚠ EDUCATIONAL ONLY — this course is for learning, not medical, legal, or financial advice. Always consult a licensed professional.</div>':"")+
     '<div class="tabs">'+tabs+'</div><div id="tabBody">'+body+'</div>';
   $("xBtn").addEventListener("click",closeModal);
   document.querySelectorAll("#sheet [data-tab]").forEach(function(b){b.addEventListener("click",function(){renderSheet(b.getAttribute("data-tab"));});});
@@ -1049,9 +1061,10 @@ function printDiploma(degId){
     '<div style="font-style:italic">has completed the required courses and earned the</div>'+
     '<div style="font-size:1.5em;margin:10px 0"><b>'+esc(d.name)+'</b></div>'+
     '<div>'+esc(d.college)+'</div>'+
+    '<div style="font-size:.85em;letter-spacing:.05em;margin-top:10px"><b>Signature University — Certificate of Course/Program Completion — Not Government Accreditation.</b></div>'+
     '<div style="margin-top:14px;font-size:.85em">Awarded '+esc(date)+' · Stamp '+num+testLine+'<br>by Signature University, founded by Justin Addam Higgins</div>'+
     '<div class="seal">OFFICIAL<br>STAMP<br>'+num.slice(-6)+'</div>'+
-    '<div style="font-size:.72em;color:#5a4a22;max-width:560px;margin:0 auto">Signature University is an independent free learning project. It claims no government accreditation. This diploma certifies completion of Signature University courses.</div>'+
+    '<div style="font-size:.72em;color:#5a4a22;max-width:560px;margin:0 auto">Signature University — Certificate of Course/Program Completion — Not Government Accreditation. This diploma certifies completion of Signature University courses.</div>'+
     '</div>';
   setTimeout(function(){window.print();},250);
 }
@@ -1082,6 +1095,21 @@ $("exportProg").addEventListener("click",function(){
   var a=document.createElement("a");a.href=URL.createObjectURL(blob);
   a.download="signature-university-progress.json";document.body.appendChild(a);a.click();
   setTimeout(function(){URL.revokeObjectURL(a.href);a.remove();},500);
+});
+$("importProg").addEventListener("click",function(){$("importFile").click();});
+$("importFile").addEventListener("change",function(e){
+  var f=e.target.files[0];if(!f)return;
+  var r=new FileReader();
+  r.onload=function(){try{var d=JSON.parse(r.result);
+    if(d&&d.courses_completed){PROG.done={};d.courses_completed.forEach(function(id){PROG.done[id]=Date.now();});}
+    if(d&&d.name)PROG.name=d.name;
+    if(d&&d.degrees_awarded)PROG.degrees=d.degrees_awarded;
+    if(d&&d.test_attempts)PROG.tests=d.test_attempts;
+    saveProg();if($("learnerName"))$("learnerName").value=PROG.name||"";
+    if(DB.degrees){renderDegrees();checkAchieve(true);}
+    $("importProg").textContent="Imported ✓";setTimeout(function(){$("importProg").textContent="⤒ Import progress";},2000);
+  }catch(err){alert("That file could not be imported.");}};
+  r.readAsText(f);e.target.value="";
 });
 $("readDegPage").addEventListener("click",function(){
   auBegin("Degrees and diplomas","How it works, step by step. 1. Select the degree you want. 2. Finish every item in its material list — the full curriculum, nothing hidden. 3. Pass the official test. 4. Your degree is awarded, stamped and sealed. Your progress is saved on your device only.");
