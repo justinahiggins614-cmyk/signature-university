@@ -69,7 +69,7 @@ def main():
              f"<ul>\n{citems}\n</ul>")
     with open(os.path.join(OUT, "colleges.html"), "w") as f:
         f.write(page("The Signature University \u2014 the 11 colleges",
-                     "The 11 colleges of The Signature University: 3,850 free courses with AI teachers.",
+                     f"The 11 colleges of The Signature University: {n:,} free courses with AI teachers.",
                      cbody, BASE+"browse/colleges.html"))
 
     # browse index
