@@ -1,0 +1,25 @@
+{
+ "site": "Signature University",
+ "generated_at": "2026-10-03T14:04:16Z",
+ "last_updated": "2026-10-03",
+ "snapshot_id": "SNAP-20261003-3850",
+ "curriculum_version": "2026.10",
+ "catalog_version": "2026.10.03",
+ "course_count": 3850,
+ "college_count": 11,
+ "level_count": 6,
+ "levels": [
+  101,
+  201,
+  301,
+  401,
+  501,
+  601
+ ],
+ "degree_count": 42,
+ "lab_count": 11550,
+ "project_count": 88,
+ "ai_teacher_count": 3850,
+ "catalog_hash_sha256": "3832d3db7af048602a0a18e3f802b62e4d9a9fd479ca5f9b4f10638e13f6801b",
+ "note": "course_count is the single authoritative count. AI teachers: one per course."
+}

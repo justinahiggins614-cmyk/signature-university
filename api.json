@@ -2,7 +2,7 @@
  "site": "Signature University",
  "by": "Justin Addam Higgins",
  "url": "https://justinahiggins614-cmyk.github.io/signature-university/",
- "updated": "2026-10-01",
+ "updated": "2026-10-03",
  "total_courses": 3850,
  "colleges": [
   {
@@ -106,5 +106,6 @@
  "course_chunk_pattern": "https://justinahiggins614-cmyk.github.io/signature-university/data/chunks/cNNNN.json (100 courses each)",
  "course_deep_link": "https://justinahiggins614-cmyk.github.io/signature-university/?course=JAH-COURSE-000001",
  "diploma_stamp_pattern": "JAH-DIPLOMA-######",
- "degrees": "https://justinahiggins614-cmyk.github.io/signature-university/data/degrees.json"
+ "degrees": 42,
+ "labs": 11550
 }

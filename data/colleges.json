@@ -8,7 +8,11 @@
    "tagline": "Build, design, and engineer the physical world.",
    "courses": 350,
    "first_id": "JAH-COURSE-000001",
-   "last_id": "JAH-COURSE-000350"
+   "last_id": "JAH-COURSE-000350",
+   "college_id": "JAH-COLLEGE-01",
+   "canonical_url": "https://justinahiggins614-cmyk.github.io/signature-university/?college=engineering",
+   "version": "2026.10",
+   "updated": "2026-10-03"
   },
   {
    "key": "cs",
@@ -17,7 +21,11 @@
    "tagline": "Code, systems, and intelligent machines.",
    "courses": 350,
    "first_id": "JAH-COURSE-000351",
-   "last_id": "JAH-COURSE-000700"
+   "last_id": "JAH-COURSE-000700",
+   "college_id": "JAH-COLLEGE-02",
+   "canonical_url": "https://justinahiggins614-cmyk.github.io/signature-university/?college=cs",
+   "version": "2026.10",
+   "updated": "2026-10-03"
   },
   {
    "key": "medicine",
@@ -26,7 +34,11 @@
    "tagline": "The human body, care, and healing.",
    "courses": 350,
    "first_id": "JAH-COURSE-000701",
-   "last_id": "JAH-COURSE-001050"
+   "last_id": "JAH-COURSE-001050",
+   "college_id": "JAH-COLLEGE-03",
+   "canonical_url": "https://justinahiggins614-cmyk.github.io/signature-university/?college=medicine",
+   "version": "2026.10",
+   "updated": "2026-10-03"
   },
   {
    "key": "law",
@@ -35,7 +47,11 @@
    "tagline": "Justice, rights, and the rule of law.",
    "courses": 350,
    "first_id": "JAH-COURSE-001051",
-   "last_id": "JAH-COURSE-001400"
+   "last_id": "JAH-COURSE-001400",
+   "college_id": "JAH-COLLEGE-04",
+   "canonical_url": "https://justinahiggins614-cmyk.github.io/signature-university/?college=law",
+   "version": "2026.10",
+   "updated": "2026-10-03"
   },
   {
    "key": "business",
@@ -44,7 +60,11 @@
    "tagline": "Enterprise, markets, and leadership.",
    "courses": 350,
    "first_id": "JAH-COURSE-001401",
-   "last_id": "JAH-COURSE-001750"
+   "last_id": "JAH-COURSE-001750",
+   "college_id": "JAH-COLLEGE-05",
+   "canonical_url": "https://justinahiggins614-cmyk.github.io/signature-university/?college=business",
+   "version": "2026.10",
+   "updated": "2026-10-03"
   },
   {
    "key": "science",
@@ -53,7 +73,11 @@
    "tagline": "The living and physical universe.",
    "courses": 350,
    "first_id": "JAH-COURSE-001751",
-   "last_id": "JAH-COURSE-002100"
+   "last_id": "JAH-COURSE-002100",
+   "college_id": "JAH-COLLEGE-06",
+   "canonical_url": "https://justinahiggins614-cmyk.github.io/signature-university/?college=science",
+   "version": "2026.10",
+   "updated": "2026-10-03"
   },
   {
    "key": "math",
@@ -62,7 +86,11 @@
    "tagline": "Proof, pattern, and pure reason.",
    "courses": 350,
    "first_id": "JAH-COURSE-002101",
-   "last_id": "JAH-COURSE-002450"
+   "last_id": "JAH-COURSE-002450",
+   "college_id": "JAH-COLLEGE-07",
+   "canonical_url": "https://justinahiggins614-cmyk.github.io/signature-university/?college=math",
+   "version": "2026.10",
+   "updated": "2026-10-03"
   },
   {
    "key": "arts",
@@ -71,7 +99,11 @@
    "tagline": "Expression, culture, and meaning.",
    "courses": 350,
    "first_id": "JAH-COURSE-002451",
-   "last_id": "JAH-COURSE-002800"
+   "last_id": "JAH-COURSE-002800",
+   "college_id": "JAH-COLLEGE-08",
+   "canonical_url": "https://justinahiggins614-cmyk.github.io/signature-university/?college=arts",
+   "version": "2026.10",
+   "updated": "2026-10-03"
   },
   {
    "key": "education",
@@ -80,7 +112,11 @@
    "tagline": "Teaching the next generation.",
    "courses": 350,
    "first_id": "JAH-COURSE-002801",
-   "last_id": "JAH-COURSE-003150"
+   "last_id": "JAH-COURSE-003150",
+   "college_id": "JAH-COLLEGE-09",
+   "canonical_url": "https://justinahiggins614-cmyk.github.io/signature-university/?college=education",
+   "version": "2026.10",
+   "updated": "2026-10-03"
   },
   {
    "key": "trade",
@@ -89,7 +125,11 @@
    "tagline": "Master a skilled trade with your hands.",
    "courses": 350,
    "first_id": "JAH-COURSE-003151",
-   "last_id": "JAH-COURSE-003500"
+   "last_id": "JAH-COURSE-003500",
+   "college_id": "JAH-COLLEGE-10",
+   "canonical_url": "https://justinahiggins614-cmyk.github.io/signature-university/?college=trade",
+   "version": "2026.10",
+   "updated": "2026-10-03"
   },
   {
    "key": "phd",
@@ -98,9 +138,14 @@
    "tagline": "Original research at the frontier.",
    "courses": 350,
    "first_id": "JAH-COURSE-003501",
-   "last_id": "JAH-COURSE-003850"
+   "last_id": "JAH-COURSE-003850",
+   "college_id": "JAH-COLLEGE-11",
+   "canonical_url": "https://justinahiggins614-cmyk.github.io/signature-university/?college=phd",
+   "version": "2026.10",
+   "updated": "2026-10-03"
   }
  ],
- "updated": "2026-10-01",
- "by": "Justin Addam Higgins"
+ "updated": "2026-10-03",
+ "by": "Justin Addam Higgins",
+ "curriculum_version": "2026.10"
 }
