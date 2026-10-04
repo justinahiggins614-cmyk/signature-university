@@ -190,39 +190,90 @@ footer .cols div{max-width:300px}
 .jtabbar a.jtab.on:hover{background:#f5c518}
 </style>
 <nav class="jtabbar" aria-label="Site sections">
-<a class="jtab on" href="index.html">🏠 Front Door</a>
+<a class="jtab on" href="#home" data-w="home">🏠 Main</a>
+<a class="jtab" href="#tour" data-w="tour">🎧 The Tour</a>
+<a class="jtab" href="#bursar" data-w="bursar">🏦 Bursar's Office</a>
+<a class="jtab" href="#academics" data-w="academics">🎓 Academics</a>
+<a class="jtab" href="#admissions" data-w="admissions">📝 Admissions</a>
+<a class="jtab" href="#catalog" data-w="catalog">📚 Course Catalog</a>
+<a class="jtab" href="#library" data-w="library">📖 Library</a>
+<a class="jtab" href="#labs" data-w="labs">🧪 Labs</a>
+<a class="jtab" href="#projects" data-w="projects">🏗 Projects</a>
+<a class="jtab" href="#campus" data-w="campus">🎭 Campus Life</a>
+<a class="jtab" href="#careers" data-w="careers">💼 Careers</a>
+<a class="jtab" href="#research" data-w="research">🔬 Research Wing</a>
+<a class="jtab" href="#degrees" data-w="degrees">🎓 Degrees &amp; Diplomas</a>
 <a class="jtab" href="browse.html">📚 1 Million Archive</a>
-
-</nav>
-
-
-<nav class="bigmenu" aria-label="Campus menu">
-<a href="#home" data-w="home">🏛 Campus Home</a>
-<a href="#catalog" data-w="catalog">📚 Course Catalog</a>
-<a href="browse.html">🗂 Browse all courses A–Z</a>
-<a href="#library" data-w="library">📖 Library</a>
-<a href="#labs" data-w="labs">🧪 Labs</a>
-<a href="#projects" data-w="projects">🏗 Projects</a>
-<a href="#research" data-w="research">🔬 Research Wing</a>
-<a href="#degrees" data-w="degrees">🎓 Degrees &amp; Diplomas</a>
-<a href="#guide" data-w="guide">💬 AI Guide Chat</a>
 </nav>
 
 <div class="wrap">
 <!-- ============ HOME ============ -->
 <section id="w-home">
 <div class="panel">
-<h2><span class="tick">✦</span> Welcome to the Campus</h2>
-<p>The Signature University is a complete free university that lives in your browser. Pick a college, take real courses with full syllabi, study with a personal <b>AI teacher</b> for every single course, run lab exercises, build capstone projects, and earn <b>printable officially-stamped diplomas</b> (official within the Signature system — not government-accredited) — all free, all at your own pace.</p>
+<h2><span class="tick">✦</span> Welcome to The Signature University</h2>
+<p>A real university, rebuilt for everyone. The Signature University is a complete, free university that lives in your browser — eleven colleges, 3,850 courses from introductory 101 to doctoral 601, teaching laboratories, a library, capstone projects, and officially-stamped printable diplomas. No tuition. No login. Open to everyone, on any phone, at your own pace.</p>
 <div class="kv">
 <b>11 colleges</b><span>Engineering · Computer Science · Medicine &amp; Health · Law · Business · Natural Sciences · Mathematics · Arts &amp; Humanities · Education · Trade School · PhD Research</span>
 <b>6 levels</b><span>101 introductory → 201 intermediate → 301 advanced → 401 specialist → 501 graduate → 601 doctoral</span>
 <b>Every course has</b><span>full syllabus (6 modules, 24 lessons) · cross-linked reading list · its own AI teacher · hands-on labs · printable record</span>
 </div>
-<p><a class="btn" href="#catalog">Browse the Course Catalog</a> <a class="btn ghost" href="#guide">Ask the AI Guide</a></p>
+<p><a class="btn" href="#tour">🎧 Take the Tour</a> <a class="btn ghost" href="#bursar">🏦 Get your Student ID</a> <a class="btn ghost" href="#catalog">Browse the Course Catalog</a></p>
 </div>
 <div class="panel">
-<h2><span class="tick">✦</span> The Eleven Colleges</h2>
+<h2><span class="tick">✦</span> Our Mission</h2>
+<p><b>The Signature University exists to put a complete university in every pocket — free, open to everyone, on any phone.</b></p>
+<p>We stand on one measure: <b>student success</b>. Every course is original and complete. Every student gets a personal AI teacher. Every achievement is recorded, every diploma printable, every record yours to see and use. No tuition, no gates, no fine print — just learning that works, marching toward one million degrees. Our credibility is our students: what you learn here, and what you build with it.</p>
+<div class="honest"><b>Honest notes:</b> All course material is original, written for The Signature University by Justin Addam Higgins. AI teachers are AI study assistants — encouraging guides, not licensed professionals. For medical, legal, or financial decisions, always consult a licensed professional. The Signature University is an independent free learning project — it claims no government accreditation; diplomas certify course completion.</div>
+</div>
+<div class="panel" id="homeAI">
+<h2><span class="tick">✦</span> Ask the AI</h2>
+<p class="dim">Your campus guide, right here on the front door. Ask anything — what to study, where to start, how degrees work — and it answers in plain words and points you to real courses.</p>
+<div class="honest" style="margin-top:0"><b>The Signature University Guide</b> is an AI assistant — a friendly study guide, not a licensed professional. For medical, legal, or financial decisions, always consult a licensed professional.</div>
+<div class="jaicard"><b>🤖 AI IDENTITY</b><br><b>Name:</b> The Signature University Guide — friendly campus guide for The Signature University, mapping your goals to real courses and degree paths.<br><b>Duties:</b> match your goals to courses; chart a degree path; track your progress.<br><b>Engine:</b> Signature Llama (live where available) with the built-in JAHtalk on-device fallback — it always answers.</div>
+<div class="chatbox" style="height:460px">
+<div class="chatlog" id="guideLog"></div>
+<div class="chatrow"><input id="guideIn" placeholder="“I want to become an electrician” or “teach me about black holes”…"><button id="guideSend">Ask</button></div>
+</div>
+</div>
+</section>
+<!-- ============ TOUR ============ -->
+<section id="w-tour" hidden>
+<div class="panel">
+<h2><span class="tick">✦</span> 🎧 The Tour — your auditory walk through college life</h2>
+<p class="dim">New here? Take the guided tour: press play and the university reads itself to you — every part of college life, in plain words. Or tap any question below.</p>
+<p><button class="btn" id="tourPlay">▶ Start the auditory tour</button> <button class="btn ghost" id="tourStop">⏹ Stop</button></p>
+<div class="honest">The tour is read aloud by your device's own voice. Stop it any time with the button above or the floating 🔊 button.</div>
+</div>
+<div class="panel">
+<h2><span class="tick">✦</span> Tour pre-questions — ask anything first</h2>
+<p class="dim">The questions every new student asks. Tap one for the plain-words answer, with a listen button.</p>
+<div id="tourQA"></div>
+</div>
+<div class="panel">
+<h2><span class="tick">✦</span> Ask the tour</h2>
+<div class="chatrow"><input id="tourIn" placeholder="Type your question about the university…"><button id="tourAsk">Ask</button></div>
+<div id="tourAns" class="dim" style="margin-top:8px"></div>
+</div>
+</section>
+<!-- ============ BURSAR ============ -->
+<section id="w-bursar" hidden>
+<div class="panel">
+<h2><span class="tick">✦</span> 🏦 Bursar's Office</h2>
+<p class="dim">Tuition is zero — the Bursar's Office issues your student identity instead. Create your student ID once; this device will recognize you on every visit.</p>
+<div id="bursarBox"></div>
+<div class="honest"><b>Plain truth:</b> your student ID and access key are created <b>in the system on your own device</b> (your browser's local storage). There is no server account and nothing leaves your phone. If you clear your browser data, your ID goes with it — just create a new one here.</div>
+</div>
+<div class="panel">
+<h2><span class="tick">✦</span> My records — your data, at your fingertips</h2>
+<div id="myRecords" class="kv"></div>
+<p class="dim">Courses completed, colleges explored, and diplomas earned — saved on your device and always visible to you. This is the edge: your whole academic record, in your pocket.</p>
+</div>
+</section>
+<!-- ============ ACADEMICS ============ -->
+<section id="w-academics" hidden>
+<div class="panel">
+<h2><span class="tick">✦</span> 🎓 Academics — the Eleven Colleges</h2>
+<p class="dim">Every college, every level, every course — 3,850 courses from 101 introductory to 601 doctoral.</p>
 <div class="grid" id="collegeGrid"></div>
 </div>
 <div class="panel">
@@ -232,7 +283,22 @@ footer .cols div{max-width:300px}
 <div class="ccard"><h3>2 · Study with AI</h3><p>Every course has its own AI teacher — ask for explanations, quizzes, and study plans. The campus guide chats free-hand and maps your goals to classes and degrees.</p></div>
 <div class="ccard"><h3>3 · Earn degrees</h3><p>Pick a degree, finish its full material list, pass the official test (official within the Signature system) — your progress saves on your device. Earn degrees, and print officially-stamped diplomas (official within the Signature system) — free forever.</p></div>
 </div>
-<div class="honest"><b>Honest notes:</b> All course material is original, written for The Signature University by Justin Addam Higgins. AI teachers are AI study assistants — encouraging guides, not licensed professionals. For medical, legal, or financial decisions, always consult a licensed professional. The Signature University is an independent free learning project — it claims no government accreditation; diplomas certify course completion.</div>
+</div>
+</section>
+<!-- ============ ADMISSIONS ============ -->
+<section id="w-admissions" hidden>
+<div class="panel">
+<h2><span class="tick">✦</span> 📝 Admissions — everyone is admitted</h2>
+<p>There is no application, no rejection letter, no waiting list. <b>Admission is open to everyone, forever.</b> Here is the entire process:</p>
+<div class="grid">
+<div class="ccard"><h3>1 · Get your student ID</h3><p>Visit the <a href="#bursar">Bursar's Office</a> and create your free student ID. It takes ten seconds.</p></div>
+<div class="ccard"><h3>2 · Pick a college</h3><p>Browse the <a href="#academics">eleven colleges</a> — engineering, medicine, law, trades, arts, and more.</p></div>
+<div class="ccard"><h3>3 · Start any 101 course</h3><p>Open the <a href="#catalog">course catalog</a>, pick a 101 course, and start learning immediately.</p></div>
+<div class="ccard"><h3>4 · Learn at your pace</h3><p>Every course has a full syllabus, an AI teacher, labs, and readings. Your progress saves on your device.</p></div>
+<div class="ccard"><h3>5 · Earn your diploma</h3><p>Finish a degree's full material list, pass the official test, and print your officially-stamped diploma.</p></div>
+<div class="ccard"><h3>Cost: $0</h3><p>No tuition, no fees, no textbooks to buy. Free means free.</p></div>
+</div>
+<div class="honest"><b>Honest notes:</b> The Signature University is an independent free learning project — it claims no government accreditation. Diplomas certify course completion at The Signature University.</div>
 </div>
 </section>
 <!-- ============ CATALOG ============ -->
@@ -314,6 +380,32 @@ footer .cols div{max-width:300px}
 <div id="projList"></div>
 </div>
 </section>
+<!-- ============ CAMPUS LIFE ============ -->
+<section id="w-campus" hidden>
+<div class="panel">
+<h2><span class="tick">✦</span> 🎭 Campus Life</h2>
+<p class="dim">A university is more than classes. Student life at The Signature University — clubs, study rhythm, weekly events, and your own success record.</p>
+<div class="grid" id="clubGrid"></div>
+</div>
+<div class="panel">
+<h2><span class="tick">✦</span> This week's campus events</h2>
+<div id="eventList" class="grid"></div>
+</div>
+<div class="panel">
+<h2><span class="tick">✦</span> Student success — your record</h2>
+<div id="successBox" class="kv"></div>
+<p class="dim">We stand on student success: every course you finish is recorded on your device and counts toward degrees and diplomas. Your data, at your fingertips.</p>
+</div>
+</section>
+<!-- ============ CAREERS ============ -->
+<section id="w-careers" hidden>
+<div class="panel">
+<h2><span class="tick">✦</span> 💼 Careers — from courses to livelihood</h2>
+<p class="dim">Every college leads somewhere real. Pick a path: the catalog shows you exactly which courses build it, and capstone projects become your portfolio.</p>
+<div class="grid" id="careerGrid"></div>
+<div class="honest"><b>Honest notes:</b> Career paths are study guidance, not job placement or licensed career counseling. Diplomas certify course completion — official within the Signature system, not government-accredited credentials.</div>
+</div>
+</section>
 <!-- ============ RESEARCH ============ -->
 <section id="w-research" hidden>
 <div class="panel">
@@ -358,19 +450,6 @@ footer .cols div{max-width:300px}
 </div>
 </section>
 
-<!-- ============ GUIDE CHAT ============ -->
-<section id="w-guide" hidden>
-<div class="panel">
-<h2><span class="tick">✦</span> AI Guide Chat</h2>
-<p class="dim">Talk free-hand. Tell the guide what you want to learn, what you want to become, or where you are stuck — it maps the conversation to real courses and degree paths across all eleven colleges.</p>
-<div class="honest" style="margin-top:0"><b>The Signature University Guide</b> is an AI assistant — a friendly study guide, not a licensed professional. For medical, legal, or financial decisions, always consult a licensed professional.</div>
-<div class="jaicard"><b>🤖 AI IDENTITY</b><br><b>Name:</b> The Signature University Guide — friendly campus guide for The Signature University, mapping your goals to real courses and degree paths.<br><b>Duties:</b> match your goals to courses; chart a degree path; track your progress.<br><b>Engine:</b> Signature Llama (live where available) with the built-in JAHtalk on-device fallback — it always answers.</div>
-<div class="chatbox" style="height:460px">
-<div class="chatlog" id="guideLog"></div>
-<div class="chatrow"><input id="guideIn" placeholder="“I want to become an electrician” or “teach me about black holes”…"><button id="guideSend">Ask</button></div>
-</div>
-</div>
-</section>
 </div><!-- /wrap -->
 
 <!-- ============ READ-ALOUD BAR ============ -->
@@ -418,12 +497,12 @@ function refreshSaveState(){var el=document.getElementById("saveCount");if(el)el
 function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
 function $(id){return document.getElementById(id);}
 function getJSON(u){return fetch(u).then(function(r){if(!r.ok)throw new Error("http "+r.status);return r.json();});}
-var WINGS=["home","catalog","library","labs","projects","research","degrees","guide"];
+var WINGS=["home","tour","bursar","academics","admissions","catalog","library","labs","projects","campus","careers","research","degrees"];
 function go(w){location.hash="#"+w;}
 function route(){
   var h=(location.hash||"#home").slice(1), w=WINGS.indexOf(h)>=0?h:"home";
   WINGS.forEach(function(x){$("w-"+x).hidden=(x!==w);});
-  document.querySelectorAll(".bigmenu a").forEach(function(a){a.classList.toggle("on",a.getAttribute("data-w")===w);});
+  document.querySelectorAll(".jtabbar a.jtab[data-w]").forEach(function(a){a.classList.toggle("on",a.getAttribute("data-w")===w);});
   if(w==="labs"&&!DB.labs)loadLabs();
   if(w==="projects"&&!DB.projects)loadProjects();
   if(w==="degrees"&&!DB.degrees)loadDegrees();
@@ -1336,7 +1415,7 @@ function guideInit(){
   if($("guideLog").children.length)return;
   gMsg("ai","Welcome to The Signature University! Tell me what you want to learn or become — for example <i>“I want to become an electrician”</i>, <i>“teach me about the human heart”</i>, or <i>“what should I study to start a business?”</i> — and I will map it to real courses and degree paths. I am an AI assistant: a friendly guide, not a licensed professional.");
 }
-document.querySelector('[data-w="guide"]').addEventListener("click",guideInit);
+guideInit(); /* the AI now lives on the Main tab, so it greets on load */
 function scoreCourses(toks){
   var scored=[];
   DB.idx.forEach(function(r){
@@ -1581,7 +1660,7 @@ function auReadPage() {
   var modal = document.getElementById("modal");
   if (typeof CUR !== "undefined" && CUR && modal && modal.classList.contains("open")) { auReadTab(); return; }
   var vis = null;
-  ["home","catalog","library","labs","projects","research","degrees","guide"].forEach(function (w) {
+  ["home","tour","bursar","academics","admissions","catalog","library","labs","projects","campus","careers","research","degrees"].forEach(function (w) {
     var s = document.getElementById("w-" + w);
     if (s && !s.hidden) vis = s;
   });
@@ -1733,6 +1812,195 @@ function init(){
 }
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);
 else init();
+})();
+</script>
+<script>
+"use strict";
+/* ============ The Signature University — Tour / Bursar / Campus / Careers ============ */
+(function(){
+if(!$("w-tour"))return;
+
+/* ---------- THE TOUR ---------- */
+var TOUR_QA=[
+["What is The Signature University?","A complete, free online university built by Justin Addam Higgins. Eleven colleges and 3,850 courses — from 101 introductory classes to 601 doctoral level — all in your browser, on any phone."],
+["How much does it cost?","Nothing. No tuition, no fees, no textbooks to buy. Free means free, forever."],
+["Are the degrees accredited?","An honest answer: no government accreditation is claimed. The Signature University is an independent free learning project. Diplomas certify that you completed real coursework here — official within the Signature system."],
+["How do courses work?","Open any course for its full syllabus: six modules, twenty-four lessons, a reading list, and hands-on labs. Study at your own pace and mark lessons complete — your progress saves on your device."],
+["What are AI teachers?","Every course has its own AI teacher — a friendly study assistant that explains lessons, quizzes you, and helps you plan. They are encouraging guides, not licensed professionals."],
+["How do I get a student ID?","Visit the Bursar's Office tab and tap “Create my student ID”. It takes ten seconds and is free. Your ID is saved on your device, so the campus recognizes you every visit."],
+["How long does a course take?","That is up to you — there are no semesters and no deadlines. Most students finish a course in a few weeks of steady study; 101 courses are the quickest wins."],
+["Can I study on my phone?","Yes — the whole university is built phone-first. Everything works in your mobile browser, including the AI teachers and read-aloud."],
+["What are the labs?","Teaching laboratories with 11,550 hands-on exercises across the colleges — practice problems, simulations, and experiments that make the lessons stick."],
+["How do diplomas work?","Pick a degree on the Degrees tab, finish its full course list, pass the official test, and print your officially-stamped diploma. It certifies your completed coursework."],
+["What are the eleven colleges?","Engineering, Computer Science, Medicine & Health, Law, Business, Natural Sciences, Mathematics, Arts & Humanities, Education, Trade School, and PhD Research."],
+["Where should I start?","Three steps: 1) get your student ID at the Bursar's Office, 2) take the auditory tour on this page, 3) open any 101 course in the catalog that excites you."]
+];
+var TOUR_SCRIPT="Welcome to The Signature University — the free university in your pocket. This tour walks you through everything, in plain words. "+
+"First: what is this place? A complete online university built by Justin Addam Higgins. Eleven colleges — engineering, computer science, medicine and health, law, business, natural sciences, mathematics, arts and humanities, education, trade school, and PhD research. Three thousand eight hundred fifty courses, from 101 introductory classes all the way to 601 doctoral level. "+
+"How does learning work? Pick any course. Each one has a full syllabus with six modules and twenty four lessons, a reading list, hands-on lab exercises, and its own AI teacher — a personal tutor that explains, quizzes you, and helps you plan. Study at your own pace and mark lessons complete. Your progress is saved on your device. "+
+"Who teaches? AI teachers — friendly study guides for every course — plus the campus guide on the main page, which maps your goals to real courses and degree paths. They are encouraging assistants, not licensed professionals. "+
+"What does it cost? Nothing. No tuition, no fees, no textbooks to buy. Free means free. "+
+"Do you need to apply? No. Admission is open to everyone, forever. Get your free student ID at the Bursar's Office — it takes ten seconds — and start learning. "+
+"What about degrees? Choose a degree path, finish its courses, pass the official test, and print your officially-stamped diploma. Diplomas certify your completed coursework at The Signature University. An honest note: this is an independent learning project, not a government-accredited school. "+
+"What else is here? The library, teaching laboratories with thousands of exercises, capstone projects that become your portfolio, a research wing, campus clubs and weekly events, and career paths showing where each college can take you. "+
+"Your records — courses finished, colleges explored, diplomas earned — are always visible to you on the Bursar's Office tab. Your data, at your fingertips. "+
+"Ready? Get your student ID, take any 101 course, and start. The campus never closes. Good luck — we are cheering for you.";
+
+var tourDone=false;
+function renderTour(){
+  if(tourDone)return;tourDone=true;
+  $("tourQA").innerHTML=TOUR_QA.map(function(q,i){
+    return '<details class="ccard" style="margin:0 0 8px"><summary style="cursor:pointer;font-weight:700">'+esc(q[0])+'</summary>'+
+    '<p style="margin:8px 0">'+esc(q[1])+'</p>'+
+    '<button class="btn ghost" data-tourread="'+i+'" style="padding:6px 12px;font-size:.85em">🔊 Listen</button></details>';
+  }).join("");
+  $("tourQA").addEventListener("click",function(e){
+    var b=e.target.closest("[data-tourread]");if(!b)return;
+    var i=+b.getAttribute("data-tourread");
+    auBegin("Tour answer",TOUR_QA[i][0]+". "+TOUR_QA[i][1]);
+  });
+  $("tourPlay").addEventListener("click",function(){auBegin("The Signature University audio tour",TOUR_SCRIPT);});
+  $("tourStop").addEventListener("click",function(){auStop();});
+  function tourAnswer(){
+    var q=$("tourIn").value.trim();if(!q)return;
+    var ql=q.toLowerCase(),best=null,bs=0;
+    TOUR_QA.forEach(function(p){
+      var s=0,words=p[0].toLowerCase().split(/[^a-z]+/);
+      words.forEach(function(w){if(w.length>3&&ql.indexOf(w)>=0)s++;});
+      if(s>bs){bs=s;best=p;}
+    });
+    var box=$("tourAns");
+    if(best&&bs>0){box.innerHTML="<b>"+esc(best[0])+"</b><br>"+esc(best[1]);}
+    else{box.innerHTML="Good question — the tour's short answers don't cover that one. Ask the full <b>AI Guide on the Main tab</b> and it will map it to real courses.";}
+  }
+  $("tourAsk").addEventListener("click",tourAnswer);
+  $("tourIn").addEventListener("keydown",function(e){if(e.key==="Enter")tourAnswer();});
+}
+
+/* ---------- BURSAR ---------- */
+function getStudent(){try{return JSON.parse(localStorage.getItem("su_student_v1")||"null");}catch(e){return null;}}
+function saveStudent(s){try{localStorage.setItem("su_student_v1",JSON.stringify(s));}catch(e){}}
+function mkID(){var a=new Uint32Array(1);crypto.getRandomValues(a);return "JAH-STU-"+String(100000+(a[0]%900000));}
+function mkKey(){var ch="ABCDEFGHJKMNPQRSTUVWXYZ23456789",s="",a=new Uint8Array(12);crypto.getRandomValues(a);
+  for(var i=0;i<12;i++){s+=ch[a[i]%ch.length];if(i%4===3&&i<11)s+="-";}return "SU-"+s;}
+function renderBursar(){
+  var s=getStudent(),box=$("bursarBox");
+  if(!s){
+    box.innerHTML='<div class="ccard"><h3>🪪 Create your student ID</h3>'+
+    '<p class="dim">Free, ten seconds, no email needed.</p>'+
+    '<div class="chatrow"><input id="stuName" placeholder="Your name (optional)…"><button id="stuMake">Create my student ID</button></div></div>';
+    $("stuMake").addEventListener("click",function(){
+      var nm=($("stuName").value||"").trim();
+      var st={id:mkID(),key:mkKey(),name:nm,created:new Date().toISOString().slice(0,10)};
+      saveStudent(st);renderBursar();renderRecords();renderSuccess();
+      auBegin("Student ID created","Welcome to The Signature University, "+(nm||"student")+". Your student ID is "+st.id+".");
+    });
+    return;
+  }
+  box.innerHTML='<div class="ccard" style="border-color:var(--gold)">'+
+    '<h3>🪪 Welcome back'+(s.name?", "+esc(s.name):"")+'</h3>'+
+    '<p style="font-family:monospace;font-size:1.25em;letter-spacing:.06em;color:var(--gold2)"><b>'+esc(s.id)+'</b></p>'+
+    '<p class="dim">Member since '+esc(s.created)+'</p>'+
+    '<p><button class="btn ghost" id="keyShow" style="padding:6px 12px;font-size:.85em">Show my access key</button> '+
+    '<button class="btn ghost" id="idNew" style="padding:6px 12px;font-size:.85em">Replace ID</button></p>'+
+    '<p id="keyLine" class="dim" style="display:none">Access key: <b style="font-family:monospace">'+esc(s.key)+'</b> — keep it private.</p></div>';
+  $("keyShow").addEventListener("click",function(){
+    var l=$("keyLine");l.style.display=l.style.display==="none"?"block":"none";
+  });
+  $("idNew").addEventListener("click",function(){
+    if(!confirm("Replace your student ID with a brand-new one? Your course progress stays, but the old ID stops working."))return;
+    try{localStorage.removeItem("su_student_v1");}catch(e){}
+    renderBursar();renderRecords();renderSuccess();
+  });
+}
+function renderRecords(){
+  var el=$("myRecords");if(!el)return;
+  var s=getStudent(),n=0,nc=0;
+  try{n=Object.keys((JSON.parse(localStorage.getItem("su_prog_v1")||"null")||{}).done||{}).length;}catch(e){}
+  try{nc=nColleges();}catch(e){}
+  el.innerHTML=
+    "<b>Student ID</b><span>"+(s?esc(s.id):"not created yet — <a href=\"#bursar\">visit the Bursar's Office</a>")+"</span>"+
+    "<b>Courses completed</b><span>"+n+"</span>"+
+    "<b>Colleges explored</b><span>"+nc+" of 11</span>"+
+    "<b>Diplomas</b><span><a href=\"#degrees\">see the Degrees tab</a> — printable when earned</span>";
+}
+
+/* ---------- CAMPUS LIFE ---------- */
+var CLUBS=[
+["🤖","Robotics & AI Club","Build bots, train tiny models, and show them off at the monthly demo night."],
+["💻","Coding Circle","Weekly code-togethers — bring a bug, leave with a fix and a friend."],
+["⚖️","Debate Society","Argue the big questions: ethics of AI, the future of work, justice and law."],
+["🔬","Science Explorers","Experiments, observations, and field notes from the natural sciences."],
+["🎨","Arts Collective","Share writing, design, and music made between classes."],
+["🔧","Trade Masters","Welding, wiring, woodworking — hands-on skill swaps for the trades."]
+];
+var campusDone=false;
+function renderClubs(){
+  if(campusDone)return;campusDone=true;
+  $("clubGrid").innerHTML=CLUBS.map(function(c){
+    return '<div class="ccard"><h3>'+c[0]+" "+esc(c[1])+"</h3><p>"+esc(c[2])+"</p></div>";
+  }).join("");
+  var days=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+  var ev=[
+    ["Monday","📚 Study Hall Night","Open study rooms, all colleges — bring your hardest lesson."],
+    ["Wednesday","🎙️ Guest Lecture","A new talk each week, read aloud and open for questions."],
+    ["Friday","🤝 Club Meetups","Every club meets — Robotics demos, Coding Circle, Debate Society."],
+    ["Saturday","🏆 Capstone Showcase","Students present finished projects. Cheer, learn, get ideas."]
+  ];
+  var today=days[new Date().getDay()];
+  $("eventList").innerHTML=ev.map(function(e){
+    return '<div class="ccard"><h3>'+esc(e[1])+'</h3><p><b>Every '+e[0]+'</b>'+(e[0]===today?' · <b style="color:var(--gold2)">TODAY</b>':"")+'<br>'+esc(e[2])+'</p></div>';
+  }).join("");
+}
+function renderSuccess(){
+  var el=$("successBox");if(!el)return;
+  var n=0,nc=0;
+  try{n=Object.keys((JSON.parse(localStorage.getItem("su_prog_v1")||"null")||{}).done||{}).length;}catch(e){}
+  try{nc=nColleges();}catch(e){}
+  var ms=n===0?"🌱 Just getting started — finish your first course to earn your first star.":
+    n<5?"⭐ Rising student — "+n+" courses down!":
+    n<25?"⭐⭐ Dedicated scholar — "+n+" courses completed.":
+    n<100?"⭐⭐⭐ Campus standout — "+n+" courses. Degrees are in reach.":
+    "🏆 University legend — "+n+" courses completed!";
+  el.innerHTML="<b>Courses completed</b><span>"+n+"</span>"+
+    "<b>Colleges explored</b><span>"+nc+" of 11</span>"+
+    "<b>Your standing</b><span>"+ms+"</span>";
+}
+
+/* ---------- CAREERS ---------- */
+var CAREERS=[
+["College of Engineering","Civil Engineer · Mechanical Engineer","Start with 101 engineering courses; labs build your portfolio."],
+["College of Computer Science","Software Developer · Cybersecurity Analyst","Start with 101 programming; capstones become your GitHub-style portfolio."],
+["College of Medicine & Health","Nurse · Medical Researcher","Study foundations here; licensed roles require accredited programs beyond these courses."],
+["College of Law","Paralegal · Legal Researcher","Start with 101 law; research and writing courses build the core skill."],
+["College of Business","Entrepreneur · Marketing Manager","Start with 101 business; capstone: write a real business plan."],
+["College of Natural Sciences","Lab Technician · Environmental Scientist","Start with 101 science; labs teach real method."],
+["College of Mathematics","Data Analyst · Actuary","Start with 101 mathematics; statistics opens the data path."],
+["College of Arts & Humanities","Writer · Graphic Designer","Start with 101 arts; portfolio pieces come from projects."],
+["College of Education","Teacher · Tutor","Start with 101 education; tutoring others cements mastery."],
+["College of Trade School","Electrician · Welder","Start with 101 trade courses; hands-on labs build the skill."],
+["PhD Research","Research Scientist · Professor","For 501–601 scholars: publish-style research projects."]
+];
+var careersDone=false;
+function renderCareers(){
+  if(careersDone)return;careersDone=true;
+  $("careerGrid").innerHTML=CAREERS.map(function(c){
+    return '<div class="ccard"><h3>'+esc(c[0])+'</h3><p><b>'+esc(c[1])+'</b></p><p class="dim">'+esc(c[2])+'</p></div>';
+  }).join("");
+}
+
+/* ---------- route hooks ---------- */
+var _route=route;
+route=function(){
+  _route();
+  var h=(location.hash||"#home").slice(1);
+  if(h==="tour")renderTour();
+  if(h==="bursar"){renderBursar();renderRecords();}
+  if(h==="campus"){renderClubs();renderSuccess();}
+  if(h==="careers")renderCareers();
+};
+window.addEventListener("hashchange",function(){route();});
+route();
 })();
 </script>
 </body>
