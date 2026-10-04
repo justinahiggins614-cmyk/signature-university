@@ -1595,7 +1595,7 @@ if(!deep){(function(){var o=null;try{o=JSON.parse(localStorage.getItem(TK)||"{}"
   if(btn&&!btn.classList.contains("on")&&btn.offsetParent!==null){btn.click()}})})()}
 }catch(e){}})();</script>
 <style>
-/* ===== FIRST-VISIT GUIDE + SPOTLIGHT TOUR (additive; no visual redesign) ===== */
+/* ===== TOUR FIX 2026-10-04: welcome overlay only (no auto-scroll, no spotlight, no screen-leading) ===== */
 #uGuideBtn{position:fixed;left:12px;bottom:12px;z-index:9998;width:52px;height:52px;border-radius:50%;background:#10172a;border:2px solid var(--gold2);color:var(--gold2);font-size:24px;font-weight:800;cursor:pointer;box-shadow:0 0 16px rgba(217,164,65,.4);line-height:1}
 #uGuideBtn:hover{transform:scale(1.06)}
 #uGuidePanel{position:fixed;left:12px;bottom:76px;z-index:10001;width:min(430px,92vw);max-height:70vh;overflow:auto;background:#0e1424;border:1px solid var(--gold2);border-radius:14px;padding:16px 18px;box-shadow:0 8px 40px rgba(0,0,0,.6);display:none}
@@ -1603,14 +1603,16 @@ if(!deep){(function(){var o=null;try{o=JSON.parse(localStorage.getItem(TK)||"{}"
 #uGuidePanel h3{margin:.2em 0;color:var(--gold2)}
 #uGuidePanel h4{margin:.9em 0 .2em;color:var(--gold2);font-size:.95em}
 #uGuidePanel p{font-size:.9em;margin:.3em 0;color:var(--txt)}
-#uTourShade{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:10002;display:none}
-#uTourShade.open{display:block}
-#uTourCard{position:fixed;left:50%;transform:translateX(-50%);bottom:18px;z-index:10003;width:min(540px,94vw);background:#0e1424;border:2px solid var(--gold2);border-radius:14px;padding:16px 18px;display:none;box-shadow:0 8px 40px rgba(0,0,0,.7)}
-#uTourCard.open{display:block}
-#uTourCard h3{margin:.2em 0;color:var(--gold2)}
-#uTourCard p{font-size:.9em;margin:.4em 0;color:var(--txt)}
-#uTourCard .ulab{color:var(--gold2);font-weight:700;font-size:.78em;letter-spacing:.06em}
-.u-tour-hl{outline:3px solid var(--gold2)!important;outline-offset:3px;border-radius:8px}
+#uTourOver{position:fixed;inset:0;background:rgba(0,0,0,.62);z-index:10002;display:none;overflow:auto;padding:18px 14px}
+#uTourOver.open{display:block}
+#uTourModal{position:relative;margin:6vh auto 0;width:min(480px,94vw);background:#0e1424;border:2px solid var(--gold2);border-radius:14px;padding:20px 20px 16px;box-shadow:0 8px 40px rgba(0,0,0,.7)}
+#uTourModal h3{margin:.2em 0;color:var(--gold2)}
+#uTourModal ol{margin:8px 0 4px;padding-left:1.3em}
+#uTourModal li{font-size:.9em;margin:9px 0;color:var(--txt);line-height:1.55}
+#uTourModal li b{color:var(--gold2)}
+#uTourModal .touract{margin-top:16px;text-align:center}
+#uTourOk{min-height:52px;padding:14px 46px;border-radius:10px;border:none;background:var(--gold2);color:#10172a;font-weight:bold;font-size:1.05em;cursor:pointer}
+#uTourHelp{display:block;margin:10px auto 0;background:none;border:none;color:var(--gold2);text-decoration:underline;cursor:pointer;font-size:.85em;min-height:44px}
 .uBtnRow{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
 .uBtnRow .btn{min-height:44px;min-width:88px}
 </style>
@@ -1636,111 +1638,45 @@ if(!deep){(function(){var o=null;try{o=JSON.parse(localStorage.getItem(TK)||"{}"
 <p>The floating 🔊 button reads any page aloud. The ◐ button toggles dark mode. “Report a problem” copies a ready-made report for the site owner.</p>
 <p class="dim">First-visit tour: <button class="btn ghost" id="uRetour" style="padding:8px 16px">▶ Replay the tour</button></p>
 </div>
-<div id="uTourShade"></div>
-<div id="uTourCard" role="dialog" aria-label="Site tour" aria-hidden="true">
-<h3 id="uTourTitle"></h3>
-<p><span class="ulab">WHAT&nbsp;·&nbsp;</span><span id="uTourWhat"></span></p>
-<p><span class="ulab">WHAT IT DOES&nbsp;·&nbsp;</span><span id="uTourDoes"></span></p>
-<p><span class="ulab">HOW&nbsp;·&nbsp;</span><span id="uTourHow"></span></p>
-<div class="uBtnRow" id="uTourBtns"></div>
+<div id="uTourOver" aria-hidden="true">
+<div id="uTourModal" role="dialog" aria-modal="true" aria-labelledby="uTourH">
+<h3 id="uTourH">Welcome to The Signature University</h3>
+<ol>
+<li><b>Course Catalog:</b> 3,850 courses — search in plain words like "welding", filter by college and level, or browse A–Z.</li>
+<li>Every course has <b>5 tabs</b>: Overview, Syllabus (6 modules, 24 lessons), Readings, Teacher, and Labs — with a shareable <b>?course=JAH-COURSE-######</b> link.</li>
+<li><b>AI teachers</b> explain lessons and quiz you (type "quiz me"); the <b>campus guide</b> maps your goals to real courses and degree paths.</li>
+<li>Pick a <b>degree</b>, finish its full material list, pass the official test, and print your diploma.</li>
+<li>Your progress lives <b>on your device only</b> — no account, no tracking. Export a backup any time.</li>
+</ol>
+<div class="touract"><button id="uTourOk">Got it</button></div>
+<button id="uTourHelp">Full guide</button>
+</div>
 </div>
 <script>
 "use strict";
-/* ===== First-visit spotlight tour + ? Guide panel (additive) ===== */
+/* ===== TOUR FIX 2026-10-04: welcome overlay only. localStorage jah-tour-seen-university. No auto-scroll, no spotlight. ===== */
 (function(){
+"use strict";
 var TOURKEY="jah-tour-seen-university";
-var steps=[
- {wing:"catalog",sel:"#w-catalog",title:"1 · The Course Catalog",
-  what:"The Catalog is the front door of the university.",
-  does:"It searches all 3,850 courses, filters by college and level, and browses A–Z. The Course Finder takes plain words like “welding”.",
-  how:"Try typing “welding” in the search box, or tap a college button."},
- {wing:"catalog",sel:"#results",title:"2 · Courses",
-  what:"Every course card opens a full course record.",
-  does:"Each record has 5 tabs: Overview, Syllabus (6 modules, 24 lessons), Readings (cross-linked across the JAH Network), Teacher, and Labs. Every course has a shareable deep link (?course=JAH-COURSE-000260) that survives refresh.",
-  how:"Tap any course card to open it."},
- {wing:"guide",sel:"#w-guide",title:"3 · AI teacher & campus guide",
-  what:"Every course has its own AI teacher, and the campus guide chats free-hand.",
-  does:"Teachers explain lessons, show the syllabus, and quiz you. The campus guide maps your goals to real courses and degree paths.",
-  how:"Open a course, tap the Teacher tab, and type “quiz me” — or tell the guide what you want to become."},
- {wing:"labs",sel:"#w-labs",title:"4 · Teaching Laboratories",
-  what:"Hands-on lab exercises from every course.",
-  does:"11,550 labs: bench work, field assignments, build challenges. Search them, then tap to open the course they belong to.",
-  how:"Search “circuit” in the labs wing."},
- {wing:"degrees",sel:"#w-degrees",title:"5 · Degrees & diplomas",
-  what:"Pick a degree, finish its full material list, pass the official test.",
-  does:"Degrees need every material item plus a 10-question official test (70% to pass, retakes allowed — official within the Signature system). Then print an officially-stamped diploma. The university claims no government accreditation — diplomas certify course completion.",
-  how:"Select a degree, mark courses complete, and take the official test."},
- {wing:"degrees",sel:".savestate",title:"6 · Your progress",
-  what:"Progress lives on your device only — no account, no tracking.",
-  does:"Completed courses, degrees, and test attempts save automatically in this browser. Export a JSON backup, import it on another device, or download transcripts.",
-  how:"Open Degrees & Diplomas, find the save-state bar, and tap Export my progress."}
-];
-var i=-1,shade=null,card=null,hl=null;
 function $(id){return document.getElementById(id);}
-function clearHl(){if(hl){hl.classList.remove("u-tour-hl");hl=null;}}
-function btns(html){$("uTourBtns").innerHTML=html;
-  var b=$("uTourBtns").querySelectorAll("button");
-  for(var k=0;k<b.length;k++)b[k].addEventListener("click",function(e){tourAction(e.target.getAttribute("data-a"));});}
-function showStep(){
-  clearHl();
-  var s=steps[i];
-  try{if(typeof go==="function")go(s.wing);}catch(e){}
-  setTimeout(function(){
-    var t=document.querySelector(s.sel);
-    if(t){t.classList.add("u-tour-hl");hl=t;try{t.scrollIntoView({block:"start",behavior:"smooth"});}catch(e){}}
-  },350);
-  $("uTourTitle").textContent=s.title;
-  $("uTourWhat").textContent=s.what;
-  $("uTourDoes").textContent=s.does;
-  $("uTourHow").textContent=s.how;
-  var h="";
-  if(i>0)h+='<button class="btn ghost" data-a="back">← Back</button>';
-  h+= i<steps.length-1
-    ? '<button class="btn" data-a="next">Next →</button>'
-    : '<button class="btn" data-a="finish">Finish ✓</button>';
-  h+='<button class="btn ghost" data-a="skip">Skip tour</button>';
-  btns(h);
-}
-function openTour(){$("uTourShade").classList.add("open");card.classList.add("open");card.setAttribute("aria-hidden","false");}
-function closeTour(){$("uTourShade").classList.remove("open");card.classList.remove("open");card.setAttribute("aria-hidden","true");clearHl();i=-1;}
-function seen(){try{localStorage.setItem(TOURKEY,"1");}catch(e){}}
-function tourAction(a){
-  if(a==="start"){i=0;showStep();return;}
-  if(a==="next"&&i<steps.length-1){i++;showStep();return;}
-  if(a==="back"&&i>0){i--;showStep();return;}
-  if(a==="skip"||a==="finish"){seen();closeTour();return;}
-}
-function tourIntro(){
-  openTour();
-  $("uTourTitle").textContent="Welcome to The Signature University";
-  $("uTourWhat").textContent="A free online university in your browser — 3,850 courses, 11 colleges, AI teachers, labs, degrees, and printable diplomas.";
-  $("uTourDoes").textContent="This 1-minute tour shows you the catalog, courses, AI teachers, labs, degrees, and how your progress is saved.";
-  $("uTourHow").textContent="Use Next / Back (or ← → arrow keys), Esc to close any time. Nothing here blocks the site — take it when you like.";
-  btns('<button class="btn" data-a="start">Start the tour →</button><button class="btn ghost" data-a="skip">Skip</button>');
-}
+function seen(){try{return localStorage.getItem(TOURKEY)==="1";}catch(e){return true;}}
+function mark(){try{localStorage.setItem(TOURKEY,"1");}catch(e){}}
+function openTour(){var o=$("uTourOver");o.classList.add("open");o.setAttribute("aria-hidden","false");}
+function closeTour(){var o=$("uTourOver");o.classList.remove("open");o.setAttribute("aria-hidden","true");mark();}
+function guideClose(){var p=$("uGuidePanel");p.classList.remove("open");p.setAttribute("aria-hidden","true");}
 function init(){
-  shade=$("uTourShade");card=$("uTourCard");
-  shade.addEventListener("click",function(){seen();closeTour();});
+  var over=$("uTourOver");
+  $("uTourOk").addEventListener("click",closeTour);
+  $("uTourHelp").addEventListener("click",function(){closeTour();var p=$("uGuidePanel");p.classList.add("open");p.setAttribute("aria-hidden","false");});
+  over.addEventListener("click",function(e){if(e.target===over)closeTour();});
   document.addEventListener("keydown",function(e){
-    var open=card.classList.contains("open");
-    if(e.key==="Escape"){
-      if(open){seen();closeTour();return;}
-      var p=$("uGuidePanel");if(p.classList.contains("open")){p.classList.remove("open");p.setAttribute("aria-hidden","true");}
-      return;
-    }
-    if(open&&e.key==="ArrowRight")tourAction(i<0?"start":"next");
-    if(open&&e.key==="ArrowLeft"&&i>0)tourAction("back");
+    if(over.classList.contains("open")){if(e.key==="Escape")closeTour();return;}
+    if(e.key==="Escape")guideClose();
   });
-  var seenFlag=null;
-  try{seenFlag=localStorage.getItem(TOURKEY);}catch(e){}
-  if(!seenFlag)setTimeout(tourIntro,900);
-  $("uGuideBtn").addEventListener("click",function(){
-    var p=$("uGuidePanel"),open=p.classList.toggle("open");
-    p.setAttribute("aria-hidden",open?"false":"true");
-  });
-  $("uRetour").addEventListener("click",function(){
-    $("uGuidePanel").classList.remove("open");i=0;showStep();openTour();
-  });
+  /* ? button re-opens the welcome tour */
+  $("uGuideBtn").addEventListener("click",function(){guideClose();openTour();});
+  $("uRetour").addEventListener("click",function(){guideClose();openTour();});
+  if(!seen())setTimeout(function(){if(!seen())openTour();},900);
 }
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);
 else init();
