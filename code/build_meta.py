@@ -17,10 +17,13 @@ Then runs BUILD GATES (fail loudly, exit non-zero):
 Then stamps the generated course count into index.html's static
 meta/OG/JSON-LD/how-it-works strings (exact-match replacements only).
 
+Finally rebuilds browse.html + the data/browse/ lazy A-Z shards AFTER the
+data flushes, so the stamped browse count is never one run behind.
+
 Re-run any time the catalog changes. The catalog generator
 (code/generate.py) should be followed by this script.
 """
-import json, os, sys, hashlib, re
+import json, os, sys, hashlib, re, subprocess
 from datetime import date, datetime, timezone
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -220,8 +223,11 @@ def main():
         (r'(id="resCount">)[\d,]+(<)', r"\g<1>" + c_fmt + r"\g<2>"),
         (r'(id="labCount">·\s*)[\d,]+(\s*exercises<)', r"\g<1>" + lab_fmt + r"\g<2>"),
         (r'(id="catCount">·\s*)[\d,]+(\s*courses<)', r"\g<1>" + c_fmt + r"\g<2>"),
-        # bare "3850" in meta/OG/JSON-LD/how-it-works static strings
-        (r"(?<![\d,])3850(?![\d,])", c_fmt),
+        # bare "3850"/"3,850" in meta/OG/JSON-LD/how-it-works static strings.
+        # Matches BOTH forms so the rule is idempotent: a previous run stamps
+        # "3850" -> "3,850", and the next run must still match (else the gate
+        # fails forever after the first successful stamp).
+        (r"(?<![\d,])3?,?850(?![\d,])", c_fmt),
     ]
     for pat, rep in stamp_rules:
         n = len(re.findall(pat, work))
@@ -237,6 +243,17 @@ def main():
         print("BUILD GATES FAILED:")
         for e in errors:
             print("  -", e)
+        sys.exit(1)
+
+    # browse.html + lazy A-Z shards: rebuild AFTER every data flush above,
+    # so the stamped course count can never be one run behind.
+    bb = subprocess.run([sys.executable, os.path.join(ROOT, "code", "build_browse_page.py")],
+                        capture_output=True, text=True)
+    print(bb.stdout, end="")
+    if bb.returncode != 0:
+        print(bb.stderr, end="")
+        print("BUILD GATES FAILED:")
+        print("  - build_browse_page.py failed")
         sys.exit(1)
 
     print("wrote data/counts.json, university-manifest.json, api.json, data/colleges.json")

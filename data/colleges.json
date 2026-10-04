@@ -12,7 +12,7 @@
    "college_id": "JAH-COLLEGE-01",
    "canonical_url": "https://justinahiggins614-cmyk.github.io/signature-university/?college=engineering",
    "version": "2026.10",
-   "updated": "2026-10-03"
+   "updated": "2026-10-04"
   },
   {
    "key": "cs",
@@ -25,7 +25,7 @@
    "college_id": "JAH-COLLEGE-02",
    "canonical_url": "https://justinahiggins614-cmyk.github.io/signature-university/?college=cs",
    "version": "2026.10",
-   "updated": "2026-10-03"
+   "updated": "2026-10-04"
   },
   {
    "key": "medicine",
@@ -38,7 +38,7 @@
    "college_id": "JAH-COLLEGE-03",
    "canonical_url": "https://justinahiggins614-cmyk.github.io/signature-university/?college=medicine",
    "version": "2026.10",
-   "updated": "2026-10-03"
+   "updated": "2026-10-04"
   },
   {
    "key": "law",
@@ -51,7 +51,7 @@
    "college_id": "JAH-COLLEGE-04",
    "canonical_url": "https://justinahiggins614-cmyk.github.io/signature-university/?college=law",
    "version": "2026.10",
-   "updated": "2026-10-03"
+   "updated": "2026-10-04"
   },
   {
    "key": "business",
@@ -64,7 +64,7 @@
    "college_id": "JAH-COLLEGE-05",
    "canonical_url": "https://justinahiggins614-cmyk.github.io/signature-university/?college=business",
    "version": "2026.10",
-   "updated": "2026-10-03"
+   "updated": "2026-10-04"
   },
   {
    "key": "science",
@@ -77,7 +77,7 @@
    "college_id": "JAH-COLLEGE-06",
    "canonical_url": "https://justinahiggins614-cmyk.github.io/signature-university/?college=science",
    "version": "2026.10",
-   "updated": "2026-10-03"
+   "updated": "2026-10-04"
   },
   {
    "key": "math",
@@ -90,7 +90,7 @@
    "college_id": "JAH-COLLEGE-07",
    "canonical_url": "https://justinahiggins614-cmyk.github.io/signature-university/?college=math",
    "version": "2026.10",
-   "updated": "2026-10-03"
+   "updated": "2026-10-04"
   },
   {
    "key": "arts",
@@ -103,7 +103,7 @@
    "college_id": "JAH-COLLEGE-08",
    "canonical_url": "https://justinahiggins614-cmyk.github.io/signature-university/?college=arts",
    "version": "2026.10",
-   "updated": "2026-10-03"
+   "updated": "2026-10-04"
   },
   {
    "key": "education",
@@ -116,7 +116,7 @@
    "college_id": "JAH-COLLEGE-09",
    "canonical_url": "https://justinahiggins614-cmyk.github.io/signature-university/?college=education",
    "version": "2026.10",
-   "updated": "2026-10-03"
+   "updated": "2026-10-04"
   },
   {
    "key": "trade",
@@ -129,7 +129,7 @@
    "college_id": "JAH-COLLEGE-10",
    "canonical_url": "https://justinahiggins614-cmyk.github.io/signature-university/?college=trade",
    "version": "2026.10",
-   "updated": "2026-10-03"
+   "updated": "2026-10-04"
   },
   {
    "key": "phd",
@@ -142,10 +142,10 @@
    "college_id": "JAH-COLLEGE-11",
    "canonical_url": "https://justinahiggins614-cmyk.github.io/signature-university/?college=phd",
    "version": "2026.10",
-   "updated": "2026-10-03"
+   "updated": "2026-10-04"
   }
  ],
- "updated": "2026-10-03",
+ "updated": "2026-10-04",
  "by": "Justin Addam Higgins",
  "curriculum_version": "2026.10"
 }
