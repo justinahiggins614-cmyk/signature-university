@@ -180,7 +180,7 @@ footer .cols div{max-width:300px}
 <nav class="bigmenu" aria-label="Campus menu">
 <a href="#home" data-w="home">🏛 Campus Home</a>
 <a href="#catalog" data-w="catalog">📚 Course Catalog</a>
-<a href="browse.html">🗂 Browse A–Z</a>
+<a href="browse.html">🗂 Browse all courses A–Z</a>
 <a href="#library" data-w="library">📖 Library</a>
 <a href="#labs" data-w="labs">🧪 Labs</a>
 <a href="#projects" data-w="projects">🏗 Projects</a>
@@ -1391,6 +1391,35 @@ $("guideIn").addEventListener("keydown",function(e){if(e.key==="Enter")$("guideS
 boot();
 </script>
 <script>
+/* ==== JAH global read-aloud controller (one per page): no stacked voices, no orphan audio ==== */
+(function(){
+if(window.__JAHREAD)return;
+var R={audios:[],lastTap:0,lastLabel:""};
+R.stopAll=function(){
+ try{if(window.speechSynthesis)window.speechSynthesis.cancel();}catch(e){}
+ try{if(window.responsiveVoice&&window.responsiveVoice.cancel)window.responsiveVoice.cancel();}catch(e){}
+ var i,a;
+ for(i=0;i<R.audios.length;i++){a=R.audios[i];try{a.pause();}catch(e){}try{a.removeAttribute("src");}catch(e){}try{a.load();}catch(e){}}
+ R.audios.length=0;
+ var els=document.querySelectorAll("audio");
+ for(i=0;i<els.length;i++){try{els[i].pause();}catch(e){}}
+};
+R.reg=function(a){if(a&&R.audios.indexOf(a)<0)R.audios.push(a);return a;};
+R.playGuard=function(label){
+ var now=Date.now();
+ if(now-R.lastTap<450&&label===R.lastLabel){R.lastTap=0;R.lastLabel="";R.stopAll();return false;}
+ R.lastTap=now;R.lastLabel=String(label||"");
+ R.stopAll();return true;
+};
+try{
+ var NativeAudio=window.Audio;
+ window.Audio=function(src){var a=src===undefined?new NativeAudio():new NativeAudio(src);R.reg(a);return a;};
+ window.Audio.prototype=NativeAudio.prototype;
+}catch(e){}
+window.__JAHREAD=R;
+})();
+</script>
+<script>
 "use strict";
 /* ===== Tiered read-aloud (same chain as the other JAH Network sites):
    speechSynthesis first; if the browser has no voice (in-app WebViews etc.),
@@ -1503,6 +1532,7 @@ function auPauseToggle() {
   AU.paused = !AU.paused; auPaintBtn();
 }
 function auStop() {
+  try{if(window.__JAHREAD)window.__JAHREAD.stopAll();}catch(e){}
   AU.active = false; AU.paused = false; AU.q = []; AU.i = 0; fxStop();
   try { if (window.speechSynthesis) window.speechSynthesis.cancel(); } catch (e) {}
   auShowBar(false);
