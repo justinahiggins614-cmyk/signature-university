@@ -49,7 +49,22 @@ details.letter>summary .n{color:#a9b0c7;font-weight:normal;font-size:.88em}
 .topnav{margin:0 0 18px;font-size:.95em}
 footer{margin-top:34px;padding-top:16px;border-top:1px solid #2b3560;color:#a9b0c7;font-size:.88em}
 .loadmsg{color:#8a93b3;font-size:.9em;padding:6px 2px}
-@media(max-width:520px){.hero h1{font-size:1.45em}details.letter{max-width:100%}}</style>
+@media(max-width:520px){.hero h1{font-size:1.45em}details.letter{max-width:100%}}
+/* BEST OF THE BEST — Manon's 2026-10-04 archive pattern: the AI's top pick pinned above the A–Z list */
+.bestofbest{border:2px solid #d9a441;border-radius:12px;background:#0d1226;padding:20px;margin:22px 0}
+.bestofbest h2{margin:0 0 4px;color:#f2d47e}
+.bestofbest .whybest{background:rgba(217,164,65,.08);border-left:3px solid #d9a441;padding:10px 14px;margin:10px 0;font-size:.92em}
+.bestofbest .beststats{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.bestofbest .beststat{background:#0a0e1c;border:1px solid #2b3560;border-radius:8px;padding:6px 12px;font-size:.82em;color:#a9b0c7}
+.bestofbest .beststat b{color:#f2d47e}
+.bestofbest .toolbar{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.bestofbest button{cursor:pointer;background:transparent;color:#9fc2ff;border:1px solid #9fc2ff;border-radius:8px;padding:9px 16px;font-family:inherit;font-size:.92em}
+.bestofbest button:hover{border-color:#f2d47e;color:#f2d47e}
+.bestofbest .openlink{display:inline-block;background:#d9a441;color:#0a0e1c;font-weight:700;border-radius:8px;padding:9px 16px;text-decoration:none;font-size:.92em}
+.bestflow{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:12px 0;justify-content:center;font-size:.8em}
+.bestflow .bnode{background:#0a0e1c;border:1px solid #d9a441;border-radius:8px;padding:8px 12px;text-align:center;max-width:150px}
+.bestflow .bnode b{display:block;color:#f2d47e;margin-bottom:2px}
+.bestflow .barrow{color:#9fc2ff;font-size:18px;font-weight:700}</style>
 </head>
 <body>
 <div class="wrap">
@@ -198,6 +213,53 @@ document.getElementById("jah-askai-q").addEventListener("keydown",function(e){if
 
 <div class="honest"><b>Official within the Signature system.</b> Every diploma and transcript here is officially stamped by The Signature University — the independent free learning project of Justin Addam Higgins. <b>No government accreditation is claimed;</b> diplomas certify course completion. AI teachers are AI study assistants, not licensed professionals.</div>
 
+<section class="bestofbest" aria-labelledby="besth">
+<h2 id="besth">★ Best of the Best</h2>
+<p class="meta" style="margin:4px 0">The AI's top pick from this catalog — the single course that best shows what The Signature University does. Popped open for you.</p>
+<details class="college" open>
+<summary>★ ENG 101 — Introduction to Structural Mechanics <span class="n">JAH-COURSE-000001 · course #1</span></summary>
+<div style="padding:14px">
+<p class="whybest"><b>Why this is the best:</b> the first course ever published — course #1 of 3,850. The genesis of the catalog: ENG 101 carries the full University format — full syllabus, hands-on labs, readings, and its own personal AI teacher. Every course since follows the format this one set.</p>
+<div class="bestflow" aria-hidden="true"><div class="bnode"><b>Enroll free</b>no tuition, ever</div><div class="barrow">→</div><div class="bnode"><b>The syllabus</b>full course plan</div><div class="barrow">→</div><div class="bnode"><b>The labs</b>hands-on learning</div><div class="barrow">→</div><div class="bnode"><b>Your AI teacher</b>personal guide</div></div>
+<p><b>What it does:</b> Introduction to Structural Mechanics — the College of Engineering's first course: a full syllabus with hands-on labs, readings, and its own personal AI teacher. Free forever, learn at your own pace.</p>
+<p><b>Implications:</b> <b>3,850</b> free courses across <b>11</b> colleges, marching toward <b>1,000,000</b>. Official within the Signature system — no government accreditation is claimed; diplomas certify course completion.</p>
+<div class="beststats"><span class="beststat"><b>3,850</b> free courses</span><span class="beststat">Course <b>#1</b> — the genesis</span><span class="beststat">College: <b>Engineering</b></span><span class="beststat">Level: <b>101</b></span></div>
+<div class="toolbar">
+<button id="best-speak" type="button">🔊 Read aloud</button>
+<button id="best-copy" type="button">⧉ Copy</button>
+<button id="best-dl" type="button">⤓ Download</button>
+<a class="openlink" href="./?course=JAH-COURSE-000001">Open the course →</a>
+</div>
+</div>
+</details>
+</section>
+<script>
+(function(){
+"use strict";
+var plain="Best of the Best — ENG 101, Introduction to Structural Mechanics, JAH-COURSE-000001. The first course ever published — course 1 of 3,850. A full syllabus with hands-on labs, readings, and its own personal AI teacher. Free forever.";
+var dl="THE SIGNATURE UNIVERSITY — BEST OF THE BEST (COURSE CATALOG)\nENG 101 — Introduction to Structural Mechanics — JAH-COURSE-000001 (course 1 of 3,850)\nCollege of Engineering\n\nWHY THIS IS THE BEST\nThe first course ever published — it set the University format: full syllabus, hands-on labs, readings, and its own personal AI teacher.\n\nWHAT IT DOES\nA full course: syllabus, hands-on labs, readings, personal AI teacher. Free forever, learn at your own pace.\n\nIMPLICATIONS\n3,850 free courses across 11 colleges, marching toward 1,000,000. Official within the Signature system — no government accreditation claimed; diplomas certify course completion.\n\nCourse: https://justinahiggins614-cmyk.github.io/signature-university/?course=JAH-COURSE-000001";
+function copyText(t,btn){function done(ok){var o=btn.textContent;btn.textContent=ok?"Copied ✓":"Copy failed";setTimeout(function(){btn.textContent=o;},1500);}if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(function(){done(true);},function(){done(false);});}else{var ta=document.createElement("textarea");ta.value=t;document.body.appendChild(ta);ta.select();try{document.execCommand("copy");done(true);}catch(e){done(false);}document.body.removeChild(ta);}}
+function download(name,text){try{var url=URL.createObjectURL(new Blob([text],{type:"text/plain"}));var a=document.createElement("a");a.href=url;a.download=name;document.body.appendChild(a);a.click();setTimeout(function(){document.body.removeChild(a);try{URL.revokeObjectURL(url);}catch(e){}},800);}catch(e){}}
+var speakTimer=null;
+function speakStop(){try{if(window.speechSynthesis)window.speechSynthesis.cancel();}catch(e){}if(speakTimer){clearTimeout(speakTimer);speakTimer=null;}}
+var speakBtn=document.getElementById("best-speak");
+speakBtn.onclick=function(){
+  speakStop();
+  try{
+    if(!("speechSynthesis" in window)){speakBtn.textContent="No voice on this device";setTimeout(function(){speakBtn.textContent="🔊 Read aloud";},1800);return;}
+    if(window.speechSynthesis.speaking){speakBtn.textContent="🔊 Read aloud";return;}
+    var u=new SpeechSynthesisUtterance(plain);
+    speakBtn.textContent="⏹ Stop";
+    u.onend=function(){speakBtn.textContent="🔊 Read aloud";};
+    u.onerror=function(){speakBtn.textContent="🔊 Read aloud";};
+    window.speechSynthesis.speak(u);
+    speakTimer=setTimeout(function(){speakBtn.textContent="🔊 Read aloud";},30000);
+  }catch(e){speakBtn.textContent="🔊 Read aloud";}
+};
+document.getElementById("best-copy").onclick=function(){copyText(dl,this);};
+document.getElementById("best-dl").onclick=function(){download("JAH-COURSE-000001-best.txt",dl);};
+})();
+</script>
 <h2 style="color:#f2d47e">By college, then A–Z</h2>
 <p class="meta">Tap a college to open it, then tap a letter — that letter’s courses load only when you ask for them.</p>
 <details class="college"><summary>College of Engineering <span class="n">— 350 courses · Build, design, and engineer the physical world.</span></summary><div class="letters"><details class="letter" data-k="engineering" data-l="A"><summary><span class="lt">A</span> <span class="n">62 courses</span></summary><div class="lbody"><p class="loadmsg">Loading…</p></div></details>
