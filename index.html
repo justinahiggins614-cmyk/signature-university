@@ -1511,8 +1511,9 @@ function fxPlay(list,i,tier,retry,proven){
   try{var pr=a.play();if(pr&&pr.catch)pr.catch(function(){if(!proven&&i===0)fxMsg("The browser blocked audio — tap the pause button, then play, to start it.")})}catch(e){}
 }
 function fxStart(text){FX.active=true;FX.errs=0;fxPlay(fxChunks(text),0,0,0,false)}
-function fxStop(){FX.active=false;if(FX.audio){try{FX.audio.pause()}catch(e){}FX.audio=null}}
+function fxStop(){try{if(window.__JAHREAD)window.__JAHREAD.stopAll();}catch(e){}FX.active=false;if(FX.audio){try{FX.audio.pause()}catch(e){}FX.audio=null}}
 function auBegin(label, text) {
+  if(window.__JAHREAD&&!window.__JAHREAD.playGuard("auBegin"))return;
   if (!text) { alert("Nothing to read here yet."); return; }
   auStop();
   AU.label = label; AU.i = 0; AU.active = true; AU.paused = false;
