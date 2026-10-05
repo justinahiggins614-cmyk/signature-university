@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script src="js/signin.js"></script>
+<script>/* JAHProfile-aware storage: public = plain localStorage, signed-in = per-profile namespace */
+var PS=(typeof JAHProfile!=='undefined')?JAHProfile.store:localStorage;</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Page not found — The Signature University</title>
@@ -20,5 +23,9 @@ p{max-width:560px;margin:0 auto 1.4em}
 <p>The registrar has no record of this page. It was never enrolled, never scheduled, and never taught. But the university is vast — 3,850 courses across 11 colleges — and the one you are looking for is in here somewhere.</p>
 <div class="links"><a href="./">🏛 Home</a><a href="./#catalog">📚 Course catalog</a><a href="./#degrees">🎓 Degrees</a><a href="./#library">📖 Library</a><a href="https://justinahiggins614-cmyk.github.io/jah-wiki/">🌐 JAH Wiki</a></div>
 <div class="foot">· LUX · VERITAS · SIGNATURA ·</div>
+<script>
+/* JAHProfile sign-in button mount (graceful header fallback) */
+(function(){var m=document.querySelector('header .booksearch')||document.querySelector('nav.jtabbar')||document.querySelector('header nav')||document.querySelector('header')||document.body;if(window.JAHProfile&&JAHProfile.ui)JAHProfile.ui.renderButton(m);})();
+</script>
 </body>
 </html>

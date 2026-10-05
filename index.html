@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<script>try{if(localStorage.getItem("jah-theme")==="dark"){document.documentElement.dataset.theme="dark"}}catch(e){}</script>
+<script src="js/signin.js"></script>
+<script>/* JAHProfile-aware storage: public = plain localStorage, signed-in = per-profile namespace */
+var PS=(typeof JAHProfile!=='undefined')?JAHProfile.store:localStorage;</script>
+<script>try{if(PS.get("jah-theme")==="dark"){document.documentElement.dataset.theme="dark"}}catch(e){}</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>The Signature University — A Free Online University by Justin Addam Higgins</title>
@@ -491,8 +494,8 @@ footer .cols div{max-width:300px}
 /* The Signature University app */
 var DB={colleges:null,idx:null,chunks:{},labs:null,projects:null,degrees:null,library:null};
 var PROG={name:"",done:{}};
-try{var p=JSON.parse(localStorage.getItem("su_prog_v1")||"null");if(p&&p.done)PROG=p;}catch(e){}
-function saveProg(){try{localStorage.setItem("su_prog_v1",JSON.stringify(PROG));}catch(e){}refreshSaveState();}
+try{var p=JSON.parse(PS.get("su_prog_v1")||"null");if(p&&p.done)PROG=p;}catch(e){}
+function saveProg(){try{PS.set("su_prog_v1",JSON.stringify(PROG));}catch(e){}refreshSaveState();}
 function refreshSaveState(){var el=document.getElementById("saveCount");if(el)el.textContent=Object.keys(PROG.done||{}).length;}
 function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
 function $(id){return document.getElementById(id);}
@@ -849,6 +852,8 @@ function juhSocial(q,prof){
   if(/^(hi|hii+|hey|hello|yo|howdy|good\s?(morning|afternoon|evening|day)|greetings|sup|hiya)\b/.test(String(q||"").toLowerCase())||
      /\b(what are your duties|what is your duty|what do you do|what can you do|your duties|your job|your role|your abilities|explain your duties|who are you|your name|introduce yourself|what are you for|how are you|thank|bye|goodbye)\b/.test(t))
     var ckey=(prof&&prof.name==="University Guide")?"page:guide":("ai:"+(prof?(prof.id||prof.name):"teacher"));
+    /* profile-namespaced chat key: public keeps old transcripts, signed-in gets a fresh per-profile memory */
+    if(typeof JAHProfile!=='undefined')ckey=JAHProfile.chatKey(ckey);
     return JAHtalk.chatFor(prof,ckey).reply(q);
   return null;
 }
@@ -1684,7 +1689,7 @@ function auReadPage() {
   window.addEventListener("pagehide", function () { auStop(); });
 })();
 </script>
-<button id="jahThemeBtn" title="Dark mode" aria-label="Toggle dark mode">◐</button><script>(function(){try{var b=document.getElementById("jahThemeBtn");function paint(){b.textContent=document.documentElement.dataset.theme==="dark"?"◑":"◐"}b.onclick=function(){var d=document.documentElement;if(d.dataset.theme==="dark"){d.dataset.theme="";try{localStorage.removeItem("jah-theme")}catch(e){}}else{d.dataset.theme="dark";try{localStorage.setItem("jah-theme","dark")}catch(e){}}paint()};paint()}catch(e){}})();</script>
+<button id="jahThemeBtn" title="Dark mode" aria-label="Toggle dark mode">◐</button><script>(function(){try{var b=document.getElementById("jahThemeBtn");function paint(){b.textContent=document.documentElement.dataset.theme==="dark"?"◑":"◐"}b.onclick=function(){var d=document.documentElement;if(d.dataset.theme==="dark"){d.dataset.theme="";try{PS.remove("jah-theme")}catch(e){}}else{d.dataset.theme="dark";try{PS.set("jah-theme","dark")}catch(e){}}paint()};paint()}catch(e){}})();</script>
 <script>/* jah-session-restore: localStorage only, nothing leaves the device */
 (function(){try{
 var SITE="siguni",DEEP=["course","degree","college"],path=location.pathname;
@@ -1698,18 +1703,18 @@ var deep=hasDeep();
 var lid=null;(function(){var q=new URLSearchParams(location.search),i;
  for(i=0;i<DEEP.length;i++){var v=q.get(DEEP[i]);if(v){lid=v;break}}
  if(!lid){var m=/[#&?](?:book|issue|course|print|edition|degree|college|paper|series|hero)=([A-Za-z0-9-_.]+)/.exec(location.hash||"");if(m)lid=m[1]}})();
-if(lid){try{localStorage.setItem("jah-last-"+SITE,lid)}catch(e){}}
+if(lid){try{PS.set("jah-last-"+SITE,lid)}catch(e){}}
 document.addEventListener("click",function(e){try{var t=e.target&&e.target.closest?e.target.closest("[data-id]"):null;
- if(t&&t.getAttribute("data-id")){localStorage.setItem("jah-last-"+SITE,t.getAttribute("data-id"));return}
+ if(t&&t.getAttribute("data-id")){PS.set("jah-last-"+SITE,t.getAttribute("data-id"));return}
  var a=e.target&&e.target.closest?e.target.closest("a[href]"):null;
- if(a){var hr=a.getAttribute("href")||"";for(var i=0;i<DEEP.length;i++){var m2=new RegExp("[?&]"+DEEP[i]+"=([A-Za-z0-9-_.]+)").exec(hr);if(m2){localStorage.setItem("jah-last-"+SITE,m2[1]);break}}}}catch(x){}},true);
+ if(a){var hr=a.getAttribute("href")||"";for(var i=0;i<DEEP.length;i++){var m2=new RegExp("[?&]"+DEEP[i]+"=([A-Za-z0-9-_.]+)").exec(hr);if(m2){PS.set("jah-last-"+SITE,m2[1]);break}}}}catch(x){}},true);
 /* (a) scroll save/restore per page path */
 var SK="jah-scroll-"+SITE+"-"+path,st=null;
-window.addEventListener("scroll",function(){clearTimeout(st);st=setTimeout(function(){try{localStorage.setItem(SK,String(window.scrollY))}catch(e){}},400)},{passive:true});
-if(!deep){var sv=null;try{sv=localStorage.getItem(SK)}catch(e){}
+window.addEventListener("scroll",function(){clearTimeout(st);st=setTimeout(function(){try{PS.set(SK,String(window.scrollY))}catch(e){}},400)},{passive:true});
+if(!deep){var sv=null;try{sv=PS.get(SK)}catch(e){}
  if(sv&&+sv>40){requestAnimationFrame(function(){window.scrollTo(0,+sv)})}}
 /* (c2) on listing page, scroll last-opened record into view */
-if(!deep){var rid=null;try{rid=localStorage.getItem("jah-last-"+SITE)}catch(e){}
+if(!deep){var rid=null;try{rid=PS.get("jah-last-"+SITE)}catch(e){}
  if(rid){var sel=document.querySelector('[data-id="'+rid+'"]')||document.querySelector('a[href*="'+rid+'"]');
   if(sel){var r=sel.getBoundingClientRect();
    if(r.top<0||r.bottom>window.innerHeight){setTimeout(function(){sel.scrollIntoView({block:"center"})},600)}}}}
@@ -1717,11 +1722,11 @@ if(!deep){var rid=null;try{rid=localStorage.getItem("jah-last-"+SITE)}catch(e){}
 var TK="jah-tabs-"+SITE+"-"+path;
 document.addEventListener("click",function(e){try{var b=e.target&&e.target.closest?e.target.closest(".tab,[data-tab]"):null;
  if(!b)return;var id=b.getAttribute("data-tab")||b.getAttribute("data-s")||b.id||(b.textContent||"").trim();
- var o={};try{o=JSON.parse(localStorage.getItem(TK)||"{}")}catch(x){}
+ var o={};try{o=JSON.parse(PS.get(TK)||"{}")}catch(x){}
  var c=b.closest(".tabs")||b.parentElement;
  o[c?(c.id||"i"+Array.prototype.indexOf.call((c.parentElement||document.body).children,c)):"x"]=id;
- localStorage.setItem(TK,JSON.stringify(o))}catch(x){}},true);
-if(!deep){(function(){var o=null;try{o=JSON.parse(localStorage.getItem(TK)||"{}")}catch(x){}
+ PS.set(TK,JSON.stringify(o))}catch(x){}},true);
+if(!deep){(function(){var o=null;try{o=JSON.parse(PS.get(TK)||"{}")}catch(x){}
  if(!o)return;Object.keys(o).forEach(function(k){var cont=document.getElementById(k),btn=null;
   if(cont){btn=cont.querySelector('[data-tab="'+o[k]+'"],[data-s="'+o[k]+'"]')}
   else{try{btn=document.querySelector('.tab[id="'+o[k]+'"]')}catch(x){}}
@@ -1792,8 +1797,8 @@ if(!deep){(function(){var o=null;try{o=JSON.parse(localStorage.getItem(TK)||"{}"
 "use strict";
 var TOURKEY="jah-tour-seen-university";
 function $(id){return document.getElementById(id);}
-function seen(){try{return localStorage.getItem(TOURKEY)==="1";}catch(e){return true;}}
-function mark(){try{localStorage.setItem(TOURKEY,"1");}catch(e){}}
+function seen(){try{return PS.get(TOURKEY)==="1";}catch(e){return true;}}
+function mark(){try{PS.set(TOURKEY,"1");}catch(e){}}
 function openTour(){var o=$("uTourOver");o.classList.add("open");o.setAttribute("aria-hidden","false");}
 function closeTour(){var o=$("uTourOver");o.classList.remove("open");o.setAttribute("aria-hidden","true");mark();}
 function guideClose(){var p=$("uGuidePanel");p.classList.remove("open");p.setAttribute("aria-hidden","true");}
@@ -1879,8 +1884,8 @@ function renderTour(){
 }
 
 /* ---------- BURSAR ---------- */
-function getStudent(){try{return JSON.parse(localStorage.getItem("su_student_v1")||"null");}catch(e){return null;}}
-function saveStudent(s){try{localStorage.setItem("su_student_v1",JSON.stringify(s));}catch(e){}}
+function getStudent(){try{return JSON.parse(PS.get("su_student_v1")||"null");}catch(e){return null;}}
+function saveStudent(s){try{PS.set("su_student_v1",JSON.stringify(s));}catch(e){}}
 function mkID(){var a=new Uint32Array(1);crypto.getRandomValues(a);return "JAH-STU-"+String(100000+(a[0]%900000));}
 function mkKey(){var ch="ABCDEFGHJKMNPQRSTUVWXYZ23456789",s="",a=new Uint8Array(12);crypto.getRandomValues(a);
   for(var i=0;i<12;i++){s+=ch[a[i]%ch.length];if(i%4===3&&i<11)s+="-";}return "SU-"+s;}
@@ -1910,14 +1915,14 @@ function renderBursar(){
   });
   $("idNew").addEventListener("click",function(){
     if(!confirm("Replace your student ID with a brand-new one? Your course progress stays, but the old ID stops working."))return;
-    try{localStorage.removeItem("su_student_v1");}catch(e){}
+    try{PS.remove("su_student_v1");}catch(e){}
     renderBursar();renderRecords();renderSuccess();
   });
 }
 function renderRecords(){
   var el=$("myRecords");if(!el)return;
   var s=getStudent(),n=0,nc=0;
-  try{n=Object.keys((JSON.parse(localStorage.getItem("su_prog_v1")||"null")||{}).done||{}).length;}catch(e){}
+  try{n=Object.keys((JSON.parse(PS.get("su_prog_v1")||"null")||{}).done||{}).length;}catch(e){}
   try{nc=nColleges();}catch(e){}
   el.innerHTML=
     "<b>Student ID</b><span>"+(s?esc(s.id):"not created yet — <a href=\"#bursar\">visit the Bursar's Office</a>")+"</span>"+
@@ -1956,7 +1961,7 @@ function renderClubs(){
 function renderSuccess(){
   var el=$("successBox");if(!el)return;
   var n=0,nc=0;
-  try{n=Object.keys((JSON.parse(localStorage.getItem("su_prog_v1")||"null")||{}).done||{}).length;}catch(e){}
+  try{n=Object.keys((JSON.parse(PS.get("su_prog_v1")||"null")||{}).done||{}).length;}catch(e){}
   try{nc=nColleges();}catch(e){}
   var ms=n===0?"🌱 Just getting started — finish your first course to earn your first star.":
     n<5?"⭐ Rising student — "+n+" courses down!":
@@ -2003,6 +2008,10 @@ route=function(){
 window.addEventListener("hashchange",function(){route();});
 route();
 })();
+</script>
+<script>
+/* JAHProfile sign-in button mount (graceful header fallback) */
+(function(){var m=document.querySelector('header .booksearch')||document.querySelector('nav.jtabbar')||document.querySelector('header nav')||document.querySelector('header')||document.body;if(window.JAHProfile&&JAHProfile.ui)JAHProfile.ui.renderButton(m);})();
 </script>
 </body>
 </html>
