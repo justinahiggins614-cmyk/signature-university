@@ -514,6 +514,8 @@ q.addEventListener('input',function(){
     }).catch(function(e){qr.innerHTML='<li class="loadmsg">Search failed to load ('+esc(e.message)+'). Check your connection and try again.</li>';});
   },250);
 });
+// live catalog count: refresh the stamped fallback from the real index (cache warms search too)
+loadIdx().then(function(rows){var el=document.getElementById('browseCount');if(el&&rows&&rows.length)el.textContent=rows.length.toLocaleString('en-US');}).catch(function(){/* stamped fallback stays */});
 })();</script>
 <script>
 /* JAHProfile sign-in button mount (graceful header fallback) */
