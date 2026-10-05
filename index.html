@@ -848,7 +848,8 @@ function juhSocial(q,prof){
   var t=" "+String(q||"").toLowerCase()+" ";
   if(/^(hi|hii+|hey|hello|yo|howdy|good\s?(morning|afternoon|evening|day)|greetings|sup|hiya)\b/.test(String(q||"").toLowerCase())||
      /\b(what are your duties|what is your duty|what do you do|what can you do|your duties|your job|your role|your abilities|explain your duties|who are you|your name|introduce yourself|what are you for|how are you|thank|bye|goodbye)\b/.test(t))
-    return JAHtalk.reply(prof,q);
+    var ckey=(prof&&prof.name==="University Guide")?"page:guide":("ai:"+(prof?(prof.id||prof.name):"teacher"));
+    return JAHtalk.chatFor(prof,ckey).reply(q);
   return null;
 }
 /* ---------- AI teacher chat ---------- */
