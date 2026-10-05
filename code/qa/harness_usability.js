@@ -228,7 +228,7 @@ ok("'Loading degree programs…' has retry sibling", /degList/.test(html));
 ok("resCount boots with stamped count", /id="resCount">3,850</.test(html) || /id="resCount">…/.test(html) === false);
 ok("accreditation honesty statement present", /not accredited.*government body|no government accreditation/i.test(html));
 ok("official-within-Signature next to diplomas", /printable officially-stamped diplomas.*official within the Signature system/.test(html));
-ok("17-site nav present (reorder crew)", html.indexOf("SITE 25 OF 31") >= 0);
+ok("33-site nav present", html.indexOf("SITE 25 OF 33") >= 0);
 ok("official name 'The Signature University'", html.indexOf("THE SIGNATURE UNIVERSITY") >= 0 && !/JAH University/.test(html));
 
 // 21. first-visit tour + ? Guide panel
