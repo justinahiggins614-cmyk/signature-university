@@ -348,6 +348,7 @@ footer .cols div{max-width:300px}
 <div id="fresults"></div>
 </div>
 <div class="az" id="az"></div>
+<div id="myProgPin"></div>
 <div id="results" aria-live="polite"><p class="dim" id="catBootMsg">Loading the course catalog…</p></div>
 </div>
 </section>
@@ -647,6 +648,34 @@ function applyFilter(){
       '<h4>'+esc(r.t)+'</h4><div class="meta">'+esc(collegeName(r.k))+' · Level '+r.l+'</div></div>';
   }).join("");
   if(!total)h='<p class="dim">No courses match. Try clearing a filter.</p>';
+  /* JAHProfile v2 "your-stuff-first": in My view (opted in + personalized),
+     pin the learner's own progress ABOVE the full course catalog.
+     ADDITIVE ONLY — the catalog below is untouched; signed-out visitors see
+     nothing extra. */
+  try{
+    var _pin=$("myProgPin");
+    if(_pin){
+      var _live=(typeof JAHProfile!=="undefined"&&JAHProfile&&typeof JAHProfile.personalized==="function"&&JAHProfile.personalized());
+      var _done=_live?Object.keys(PROG.done||{}):[];
+      var _degs=_live?Object.keys(PROG.degrees||{}):[];
+      if(_done.length||_degs.length){
+        var _ph='<div class="card" style="border:1px dashed var(--gold)"><h3>&#127891; Your progress — first in My view</h3>';
+        _ph+='<p><b>'+_done.length+'</b> course'+(_done.length===1?"":"s")+' completed &middot; <b>'+_degs.length+'</b> degree'+(_degs.length===1?"":"s")+' awarded'+(PROG.name?' &middot; '+esc(PROG.name):'')+'</p>';
+        if(_done.length){
+          _ph+='<ul>';
+          _done.slice(0,8).forEach(function(_id){
+            var _c=null;
+            for(var _k=0;_k<(DB.idx||[]).length;_k++){if(DB.idx[_k].i===_id){_c=DB.idx[_k];break;}}
+            _ph+='<li>&#10003; '+(_c?esc(_c.c+" — "+_c.t):esc(_id))+'</li>';
+          });
+          if(_done.length>8)_ph+='<li class="dim">+'+(_done.length-8)+' more completed.</li>';
+          _ph+='</ul>';
+        }
+        _ph+='<p class="dim">The full course catalog follows below — nothing is hidden.</p></div>';
+        _pin.innerHTML=_ph;
+      }else{_pin.innerHTML="";}
+    }
+  }catch(_e){}
   $("results").innerHTML=h+(total>200?'<p class="dim">Showing 200 of '+total.toLocaleString()+' — narrow the search to see more.</p>':'<p class="dim">'+total.toLocaleString()+' course'+(total===1?"":"s")+'.</p>');
   document.querySelectorAll("#results .course").forEach(function(el){
     el.addEventListener("click",function(){openCourse(el.getAttribute("data-id"));});
@@ -2012,6 +2041,16 @@ route();
 <script>
 /* JAHProfile sign-in button mount (graceful header fallback) */
 (function(){var m=document.querySelector('header .booksearch')||document.querySelector('nav.jtabbar')||document.querySelector('header nav')||document.querySelector('header')||document.body;if(window.JAHProfile&&JAHProfile.ui)JAHProfile.ui.renderButton(m);})();
+</script>
+<script>
+(function () {
+  /* JAHProfile v2 page greeting — renders ONLY when personalization is live
+     (signed-in + opted in + My view); signed-out visitors see nothing. */
+  if (window.JAHProfile && JAHProfile.ui) {
+    var mount = document.querySelector('header') || document.body;
+    JAHProfile.ui.renderGreeting(mount); /* renders ONLY when personalization is live */
+  }
+})();
 </script>
 </body>
 </html>
