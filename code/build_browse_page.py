@@ -225,6 +225,20 @@ q.addEventListener('input',function(){
     }).catch(function(e){qr.innerHTML='<li class="loadmsg">Search failed to load ('+esc(e.message)+'). Check your connection and try again.</li>';});
   },250);
 });
+// deep links from the front door: ?q= fills the search, ?college= opens that college
+(function(){
+  try{
+    var p=new URLSearchParams(location.search),qq=p.get("q"),ck=p.get("college");
+    if(qq){q.value=qq;q.dispatchEvent(new Event("input",{bubbles:true}));}
+    if(ck){
+      var cols=document.querySelectorAll("details.college"),found=null;
+      Array.prototype.forEach.call(cols,function(d){
+        if(d.querySelector('details.letter[data-k="'+ck+'"]'))found=d;
+      });
+      if(found){found.open=true;found.scrollIntoView();}
+    }
+  }catch(e){}
+})();
 })();"""
 
     page = ("<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n"

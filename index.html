@@ -199,7 +199,6 @@ footer .cols div{max-width:300px}
 <a class="jtab" href="#bursar" data-w="bursar">🏦 Bursar's Office</a>
 <a class="jtab" href="#academics" data-w="academics">🎓 Academics</a>
 <a class="jtab" href="#admissions" data-w="admissions">📝 Admissions</a>
-<a class="jtab" href="#catalog" data-w="catalog">📚 Course Catalog</a>
 <a class="jtab" href="#library" data-w="library">📖 Library</a>
 <a class="jtab" href="#labs" data-w="labs">🧪 Labs</a>
 <a class="jtab" href="#projects" data-w="projects">🏗 Projects</a>
@@ -221,7 +220,7 @@ footer .cols div{max-width:300px}
 <b>6 levels</b><span>101 introductory → 201 intermediate → 301 advanced → 401 specialist → 501 graduate → 601 doctoral</span>
 <b>Every course has</b><span>full syllabus (6 modules, 24 lessons) · cross-linked reading list · its own AI teacher · hands-on labs · printable record</span>
 </div>
-<p><a class="btn" href="#tour">🎧 Take the Tour</a> <a class="btn ghost" href="#bursar">🏦 Get your Student ID</a> <a class="btn ghost" href="#catalog">Browse the Course Catalog</a></p>
+<p><a class="btn" href="#tour">🎧 Take the Tour</a> <a class="btn ghost" href="#bursar">🏦 Get your Student ID</a> <a class="btn ghost" href="browse.html">Browse the Course Catalog</a></p>
 </div>
 <div class="panel">
 <h2><span class="tick">✦</span> Our Mission</h2>
@@ -297,7 +296,7 @@ footer .cols div{max-width:300px}
 <div class="grid">
 <div class="ccard"><h3>1 · Get your student ID</h3><p>Visit the <a href="#bursar">Bursar's Office</a> and create your free student ID. It takes ten seconds.</p></div>
 <div class="ccard"><h3>2 · Pick a college</h3><p>Browse the <a href="#academics">eleven colleges</a> — engineering, medicine, law, trades, arts, and more.</p></div>
-<div class="ccard"><h3>3 · Start any 101 course</h3><p>Open the <a href="#catalog">course catalog</a>, pick a 101 course, and start learning immediately.</p></div>
+<div class="ccard"><h3>3 · Start any 101 course</h3><p>Open the <a href="browse.html">course catalog</a>, pick a 101 course, and start learning immediately.</p></div>
 <div class="ccard"><h3>4 · Learn at your pace</h3><p>Every course has a full syllabus, an AI teacher, labs, and readings. Your progress saves on your device.</p></div>
 <div class="ccard"><h3>5 · Earn your diploma</h3><p>Finish a degree's full material list, pass the official test, and print your officially-stamped diploma.</p></div>
 <div class="ccard"><h3>Cost: $0</h3><p>No tuition, no fees, no textbooks to buy. Free means free.</p></div>
@@ -305,55 +304,6 @@ footer .cols div{max-width:300px}
 <div class="honest"><b>Honest notes:</b> The Signature University is an independent free learning project — it claims no government accreditation. Diplomas certify course completion at The Signature University.</div>
 </div>
 </section>
-<!-- ============ CATALOG ============ -->
-<section id="w-catalog" hidden>
-<div class="panel">
-<h2><span class="tick">✦</span> Course Catalog <span style="font-size:.55em;color:var(--dim)" id="catCount">· 3,850 courses</span></h2>
-<p class="dim">Search the full catalog, filter by college and level, or browse A–Z. Click any course for its syllabus, readings, labs, and AI teacher.</p>
-<div class="toolbar">
-<input type="text" id="q" placeholder="Search courses — try “welding”, “calculus”, “contracts”…">
-<select id="fCollege"><option value="">All colleges</option></select>
-<select id="fLevel"><option value="">All levels</option><option>101</option><option>201</option><option>301</option><option>401</option><option>501</option><option>601</option></select><p class="dim" style="font-size:.82em;margin:6px 0 0">Levels are The Signature University curriculum levels (101 introductory → 601 doctoral) — not accredited university-credit equivalencies.</p>
-</div>
-<div class="deptbtns" id="deptbtns" role="group" aria-label="Filter by college"></div>
-<style>
-/* COURSE FINDER — additive, does not restyle existing components */
-.finder{margin:10px 0;border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:#0b0f1c}
-.finder .fhead{display:flex;gap:10px;align-items:center;margin-bottom:8px}
-.finder .fhead b{color:var(--gold2);letter-spacing:.06em}
-.finder .fhead span{display:block;font-size:.82em;color:var(--dim)}
-.finder .frow{display:flex;gap:8px;flex-wrap:wrap}
-.finder .frow input{flex:1;min-width:200px}
-.finder .fcards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;margin-top:10px}
-.finder .fcard{border:1px solid var(--line);border-radius:10px;padding:12px;background:#10172a;cursor:pointer}
-.finder .fcard h4{margin:2px 0 4px;font-size:.95em}
-.finder .fcard .go{color:var(--gold2);font-weight:700;text-decoration:none}
-.qhelp{margin-top:10px;border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:#0e1424}
-.qhelp input{width:100%;max-width:380px;margin-right:8px}
-/* JAH NETWORK 10-FIX CONSISTENCY PASS (additive — no restyle of existing components) */
-.kicker-jn{display:inline-block;font-size:.72em;letter-spacing:.28em;color:var(--gold);border:1px solid var(--gold);border-radius:20px;padding:5px 16px;margin:0 0 10px;font-weight:700}
-.stbadge{display:inline-block;background:#274b1e;color:#c8f0b8;font-size:.68em;font-weight:800;letter-spacing:.1em;border-radius:6px;padding:3px 9px;text-transform:uppercase;white-space:nowrap;vertical-align:middle}
-.recpanel{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:10px 0;padding:9px 12px;border:1px solid var(--line);border-radius:10px;background:#0b1024;font-size:.8em}
-.recpanel .rpid{font-family:monospace;color:var(--gold2)}
-.recpanel .rpver{color:var(--dim)}
-.recpanel button{background:var(--card2);border:1px solid var(--line);color:var(--txt);border-radius:7px;padding:5px 11px;font-size:.82em;cursor:pointer;font-weight:700;letter-spacing:.04em}
-.recpanel button:hover{border-color:var(--gold);color:var(--gold2)}
-.prov{font-size:.78em;color:var(--dim);margin:8px 0}
-.jaicard{border:1px solid var(--cyber);border-radius:10px;padding:10px 14px;margin:12px 0;font-size:.88em;background:#0d1626}
-.jaicard b{color:var(--cyber)}
-.ownerlab{font-size:.7em;font-weight:800;letter-spacing:.06em;color:#9fc2ff;margin-left:8px;white-space:nowrap}
-</style>
-<div class="finder" id="finder">
-<div class="fhead"><span aria-hidden="true">🎓</span><div><b>COURSE FINDER</b><span>describe what you want to learn in plain words — it searches the catalog's own index</span></div></div>
-<div class="frow"><input id="fq" maxlength="160" placeholder="Describe what you&apos;re looking for&hellip;" aria-label="Describe what you want to learn"><button class="btn" id="fGo">Find</button></div>
-<div id="fresults"></div>
-</div>
-<div class="az" id="az"></div>
-<div id="myProgPin"></div>
-<div id="results" aria-live="polite"><p class="dim" id="catBootMsg">Loading the course catalog…</p></div>
-</div>
-</section>
-
 <!-- ============ LIBRARY ============ -->
 <section id="w-library" hidden>
 <div class="panel">
@@ -502,7 +452,7 @@ function refreshSaveState(){var el=document.getElementById("saveCount");if(el)el
 function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
 function $(id){return document.getElementById(id);}
 function getJSON(u){return fetch(u).then(function(r){if(!r.ok)throw new Error("http "+r.status);return r.json();});}
-var WINGS=["home","tour","bursar","academics","admissions","catalog","library","labs","projects","campus","careers","research","degrees"];
+var WINGS=["home","tour","bursar","academics","admissions","library","labs","projects","campus","careers","research","degrees"];
 function go(w){location.hash="#"+w;}
 function route(){
   var h=(location.hash||"#home").slice(1), w=WINGS.indexOf(h)>=0?h:"home";
@@ -537,7 +487,7 @@ function boot(){
   var timed=new Promise(function(_,rej){setTimeout(function(){rej(new Error("catalog boot timed out after 20s"));},20000);});
   Promise.race([Promise.all([getJSONt("data/colleges.json",20000),getJSONt("data/courses.idx.json",20000)]),timed]).then(function(r){
     DB.colleges=r[0];DB.idx=r[1];
-    renderHome();initCatalog();initLibrary();refreshSaveState();
+    renderHome();initLibrary();refreshSaveState();
     $("resCount").textContent=DB.colleges.total.toLocaleString();
     route();deepLink();
   }).catch(function(e){
@@ -561,125 +511,10 @@ function renderHome(){
     return '<div class="ccard" data-college="'+x.key+'"><span class="abbr">'+x.abbr+'</span><h3>'+esc(x.name)+'</h3><p>'+esc(x.tagline)+'</p><p class="n">'+x.courses.toLocaleString()+' courses →</p></div>';
   }).join("");
   document.querySelectorAll("[data-college]").forEach(function(el){
-    el.addEventListener("click",function(){$("fCollege").value=el.getAttribute("data-college");applyFilter();go("catalog");});
+    el.addEventListener("click",function(){location.href="browse.html?college="+encodeURIComponent(el.getAttribute("data-college"));});
   });
   document.querySelectorAll("[data-open-course]").forEach(function(el){
     el.addEventListener("click",function(e){if(e.target.tagName!=="A")openCourse(el.getAttribute("data-open-course"));});
-  });
-}
-
-/* ---------- COURSE FINDER (additive): deterministic keyword finder over the catalog's own index ---------- */
-var Finder={};
-Finder.STOP={a:1,an:1,the:1,and:1,or:1,but:1,if:1,then:1,of:1,to:1,in:1,on:1,for:1,with:1,by:1,from:1,at:1,as:1,is:1,are:1,was:1,were:1,be:1,been:1,it:1,its:1,this:1,that:1,these:1,those:1,what:1,when:1,where:1,which:1,who:1,whom:1,how:1,why:1,does:1,do:1,did:1,can:1,could:1,would:1,should:1,will:1,about:1,into:1,over:1,under:1,again:1,there:1,their:1,them:1,they:1,you:1,your:1,tell:1,me:1,please:1,find:1,looking:1,look:1,show:1,want:1,need:1,get:1,some:1,any:1,all:1,both:1,more:1,most:1,very:1,just:1,like:1,such:1,than:1,learn:1,learning:1,study:1,course:1,courses:1,class:1,classes:1,take:1,become:1,degree:1,something:1,thing:1};
-Finder.keywords=function(q){return String(q||"").toLowerCase().replace(/[^a-z0-9]+/g," ").split(" ").filter(function(w){return w.length>=3&&!Finder.STOP[w]})};
-/* same hay rule as filteredIdx — reuses the catalog's own search, no second index */
-Finder.hay=function(r){return (r.t+" "+r.c+" "+r.i).toLowerCase()};
-Finder.deep=function(id){return "?course="+id};
-Finder.ask=function(){
-  var box=$("fresults"),kws=Finder.keywords($("fq").value);
-  if(!kws.length){box.innerHTML='<p class="dim">Tell me what you want to learn — a subject, a skill, a trade — and I will match the catalog&apos;s own courses.</p>';return}
-  if(!DB.idx){box.innerHTML='<p class="dim">The catalog index is still loading — one moment.</p>';return}
-  var scored=DB.idx.map(function(r){var hay=Finder.hay(r),sc=0;kws.forEach(function(k){if(hay.indexOf(k)>=0)sc++});return{r:r,sc:sc}}).filter(function(x){return x.sc>0});
-  scored.sort(function(a,b){return b.sc-a.sc});
-  var top=scored.slice(0,5);
-  if(!top.length){box.innerHTML='<p class="dim"><b>Nothing matched.</b> Try fewer, simpler words — e.g. &ldquo;welding&rdquo;, &ldquo;calculus&rdquo;, &ldquo;contracts&rdquo;.</p>';return}
-  box.innerHTML='<p class="dim">'+top.length+' of '+scored.length.toLocaleString()+' matches for &ldquo;'+esc(kws.join(" "))+'&rdquo;:</p>'+
-    '<div class="fcards">'+top.map(function(x){var r=x.r;
-      return '<div class="fcard" data-id="'+r.i+'" role="button" tabindex="0"><span class="code">'+esc(r.c)+'</span><span class="cid">'+r.i+'</span><h4>'+esc(r.t)+'</h4><div class="meta">'+esc(collegeName(r.k))+' · Level '+r.l+'</div><p class="n"><a class="go" href="'+Finder.deep(r.i)+'" data-dl="1">Take me there &rarr;</a></p></div>';
-    }).join("")+'</div>';
-  box.querySelectorAll(".fcard").forEach(function(el){
-    el.addEventListener("click",function(e){if(e.target.getAttribute("data-dl"))return;openCourse(el.getAttribute("data-id"))});
-    el.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" ")openCourse(el.getAttribute("data-id"))});
-  });
-};
-document.addEventListener("DOMContentLoaded",function(){
-  $("fGo").addEventListener("click",Finder.ask);
-  $("fq").addEventListener("keydown",function(e){if(e.key==="Enter")Finder.ask()});
-});
-/* ---------- catalog ---------- */
-var F={q:"",college:"",level:"",az:""};
-function initCatalog(){
-  var fc=$("fCollege");
-  DB.colleges.colleges.forEach(function(x){
-    var o=document.createElement("option");o.value=x.key;o.textContent=x.name+" ("+x.courses+")";fc.appendChild(o);
-  });
-  var letters={};
-  DB.idx.forEach(function(r){var L=r.t.charAt(0).toUpperCase();if(/[A-Z]/.test(L))letters[L]=1;});
-  $("az").innerHTML=Object.keys(letters).sort().map(function(L){return '<button data-az="'+L+'">'+L+'</button>';}).join("");
-  document.querySelectorAll("#az button").forEach(function(b){
-    b.addEventListener("click",function(){F.az=(F.az===b.getAttribute("data-az"))?"":b.getAttribute("data-az");
-      document.querySelectorAll("#az button").forEach(function(x){x.classList.toggle("on",x.getAttribute("data-az")===F.az);});
-      applyFilter();});
-  });
-  var deb=null;
-  $("q").addEventListener("input",function(){clearTimeout(deb);deb=setTimeout(function(){F.q=$("q").value.trim().toLowerCase();applyFilter();},220);});
-  fc.addEventListener("change",function(){F.college=fc.value;syncDeptBtns();applyFilter();});
-  $("fLevel").addEventListener("change",function(){F.level=$("fLevel").value;applyFilter();});
-  var db=$("deptbtns");
-  if(db&&!db.children.length){
-    var all=document.createElement("button");all.textContent="All";all.setAttribute("data-ck","");all.className="on";
-    all.addEventListener("click",function(){fc.value="";F.college="";syncDeptBtns();applyFilter();});
-    db.appendChild(all);
-    DB.colleges.colleges.forEach(function(x){
-      var b=document.createElement("button");b.textContent=x.abbr;b.setAttribute("data-ck",x.key);b.title=x.name;
-      b.addEventListener("click",function(){fc.value=x.key;F.college=x.key;syncDeptBtns();applyFilter();});
-      db.appendChild(b);
-    });
-  }
-  window.syncDeptBtns=function(){if(!db)return;for(var i=0;i<db.children.length;i++){db.children[i].className=(db.children[i].getAttribute("data-ck")===F.college)?"on":"";}};
-  $("catCount").textContent="· "+DB.idx.length.toLocaleString()+" courses";
-  applyFilter();
-}
-function filteredIdx(){
-  var q=F.q;
-  return DB.idx.filter(function(r){
-    if(F.college&&r.k!==F.college)return false;
-    if(F.level&&String(r.l)!==F.level)return false;
-    if(F.az&&r.t.charAt(0).toUpperCase()!==F.az)return false;
-    if(q){var hay=(r.t+" "+r.c+" "+r.i).toLowerCase();if(hay.indexOf(q)<0)return false;}
-    return true;
-  });
-}
-function applyFilter(){
-  var list=filteredIdx(), total=list.length, show=list.slice(0,200);
-  var h=show.map(function(r){
-    var done=PROG.done[r.i]?'<span class="done-badge">✓ DONE</span>':"";
-    return '<div class="course" data-id="'+r.i+'"><span class="code">'+esc(r.c)+'</span><span class="cid">'+r.i+'</span>'+done+
-      ' <span class="stbadge">SIGNATURE ORIGINAL</span>'+
-      '<h4>'+esc(r.t)+'</h4><div class="meta">'+esc(collegeName(r.k))+' · Level '+r.l+'</div></div>';
-  }).join("");
-  if(!total)h='<p class="dim">No courses match. Try clearing a filter.</p>';
-  /* JAHProfile v2 "your-stuff-first": in My view (opted in + personalized),
-     pin the learner's own progress ABOVE the full course catalog.
-     ADDITIVE ONLY — the catalog below is untouched; signed-out visitors see
-     nothing extra. */
-  try{
-    var _pin=$("myProgPin");
-    if(_pin){
-      var _live=(typeof JAHProfile!=="undefined"&&JAHProfile&&typeof JAHProfile.personalized==="function"&&JAHProfile.personalized());
-      var _done=_live?Object.keys(PROG.done||{}):[];
-      var _degs=_live?Object.keys(PROG.degrees||{}):[];
-      if(_done.length||_degs.length){
-        var _ph='<div class="card" style="border:1px dashed var(--gold)"><h3>&#127891; Your progress — first in My view</h3>';
-        _ph+='<p><b>'+_done.length+'</b> course'+(_done.length===1?"":"s")+' completed &middot; <b>'+_degs.length+'</b> degree'+(_degs.length===1?"":"s")+' awarded'+(PROG.name?' &middot; '+esc(PROG.name):'')+'</p>';
-        if(_done.length){
-          _ph+='<ul>';
-          _done.slice(0,8).forEach(function(_id){
-            var _c=null;
-            for(var _k=0;_k<(DB.idx||[]).length;_k++){if(DB.idx[_k].i===_id){_c=DB.idx[_k];break;}}
-            _ph+='<li>&#10003; '+(_c?esc(_c.c+" — "+_c.t):esc(_id))+'</li>';
-          });
-          if(_done.length>8)_ph+='<li class="dim">+'+(_done.length-8)+' more completed.</li>';
-          _ph+='</ul>';
-        }
-        _ph+='<p class="dim">The full course catalog follows below — nothing is hidden.</p></div>';
-        _pin.innerHTML=_ph;
-      }else{_pin.innerHTML="";}
-    }
-  }catch(_e){}
-  $("results").innerHTML=h+(total>200?'<p class="dim">Showing 200 of '+total.toLocaleString()+' — narrow the search to see more.</p>':'<p class="dim">'+total.toLocaleString()+' course'+(total===1?"":"s")+'.</p>');
-  document.querySelectorAll("#results .course").forEach(function(el){
-    el.addEventListener("click",function(){openCourse(el.getAttribute("data-id"));});
   });
 }
 
@@ -836,7 +671,7 @@ function renderSheet(tab){
   if(tab==="overview"){
     $("doneBtn").addEventListener("click",function(){
       if(PROG.done[c.id])delete PROG.done[c.id];else PROG.done[c.id]=Date.now();
-      saveProg();renderSheet("overview");applyFilter();checkAchieve(true);
+      saveProg();renderSheet("overview");checkAchieve(true);
     });
     $("shareBtn").addEventListener("click",function(){
       var u=location.origin+location.pathname+"?course="+c.id;
@@ -1510,9 +1345,9 @@ function deepLink(){
     return;
   }
   var ck=sp.get("college");
-  if(ck){$("fCollege").value=ck;F.college=ck;applyFilter();go("catalog");}
+  if(ck){location.href="browse.html?college="+encodeURIComponent(ck);return;}
   var q=sp.get("q");
-  if(q){$("q").value=q;F.q=q.toLowerCase();applyFilter();go("catalog");}
+  if(q){location.href="browse.html?q="+encodeURIComponent(q);return;}
 }
 
 /* guide send wiring */
@@ -1696,7 +1531,7 @@ function auReadPage() {
   var modal = document.getElementById("modal");
   if (typeof CUR !== "undefined" && CUR && modal && modal.classList.contains("open")) { auReadTab(); return; }
   var vis = null;
-  ["home","tour","bursar","academics","admissions","catalog","library","labs","projects","campus","careers","research","degrees"].forEach(function (w) {
+  ["home","tour","bursar","academics","admissions","library","labs","projects","campus","careers","research","degrees"].forEach(function (w) {
     var s = document.getElementById("w-" + w);
     if (s && !s.hidden) vis = s;
   });

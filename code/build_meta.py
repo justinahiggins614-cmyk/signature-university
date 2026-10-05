@@ -222,7 +222,7 @@ def main():
         (r'(<div class="stat"><b>)[\d,]+(</b><span>AI teachers</span></div>)', r"\g<1>" + c_fmt + r"\g<2>"),
         (r'(id="resCount">)[\d,]+(<)', r"\g<1>" + c_fmt + r"\g<2>"),
         (r'(id="labCount">·\s*)[\d,]+(\s*exercises<)', r"\g<1>" + lab_fmt + r"\g<2>"),
-        (r'(id="catCount">·\s*)[\d,]+(\s*courses<)', r"\g<1>" + c_fmt + r"\g<2>"),
+        # (catCount rule removed 2026-10-05: the catalog wing moved to browse.html)
         # bare "3850"/"3,850" in meta/OG/JSON-LD/how-it-works static strings.
         # Matches BOTH forms so the rule is idempotent: a previous run stamps
         # "3850" -> "3,850", and the next run must still match (else the gate
