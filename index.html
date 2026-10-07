@@ -1389,23 +1389,10 @@ window.__JAHREAD=R;
 </script>
 <script>
 "use strict";
-/* ===== Tiered read-aloud (same chain as the other JAH Network sites):
-   speechSynthesis first; if the browser has no voice (in-app WebViews etc.),
-   online tiers: ResponsiveVoice en-US female -> Google translate hosts.
+/* ===== Tiered read-aloud: Audio-only (ResponsiveVoice -> Google translate hosts).
+   speechSynthesis is NEVER used: it fails silently on Android/FB WebView.
    Google TTS sends no CORS headers -> direct audio-element playback. ===== */
 var AU = { q: [], i: 0, active: false, paused: false, rate: 1, label: "" };
-function auVoice() {
-  try {
-    var vs = window.speechSynthesis.getVoices().filter(function (v) {
-      return v.lang && v.lang.toLowerCase().indexOf("en") === 0;
-    });
-    if (!vs.length) return null;
-    var fem = /samantha|zira|joanna|amy|emma|kate|serena|moira|tessa|veena|fiona|karen|female|google us english/i;
-    for (var i = 0; i < vs.length; i++) if (fem.test(vs[i].name)) return vs[i];
-    var g = vs.filter(function (v) { return v.name.toLowerCase().indexOf("google") >= 0; })[0];
-    return g || vs[0] || null;
-  } catch (e) { return null; }
-}
 function auChunks(text) {
   var out = [], cur = "";
   var parts = text.split(/([.!?]["']?(?:\s+|$))/);
@@ -1436,18 +1423,6 @@ function auPaintBtn() {
   var l = document.getElementById("aulabel");
   if (l) l.textContent = "Reading: " + AU.label;
 }
-function auSpeakNext() {
-  if (AU.i >= AU.q.length || !AU.active) { auStop(); return; }
-  auShowBar(true); auPaintBtn();
-  var u = new SpeechSynthesisUtterance(AU.q[AU.i]);
-  u.rate = AU.rate; u.lang = "en-US";
-  var v = auVoice(); if (v) u.voice = v;
-  u.onend = function () { if (!AU.active) return; AU.i++; auSpeakNext(); };
-  u.onerror = function () { if (!AU.active) return; AU.i++; auSpeakNext(); };
-  window.speechSynthesis.speak(u);
-}
-function hasSpeech(){try{return ("speechSynthesis" in window)&&!!window.speechSynthesis&&typeof window.speechSynthesis.speak==="function"}catch(e){return false}}
-try{if(hasSpeech()){window.speechSynthesis.getVoices();window.speechSynthesis.onvoiceschanged=function(){try{window.speechSynthesis.getVoices()}catch(e){}}}}catch(e){}
 function fxMsg(m){jahToast(m);}
 var FX={audio:null,active:false,errs:0};
 var TTS_TIERS=[
@@ -1485,19 +1460,13 @@ function auBegin(label, text) {
   if (!text) { jahToast("Nothing to read here yet."); return; }
   auStop();
   AU.label = label; AU.i = 0; AU.active = true; AU.paused = false;
-  if (hasSpeech()) { try { window.speechSynthesis.cancel(); } catch (e) {} AU.q = auChunks(label + ". " + text); auSpeakNext(); }
-  else { auShowBar(true); auPaintBtn(); fxStart(label + ". " + text); fxMsg("This browser has no built-in voice — reading with the online voice instead."); }
+  /* Audio-only: speechSynthesis fails silently on Android/FB WebView */
+  auShowBar(true); auPaintBtn(); fxStart(label + ". " + text);
 }
 function auPauseToggle() {
   if (!AU.active) return;
-  if (FX.active) {
-    var fa = FX.audio;
-    try { if (AU.paused) { if (fa) fa.play(); } else { if (fa) fa.pause(); } } catch (e) {}
-    AU.paused = !AU.paused; auPaintBtn(); return;
-  }
-  try {
-    if (AU.paused) window.speechSynthesis.resume(); else window.speechSynthesis.pause();
-  } catch (e) {}
+  var fa = FX.audio;
+  try { if (AU.paused) { if (fa) fa.play(); } else { if (fa) fa.pause(); } } catch (e) {}
   AU.paused = !AU.paused; auPaintBtn();
 }
 function auStop() {
