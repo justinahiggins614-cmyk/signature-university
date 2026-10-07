@@ -519,7 +519,7 @@ function renderHome(){
 
 /* ===== JAH NETWORK 10-FIX: record panel + AI identity card helpers (additive) ===== */
 function copyStr(t,okMsg){
-  function ok(){try{if(okMsg)alert(okMsg);}catch(e){}}
+  function ok(){try{if(okMsg)jahToast(okMsg);}catch(e){}}
   if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(ok,function(){prompt("Copy:",t);});}
   else{var ta=document.createElement("textarea");ta.value=t;document.body.appendChild(ta);ta.select();try{document.execCommand("copy");ok();}catch(e){prompt("Copy:",t);}ta.remove();}
 }
@@ -578,14 +578,14 @@ function openCourse(id){
   var done=DB.chunks[ch]?Promise.resolve(DB.chunks[ch]):getJSON("data/chunks/"+ch+".json").then(function(j){DB.chunks[ch]=j;return j;});
   done.then(function(list){
     var c=null;for(var i=0;i<list.length;i++)if(list[i].id===id)c=list[i];
-    if(!c){alert("Course not found: "+id);return;}
+    if(!c){jahToast("Course not found: "+id);return;}
     CUR=c;renderSheet("overview");
     $("modal").classList.add("open");document.body.style.overflow="hidden";
     var curl="https://justinahiggins614-cmyk.github.io/signature-university/?course="+c.id;
     uHead(c.code+" \u00b7 "+c.title+" \u2014 The Signature University",c.desc,curl);
     ldCourse(c);
     try{history.replaceState(null,"",curl)}catch(e){}
-  }).catch(function(){alert("Could not load course data.");});
+  }).catch(function(){jahToast("Could not load course data.");});
 }
 function closeModal(){$("modal").classList.remove("open");document.body.style.overflow="";var h=uHome();uHead(h.t,h.d,h.c);ldCourse(null);try{history.replaceState(null,"",h.c)}catch(e){}}
 $("modal").addEventListener("click",function(e){if(e.target===$("modal"))closeModal();});
@@ -1258,15 +1258,15 @@ $("importFile").addEventListener("change",function(e){
     if(!d||typeof d!=="object")throw 0;
     var nc=(d.courses_completed||[]).length, nd=Object.keys(d.degrees_awarded||{}).length;
     var msg="Import this progress file?\n\n"+nc+" courses completed\n"+nd+" degrees awarded\n"+(d.name?("Name: "+d.name+"\n"):"")+"\nThis REPLACES the progress currently on this device.";
-    if(!window.confirm(msg))return;
+    jahConfirm(msg,function(ok){if(!ok)return;
     if(d&&d.courses_completed){PROG.done={};d.courses_completed.forEach(function(id){if(/^JAH-COURSE-\d{6}$/.test(id))PROG.done[id]=Date.now();});}
     if(d&&d.name)PROG.name=d.name;
     if(d&&d.degrees_awarded)PROG.degrees=d.degrees_awarded;
     if(d&&d.test_attempts)PROG.tests=d.test_attempts;
     saveProg();if($("learnerName"))$("learnerName").value=PROG.name||"";
     if(DB.degrees){renderDegrees();checkAchieve(true);}
-    $("importProg").textContent="Imported ✓";setTimeout(function(){$("importProg").textContent="⤒ Import progress";},2000);
-  }catch(err){alert("That file could not be imported.");}};
+    $("importProg").textContent="Imported ✓";setTimeout(function(){$("importProg").textContent="⤒ Import progress";},2000);});
+  }catch(err){jahToast("That file could not be imported.");}};
   r.readAsText(f);e.target.value="";
 });
 $("readDegPage").addEventListener("click",function(){
@@ -1448,7 +1448,7 @@ function auSpeakNext() {
 }
 function hasSpeech(){try{return ("speechSynthesis" in window)&&!!window.speechSynthesis&&typeof window.speechSynthesis.speak==="function"}catch(e){return false}}
 try{if(hasSpeech()){window.speechSynthesis.getVoices();window.speechSynthesis.onvoiceschanged=function(){try{window.speechSynthesis.getVoices()}catch(e){}}}}catch(e){}
-function fxMsg(m){alert(m);}
+function fxMsg(m){jahToast(m);}
 var FX={audio:null,active:false,errs:0};
 var TTS_TIERS=[
  function(t){return "https://code.responsivevoice.org/getvoice.php?t="+encodeURIComponent(t)+"&tl=en-US"},
@@ -1482,7 +1482,7 @@ function fxStart(text){FX.active=true;FX.errs=0;fxPlay(fxChunks(text),0,0,0,fals
 function fxStop(){try{if(window.__JAHREAD)window.__JAHREAD.stopAll();}catch(e){}FX.active=false;if(FX.audio){try{FX.audio.pause()}catch(e){}FX.audio=null}}
 function auBegin(label, text) {
   if(window.__JAHREAD&&!window.__JAHREAD.playGuard("auBegin"))return;
-  if (!text) { alert("Nothing to read here yet."); return; }
+  if (!text) { jahToast("Nothing to read here yet."); return; }
   auStop();
   AU.label = label; AU.i = 0; AU.active = true; AU.paused = false;
   if (hasSpeech()) { try { window.speechSynthesis.cancel(); } catch (e) {} AU.q = auChunks(label + ". " + text); auSpeakNext(); }
@@ -1778,9 +1778,9 @@ function renderBursar(){
     var l=$("keyLine");l.style.display=l.style.display==="none"?"block":"none";
   });
   $("idNew").addEventListener("click",function(){
-    if(!confirm("Replace your student ID with a brand-new one? Your course progress stays, but the old ID stops working."))return;
+    jahConfirm("Replace your student ID with a brand-new one? Your course progress stays, but the old ID stops working.",function(ok){if(!ok)return;
     try{PS.remove("su_student_v1");}catch(e){}
-    renderBursar();renderRecords();renderSuccess();
+    renderBursar();renderRecords();renderSuccess();});
   });
 }
 function renderRecords(){
@@ -1927,5 +1927,11 @@ route();
 <a href="https://justinahiggins614-cmyk.github.io/signature-3d-print/">37 3D Mall</a>
 <span class="here">25 University · YOU ARE HERE</span>
 </nav>
+<style>#jah-toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#1c2940;color:#fff;padding:12px 20px;border-radius:10px;border:1px solid #35e0ff;z-index:99999;max-width:90vw;display:none;box-shadow:0 4px 20px rgba(0,0,0,.5);font-size:.95em}</style>
+<script>
+function jahToast(m){var t=document.getElementById('jah-toast');if(!t){t=document.createElement('div');t.id='jah-toast';document.body.appendChild(t)}t.textContent=String(m);t.style.display='block';clearTimeout(t._x);t._x=setTimeout(function(){t.style.display='none'},3000)}
+function jahConfirm(msg,cb){var o=document.getElementById('jah-confirm');if(o)o.remove();o=document.createElement('div');o.id='jah-confirm';o.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:99999;display:flex;align-items:center;justify-content:center;padding:16px';var box=document.createElement('div');box.style.cssText='background:#1c2940;border:1px solid #35e0ff;border-radius:12px;padding:20px;max-width:92vw;color:#fff';var p=document.createElement('p');p.style.margin='0 0 16px';p.textContent=String(msg);var row=document.createElement('div');row.style.cssText='display:flex;gap:10px;justify-content:flex-end';var no=document.createElement('button');no.textContent='Cancel';no.style.cssText='padding:10px 18px;border-radius:8px;border:1px solid #666;background:#222;color:#fff;font-size:1em';var yes=document.createElement('button');yes.textContent='Confirm';yes.style.cssText='padding:10px 18px;border-radius:8px;border:none;background:#35e0ff;color:#000;font-weight:bold;font-size:1em';no.onclick=function(){o.remove();cb(false)};yes.onclick=function(){o.remove();cb(true)};row.appendChild(no);row.appendChild(yes);box.appendChild(p);box.appendChild(row);o.appendChild(box);document.body.appendChild(o);yes.focus()}
+</script>
+
 </body>
 </html>
